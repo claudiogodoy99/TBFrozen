@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +48,7 @@
     <Compile Include="Interfaces\IMapping.cs" />
     <Compile Include="Interfaces\IUnityofWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UoW\UnityofWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EnityConfig\" />
