@@ -25,13 +25,13 @@ namespace FrozenWeb.Domain.Interfaces.Repository
 
         void Delete(params object[] key);
 
-        IEnumerable<TEntityResult> Distnct<TEntityResult>(Expression<Func<TEntity,TEntityResult>> select);
+        IEnumerable<TEntityResult> Distinct<TEntityResult>(Expression<Func<TEntity,TEntityResult>> select);
 
-        IEnumerable<TEntityResult> Distnct<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
+        IEnumerable<TEntityResult> Distinct<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
 
-        Task<IEnumerable<TEntityResult>> DistnctAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
+        Task<IEnumerable<TEntityResult>> DistinctAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select);
 
-        Task<IEnumerable<TEntityResult>> DistnctAsync<TEntityResult>(Expression<Func<TEntity, TEntityResult>> select);
+        Task<IEnumerable<TEntityResult>> DistinctAsync<TEntityResult>(Expression<Func<TEntity, TEntityResult>> select);
 
         TEntity FirstOrDefault(params Expression<Func<TEntity, object>>[] include);
 
