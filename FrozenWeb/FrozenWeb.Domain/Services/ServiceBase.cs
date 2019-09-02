@@ -18,136 +18,84 @@ namespace FrozenWeb.Domain.Services
             _repository = repositoryBase; 
         }
 
-        public IQueryable<TEntity> QueryAble => throw new NotImplementedException();
+        public IQueryable<TEntity> QueryAble => _repository.QueryAble;
 
         public void Add(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Add(entity);
 
-        public Task AddAsync(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task AddAsync(TEntity entity)
+            => await _repository.AddAsync(entity);
 
         public bool Any(Expression<Func<TEntity, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Any(where);
 
-        public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> where)
+            => await _repository.AnyAsync(where);
 
         public int Count(Expression<Func<TEntity, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Count(where);
 
-        public Task<int> CountAsync(Expression<Func<TEntity, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<int> CountAsync(Expression<Func<TEntity, bool>> where)
+            => await _repository.CountAsync(where);
 
         public void Delete(params object[] key)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Delete(key);
 
         public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Dispose();
 
         public IEnumerable<TEntityResult> Distinct<TEntityResult>(Expression<Func<TEntity, TEntityResult>> select)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Distinct(select);
 
         public IEnumerable<TEntityResult> Distinct<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Distinct(where, select);
 
-        public Task<IEnumerable<TEntityResult>> DistinctAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<TEntityResult>> DistinctAsync<TEntityResult>(Expression<Func<TEntity, bool>> where, Expression<Func<TEntity, TEntityResult>> select)
+            => await _repository.DistinctAsync(where, select);
 
-        public Task<IEnumerable<TEntityResult>> DistinctAsync<TEntityResult>(Expression<Func<TEntity, TEntityResult>> select)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<TEntityResult>> DistinctAsync<TEntityResult>(Expression<Func<TEntity, TEntityResult>> select)
+            => await _repository.DistinctAsync(select);
 
         public TEntity FirstOrDefault(params Expression<Func<TEntity, object>>[] include)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.FirstOrDefault(include);
 
         public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.FirstOrDefault(where, include);
 
-        public Task<TEntity> FirstOrDefaultAsync(params Expression<Func<TEntity, object>>[] include)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TEntity> FirstOrDefaultAsync(params Expression<Func<TEntity, object>>[] include)
+            => await _repository.FirstOrDefaultAsync(include);
 
-        public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+            => await _repository.FirstOrDefaultAsync(where, include);
 
         public IEnumerable<TEntity> List(params Expression<Func<TEntity, object>>[] include)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.List(include);
 
         public IEnumerable<TEntity> List(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.List(where,include);
 
-        public Task<IEnumerable<TEntity>> ListAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<TEntity>> ListAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] include)
+            => await _repository.ListAsync(where, include);
 
         public Task<IEnumerable<TEntity>> ListAsync(params Expression<Func<TEntity, object>>[] include)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.ListAsync(include);
 
         public TEntity Select(string id)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Select(id);
 
         public TEntity Select(int id)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Select(id);
 
-        public Task<TEntity> SelectAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TEntity> SelectAsync(string id)
+            => await _repository.SelectAsync(id);
 
-        public Task<TEntity> SelectAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<TEntity> SelectAsync(int id)
+            => await _repository.SelectAsync(id);
 
         public void Update(TEntity entity, params object[] keys)
-        {
-            throw new NotImplementedException();
-        }
+            => _repository.Update(entity, keys);
 
-        public Task UpdateAsync(TEntity entity, params object[] keys)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task UpdateAsync(TEntity entity, params object[] keys)
+            => await UpdateAsync(entity, keys);
     }
 }
