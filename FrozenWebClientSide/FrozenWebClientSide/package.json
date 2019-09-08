@@ -1,0 +1,17 @@
+{
+  "name": "frozen-web-client-side",
+  "version": "0.0.0",
+  "description": "FrozenWebClientSide",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.14",
+    "gulp-sass": "^4.0.2"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "node-sass": "^4.12.0"
+  }
+}
