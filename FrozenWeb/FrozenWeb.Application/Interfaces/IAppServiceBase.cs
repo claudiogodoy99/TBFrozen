@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FrozenWeb.Application.Interfaces
 {
-    public interface IAppServiceBase<TViewModel> : IUnityofWork where TViewModel : ViewModelBase
+    public interface IAppServiceBase<TViewModel>  where TViewModel : ViewModelBase
     {
         void Add(TViewModel entity);
 

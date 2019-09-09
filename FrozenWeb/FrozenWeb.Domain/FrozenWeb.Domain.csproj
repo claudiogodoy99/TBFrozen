@@ -38,9 +38,12 @@
   <ItemGroup>
     <Compile Include="Enities\EntityBase.cs" />
     <Compile Include="Interfaces\Repository\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\Repository\IUnityOfWork.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />
+    <Compile Include="Interfaces\Services\IUnityOfWorkService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\UnitOfWorkService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
