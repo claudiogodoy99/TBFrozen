@@ -1,14 +1,13 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
+using FrozenWeb.Domain.Interfaces.Repository;
 using FrozenWeb.Infra.Data.Context;
-using FrozenWeb.Infra.Data.Interfaces;
 
 namespace FrozenWeb.Infra.Data.UoW
 {
-    public class UnityofWork : IUnityofWork
+    public class UnityofWork : IUnityOfWork
     {
 
         private readonly FrozenContext _context;
@@ -21,11 +20,19 @@ namespace FrozenWeb.Infra.Data.UoW
 
         #region Metodos_Publicos
 
-        public DbContextTransaction BeginTransaction() => _context.Database.BeginTransaction();
+        public object BeginTransaction() => _context.Database.BeginTransaction();
 
-        public void Commit(DbContextTransaction transaction) => transaction.Commit();
+        public void Commit(object transaction)
+        {
+            var tran = (DbContextTransaction)transaction;
+            tran.Commit();
+        }
 
-        public void RollBack(DbContextTransaction transaction) => transaction.Rollback();
+        public void RollBack(object transaction)
+        {
+            var tran = (DbContextTransaction)transaction;
+            tran.Rollback();
+        }
 
         public void SaveChanges() => _context.SaveChanges();
 
@@ -54,8 +61,8 @@ namespace FrozenWeb.Infra.Data.UoW
 
             throw new DbEntityValidationException(exceptionMsg, e.EntityValidationErrors);
 
-            //Adicionar #Log# Posteriormente
-        }
+            //Adicionar #Log# Posteriormente00
+        }               
 
 
 
