@@ -1,11 +1,47 @@
 ﻿<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Frozen</title>
+
+  <!------------------------------ Styles -------------------------------->
+  <link href="../SiteAssets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../SiteAssets/styles/index.min.css" rel="stylesheet" />
 </head>
 <body>
+  <div class="container-fluid">
+    <form class="form-signin">
+      <div class="text-center mb-4">
+        <img class="mb-4" src="../SiteAssets/images/frozen.jpg" alt="" width="150" height="166" />
+        <h1 class="h3 mb-3 font-weight-normal">Bem-vindo ao Frozen!</h1>
+      </div>
 
+      <div class="form-label-group">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Endereço de email" required autofocus>
+        <label for="inputEmail">Endereço de email</label>
+      </div>
+
+      <div class="form-label-group">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        <label for="inputPassword">Senha</label>
+      </div>
+
+      <div class="checkbox mb-3">
+        <label>
+          <input id="inputLembrar" type="checkbox" value="lembrar de mim"> Lembrar de mim
+        </label>
+      </div>
+      <button id="btn-entrar" class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+      <p class="mt-5 mb-3 text-muted text-center">&copy; 2019</p>
+    </form>
+
+  </div>
+
+  <!------------------------------ Scripts -------------------------------->
+  <script src="../SiteAssets/plugins/jquery/jquery.min.js"></script>
+  <script src="../SiteAssets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../SiteAssets/scripts/index.min.js"></script>
 </body>
 </html>

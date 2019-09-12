@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>d9b73321-9bc9-4f42-8dd3-5fcbcf832480</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>RawAssets\ts\home.ts</StartupFile>
+    <StartupFile>RawAssets\ts\index.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -32,12 +32,17 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="RawAssets\ts\home.ts" />
+    <TypeScriptCompile Include="RawAssets\ts\index.ts" />
     <Content Include="package.json" />
-    <Content Include="RawAssets\sass\home.scss">
+    <Content Include="RawAssets\sass\index.scss">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="RawAssets\styles\index.css" />
     <Content Include="README.md" />
+    <Content Include="SiteAssets\images\frozen.jpg" />
+    <Content Include="SiteAssets\images\home-bg.jpg" />
+    <Content Include="SiteAssets\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="SiteAssets\styles\index.min.css" />
     <Content Include="SitePages\index.html">
       <SubType>Code</SubType>
     </Content>
@@ -47,14 +52,24 @@
     <Compile Include="gulpfile.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RawAssets\scripts\index.js" />
+    <Compile Include="SiteAssets\plugins\bootstrap\js\bootstrap.min.js" />
+    <Compile Include="SiteAssets\plugins\jquery\jquery.min.js" />
+    <Compile Include="SiteAssets\scripts\index.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="RawAssets\css\" />
-    <Folder Include="RawAssets\js\" />
+    <Folder Include="RawAssets\scripts\" />
+    <Folder Include="RawAssets\styles\" />
     <Folder Include="RawAssets\ts\" />
     <Folder Include="RawAssets\sass\" />
-    <Folder Include="SiteAssets\css\" />
-    <Folder Include="SiteAssets\js\" />
+    <Folder Include="SiteAssets\images\" />
+    <Folder Include="SiteAssets\plugins\" />
+    <Folder Include="SiteAssets\plugins\bootstrap\css\" />
+    <Folder Include="SiteAssets\plugins\bootstrap\js\" />
+    <Folder Include="SiteAssets\plugins\jquery\" />
+    <Folder Include="SiteAssets\plugins\bootstrap\" />
+    <Folder Include="SiteAssets\scripts\" />
+    <Folder Include="SiteAssets\styles\" />
     <Folder Include="SitePages\" />
     <Folder Include="SiteAssets\" />
     <Folder Include="RawAssets\" />
