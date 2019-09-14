@@ -31,11 +31,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.7.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.7.1\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web, Version=4.7.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.4.7.1\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BootStrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FrozenWeb.Application\FrozenWeb.Application.csproj">
+      <Project>{2CD731F5-F9A8-4E51-B935-883E0C2FFC83}</Project>
+      <Name>FrozenWeb.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FrozenWeb.Domain\FrozenWeb.Domain.csproj">
+      <Project>{3874E326-57E5-405F-B82B-E28834B00B00}</Project>
+      <Name>FrozenWeb.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FrozenWeb.Infra.Data\FrozenWeb.Infra.Data.csproj">
+      <Project>{7BDBF6BE-91C4-4928-8E11-3A4638678960}</Project>
+      <Name>FrozenWeb.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

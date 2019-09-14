@@ -57,8 +57,8 @@ namespace FrozenWeb.Domain.Interfaces.Repository
 
         Task<TEntity> SelectAsync(int id);
 
-        void Update(TEntity entity, params object[] keys);
+        void Update(TEntity entity, string keys);
 
-        Task UpdateAsync(TEntity entity, params object[] keys);
+        Task UpdateAsync(TEntity entity, string keys);
     }
 }

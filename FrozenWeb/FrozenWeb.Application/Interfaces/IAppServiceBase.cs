@@ -55,9 +55,9 @@ namespace FrozenWeb.Application.Interfaces
 
         Task<TViewModel> SelectAsync(int id);
 
-        void Update(TViewModel entity, params object[] keys);
+        void Update(TViewModel entity, string keys);
 
-        Task UpdateAsync(TViewModel entity, params object[] keys);
+        Task UpdateAsync(TViewModel entity, string keys);
 
     }
 }

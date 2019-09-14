@@ -108,22 +108,22 @@ namespace FrozenWeb.Application.AppServices
 
         public TViewModel FirstOrDefault(params Expression<Func<TViewModel, object>>[] include)
         {
-            return _service.FirstOrDefault(Mapinclue(include));
+            return ToViewModel(_service.FirstOrDefault(Mapinclue(include)));
         }
 
         public TViewModel FirstOrDefault(Expression<Func<TViewModel, bool>> where, params Expression<Func<TViewModel, object>>[] include)
         {
-            return _service.FirstOrDefault(MapWhere(where),Mapinclue(include));
+            return ToViewModel(_service.FirstOrDefault(MapWhere(where),Mapinclue(include)));
         }
 
         public async Task<TViewModel> FirstOrDefaultAsync(params Expression<Func<TViewModel, object>>[] include)
         {
-            return await _service.FirstOrDefault(Mapinclue(include));
+            return ToViewModel(await  _service.FirstOrDefault(Mapinclue(include)));
         }
 
         public async Task<TViewModel> FirstOrDefaultAsync(Expression<Func<TViewModel, bool>> where, params Expression<Func<TViewModel, object>>[] include)
         {
-            return await _service.FirstOrDefault(MapWhere(where),Mapinclue(include));
+            return ToViewModel( await _service.FirstOrDefault(MapWhere(where),Mapinclue(include)));
         }
 
         public IEnumerable<TViewModel> List(params Expression<Func<TViewModel, object>>[] include)
@@ -166,16 +166,16 @@ namespace FrozenWeb.Application.AppServices
             return  ToViewModel(await _service.SelectAsync(id));
         }
 
-        public void Update(TViewModel viewModel, params object[] keys)
+        public void Update(TViewModel viewModel, string keys)
         {
-            _service.Update(ToEntity(viewModel));
+            _service.Update(ToEntity(viewModel), keys);
 
             SaveChanges();
         }
 
-        public async Task UpdateAsync(TViewModel viewModel, params object[] keys)
+        public async Task UpdateAsync(TViewModel viewModel, string keys)
         {
-            await _service.UpdateAsync(ToEntity(viewModel));
+            await _service.UpdateAsync(ToEntity(viewModel), keys);
 
             await SaveChangesAsync();
         }

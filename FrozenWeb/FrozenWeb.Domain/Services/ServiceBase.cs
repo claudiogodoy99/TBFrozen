@@ -92,10 +92,10 @@ namespace FrozenWeb.Domain.Services
         public async Task<TEntity> SelectAsync(int id)
             => await _repository.SelectAsync(id);
 
-        public void Update(TEntity entity, params object[] keys)
+        public void Update(TEntity entity, string keys)
             => _repository.Update(entity, keys);
 
-        public async Task UpdateAsync(TEntity entity, params object[] keys)
+        public async Task UpdateAsync(TEntity entity, string keys)
             => await UpdateAsync(entity, keys);
     }
 }
