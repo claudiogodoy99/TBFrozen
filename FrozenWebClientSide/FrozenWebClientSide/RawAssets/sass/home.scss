@@ -1,0 +1,49 @@
+﻿@import "global";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  .container-fluid {
+    height: 100%;
+    background-image: url('../../SiteAssets/images/home-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .61;
+    padding: 50px 0px 0px 0px;
+
+    #tiles-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 30px 0px;
+      background: #FBFBFB 0% 0% no-repeat padding-box;
+      box-shadow: -27px 3px 82px #00357217;
+      border-radius: 4px;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+
+      .tile {
+        width: 160px;
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        margin: 10px;
+
+        .card-body {
+          display: -ms-flexbox;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          h5 {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
