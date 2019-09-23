@@ -34,7 +34,7 @@ paths.plugins = [paths.pluginswebroot + '**/*.{min.js,min.css,map,eot,svg,ttf,wo
 /********************************** TASKS ************************************/
 /*****************************************************************************/
 
-gulp.task('default', ['index', 'css']);
+gulp.task('default', ['css', 'index', 'home', 'user-data-table']);
 
 gulp.task('images', function () {
   var spriteData = gulp.src(paths.images).pipe(spritesmith({
@@ -93,6 +93,32 @@ gulp.task('index', function () {
     .pipe(ts({
       target: 'es5',
       outFile: 'index.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
+gulp.task('user-data-table', function () {
+  return gulp.src(paths.webroot + 'ts/user-data-table.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'user-data-table.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
+gulp.task('home', function () {
+  return gulp.src(paths.webroot + 'ts/home.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'home.js',
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))

@@ -32,30 +32,58 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="RawAssets\ts\home.ts" />
     <TypeScriptCompile Include="RawAssets\ts\index.ts" />
     <Content Include="package.json" />
+    <Content Include="RawAssets\sass\home.scss" />
+    <Content Include="RawAssets\sass\user-data-table.scss" />
     <Content Include="RawAssets\sass\index.scss">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="RawAssets\sass\_global.scss" />
+    <Content Include="RawAssets\styles\home.css" />
     <Content Include="RawAssets\styles\index.css" />
+    <Content Include="RawAssets\styles\user-data-table.css" />
     <Content Include="README.md" />
-    <Content Include="SiteAssets\images\frozen.jpg" />
-    <Content Include="SiteAssets\images\home-bg.jpg" />
+    <Content Include="SiteAssets\images\home-bg.png" />
+    <Content Include="SiteAssets\images\index-bg.png" />
+    <Content Include="SiteAssets\images\logo.png" />
+    <Content Include="SiteAssets\images\user.png" />
     <Content Include="SiteAssets\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="SiteAssets\plugins\font-awesome\css\font-awesome.css" />
+    <Content Include="SiteAssets\plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="SiteAssets\plugins\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="SiteAssets\plugins\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="SiteAssets\plugins\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="SiteAssets\plugins\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="SiteAssets\plugins\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="SiteAssets\plugins\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="SiteAssets\styles\home.min.css" />
     <Content Include="SiteAssets\styles\index.min.css" />
+    <Content Include="SiteAssets\styles\user-data-table.min.css" />
+    <Content Include="SitePages\home.html" />
     <Content Include="SitePages\index.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="SitePages\user-data-table.html" />
     <Content Include="tsconfig.json" />
+    <TypeScriptCompile Include="RawAssets\ts\user-data-table.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gulpfile.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RawAssets\scripts\home.js" />
     <Compile Include="RawAssets\scripts\index.js" />
+    <Compile Include="RawAssets\scripts\user-data-table.js" />
     <Compile Include="SiteAssets\plugins\bootstrap\js\bootstrap.min.js" />
     <Compile Include="SiteAssets\plugins\jquery\jquery.min.js" />
+    <Compile Include="SiteAssets\plugins\popper\popper.min.js" />
+    <Compile Include="SiteAssets\scripts\home.min.js" />
     <Compile Include="SiteAssets\scripts\index.min.js" />
+    <Compile Include="SiteAssets\scripts\user-data-table.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="RawAssets\scripts\" />
@@ -66,8 +94,12 @@
     <Folder Include="SiteAssets\plugins\" />
     <Folder Include="SiteAssets\plugins\bootstrap\css\" />
     <Folder Include="SiteAssets\plugins\bootstrap\js\" />
+    <Folder Include="SiteAssets\plugins\font-awesome\" />
+    <Folder Include="SiteAssets\plugins\font-awesome\css\" />
+    <Folder Include="SiteAssets\plugins\font-awesome\fonts\" />
     <Folder Include="SiteAssets\plugins\jquery\" />
     <Folder Include="SiteAssets\plugins\bootstrap\" />
+    <Folder Include="SiteAssets\plugins\popper\" />
     <Folder Include="SiteAssets\scripts\" />
     <Folder Include="SiteAssets\styles\" />
     <Folder Include="SitePages\" />
