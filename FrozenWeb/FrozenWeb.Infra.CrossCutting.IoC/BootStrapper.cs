@@ -9,7 +9,6 @@ using FrozenWeb.Infra.Data.Context;
 using FrozenWeb.Infra.Data.Repository;
 using FrozenWeb.Infra.Data.UoW;
 using SimpleInjector;
-using SimpleInjector.Lifestyles;
 
 namespace FrozenWeb.Infra.CrossCutting.IoC
 {
@@ -27,7 +26,7 @@ namespace FrozenWeb.Infra.CrossCutting.IoC
         private static void RegisterAppLevel(Container container, Lifestyle lifestyle)
         {
             container.Register<IUnityOfWorkAppService, UnityOfWorkAppService>(lifestyle);
-            container.Register(typeof(IAppServiceBase<ViewModelBase>), typeof(AppServiceBase<ViewModelBase, EntityBase>), lifestyle);
+            container.Register(typeof(IAppServiceBase<>), typeof(AppServiceBase<ViewModelBase,EntityBase>), lifestyle);
             
         }
 
@@ -42,7 +41,6 @@ namespace FrozenWeb.Infra.CrossCutting.IoC
         {
             container.Register(typeof(IRepositoryBase<>), typeof(RepostitoryBase<>), lifestyle);
             container.Register(typeof(IUnityOfWork), typeof(UnityofWork), lifestyle);
-            
         }
 
         private static void RegisterGeneralLevel(Container container, Lifestyle lifestyle)

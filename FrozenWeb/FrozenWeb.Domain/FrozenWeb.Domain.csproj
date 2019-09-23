@@ -36,7 +36,17 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enities\Empresa.cs" />
     <Compile Include="Enities\EntityBase.cs" />
+    <Compile Include="Enities\Funcao.cs" />
+    <Compile Include="Enities\Motorista.cs" />
+    <Compile Include="Enities\Pemissoes.cs" />
+    <Compile Include="Enities\Recurso.cs" />
+    <Compile Include="Enities\Usuario.cs" />
+    <Compile Include="Interfaces\Repository\IEmpresaRepository.cs" />
+    <Compile Include="Interfaces\Repository\IFuncaoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IPermissoesRepository.cs" />
+    <Compile Include="Interfaces\Repository\IRecursoRepository.cs" />
     <Compile Include="Interfaces\Repository\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repository\IUnityOfWork.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />

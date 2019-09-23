@@ -5,6 +5,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Reflection;
 using System;
+using FrozenWeb.Domain.Enities;
 
 namespace FrozenWeb.Infra.Data.Context
 {
@@ -15,7 +16,7 @@ namespace FrozenWeb.Infra.Data.Context
         {
             Database.SetInitializer<FrozenContext>(null);
         }
-
+      
 
         public FrozenContext() : base("DefaultConnection")
         {
@@ -25,6 +26,7 @@ namespace FrozenWeb.Infra.Data.Context
             Configuration.UseDatabaseNullSemantics = false;
             Configuration.ValidateOnSaveEnabled = false;
         }
+        #endregion
 
         #region MetodosProtegidos
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -50,10 +52,12 @@ namespace FrozenWeb.Infra.Data.Context
         #endregion
 
         #region DbSets
+        public DbSet<Empresa> _empresaContext;
+        public DbSet<Funcao> _funcaoContext;
+        public DbSet<Recurso> _recursoContext;
+        public DbSet<Usuario> _usuarioContext;
+        public DbSet<Motorista> _motoristaContext;
+        public DbSet<Pemissoes> _permissoesContext;
         #endregion
-
-
-        #endregion
-
     }
 }
