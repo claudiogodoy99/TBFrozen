@@ -6,9 +6,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace FrozenWeb.Infra.Data.EnityConfig
 {
-    public class MotoristaRecurso : EntityTypeConfiguration<Motorista> , IMapping
+    public class MotoristaConfiguration : EntityTypeConfiguration<Motorista> , IMapping
     {
-        public MotoristaRecurso()
+        public MotoristaConfiguration()
         {
             ToTable("MOTORISTA");
 

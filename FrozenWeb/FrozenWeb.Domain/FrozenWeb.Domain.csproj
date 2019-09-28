@@ -45,15 +45,29 @@
     <Compile Include="Enities\Usuario.cs" />
     <Compile Include="Interfaces\Repository\IEmpresaRepository.cs" />
     <Compile Include="Interfaces\Repository\IFuncaoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IMotoristaRepository.cs" />
     <Compile Include="Interfaces\Repository\IPermissoesRepository.cs" />
     <Compile Include="Interfaces\Repository\IRecursoRepository.cs" />
     <Compile Include="Interfaces\Repository\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repository\IUnityOfWork.cs" />
+    <Compile Include="Interfaces\Repository\IUsuarioRepositoy.cs" />
+    <Compile Include="Interfaces\Services\IEmpresaService.cs" />
+    <Compile Include="Interfaces\Services\IFuncaoService.cs" />
+    <Compile Include="Interfaces\Services\IMotoristaService.cs" />
+    <Compile Include="Interfaces\Services\IRecursoService.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />
     <Compile Include="Interfaces\Services\IUnityOfWorkService.cs" />
+    <Compile Include="Interfaces\Services\IPermissoesService.cs" />
+    <Compile Include="Interfaces\Services\IUsuarioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmpresaService.cs" />
+    <Compile Include="Services\FuncaoService.cs" />
+    <Compile Include="Services\MotoristaService.cs" />
+    <Compile Include="Services\PermissoesService.cs" />
+    <Compile Include="Services\RecursoService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\UnitOfWorkService.cs" />
+    <Compile Include="Services\UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

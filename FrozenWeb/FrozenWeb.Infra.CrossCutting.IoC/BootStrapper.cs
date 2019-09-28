@@ -34,6 +34,12 @@ namespace FrozenWeb.Infra.CrossCutting.IoC
         {
             container.Register(typeof(IServiceBase<>), typeof(ServiceBase<>), lifestyle);
             container.Register(typeof(IUnityOfWorkService), typeof(UnitOfWorkService), lifestyle);
+            container.Register(typeof(IEmpresaService), typeof(EmpresaService), lifestyle);
+            container.Register(typeof(IFuncaoService), typeof(FuncaoService), lifestyle);
+            container.Register(typeof(IMotoristaService), typeof(MotoristaService), lifestyle);
+            container.Register(typeof(IUsuarioService), typeof(UsuarioService), lifestyle);
+            container.Register(typeof(IRecursoService), typeof(RecursoService), lifestyle);
+            container.Register(typeof(IPermissoesService), typeof(PermissoesService), lifestyle);
 
         }
 
@@ -41,6 +47,12 @@ namespace FrozenWeb.Infra.CrossCutting.IoC
         {
             container.Register(typeof(IRepositoryBase<>), typeof(RepostitoryBase<>), lifestyle);
             container.Register(typeof(IUnityOfWork), typeof(UnityofWork), lifestyle);
+            container.Register(typeof(IEmpresaRepository), typeof(EmpresaRepository), lifestyle);
+            container.Register(typeof(IFuncaoRepository), typeof(FuncaoRepository), lifestyle);
+            container.Register(typeof(IMotoristaRepository), typeof(MotoristaRepository), lifestyle);
+            container.Register(typeof(IUsuarioRepositoy), typeof(UsuarioRepository), lifestyle);
+            container.Register(typeof(IRecursoRepository), typeof(RecursoRepository), lifestyle);
+            container.Register(typeof(IPermissoesRepository), typeof(PermissoresRepository), lifestyle);
         }
 
         private static void RegisterGeneralLevel(Container container, Lifestyle lifestyle)

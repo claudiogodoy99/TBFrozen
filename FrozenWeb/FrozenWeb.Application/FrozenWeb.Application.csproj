@@ -49,6 +49,12 @@
     <Compile Include="Interfaces\IAppServiceBase.cs" />
     <Compile Include="Interfaces\IUnityOfWorkAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\EmpresaViewModel.cs" />
+    <Compile Include="ViewModel\FuncaoViewModel.cs" />
+    <Compile Include="ViewModel\MotoristaViewModel.cs" />
+    <Compile Include="ViewModel\PermissoesViewModel.cs" />
+    <Compile Include="ViewModel\RecursoViewModel.cs" />
+    <Compile Include="ViewModel\UsuarioViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup />
