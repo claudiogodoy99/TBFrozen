@@ -34,7 +34,7 @@ paths.plugins = [paths.pluginswebroot + '**/*.{min.js,min.css,map,eot,svg,ttf,wo
 /********************************** TASKS ************************************/
 /*****************************************************************************/
 
-gulp.task('default', ['css', 'index', 'home', 'user-data-table']);
+gulp.task('default', ['css', 'index', 'home', 'data-tables']);
 
 gulp.task('images', function () {
   var spriteData = gulp.src(paths.images).pipe(spritesmith({
@@ -101,11 +101,11 @@ gulp.task('index', function () {
     .pipe(gulp.dest('SiteAssets/scripts'));
 });
 
-gulp.task('user-data-table', function () {
-  return gulp.src(paths.webroot + 'ts/user-data-table.ts')
+gulp.task('data-tables', function () {
+  return gulp.src(paths.webroot + 'ts/data-tables.ts')
     .pipe(ts({
       target: 'es5',
-      outFile: 'user-data-table.js',
+      outFile: 'data-tables.js',
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))

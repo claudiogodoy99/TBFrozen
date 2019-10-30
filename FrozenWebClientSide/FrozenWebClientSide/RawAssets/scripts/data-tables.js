@@ -1,8 +1,9 @@
 (function ($) {
     $(function () {
-        // Activate tooltip
+        //#region Configurações Globais
+        /* Ativando as tooltips dos botões de ação */
         $('[data-toggle="tooltip"]').tooltip();
-        // Select/Deselect checkboxes
+        /* Definindo comportamento das checkboxes das linhas da tabela */
         var checkbox = $('table tbody input[type="checkbox"]');
         $("#selectAll").click(function () {
             if (this['checked']) {
@@ -21,5 +22,6 @@
                 $("#selectAll").prop("checked", false);
             }
         });
+        //#endregion
     });
 })(jQuery);

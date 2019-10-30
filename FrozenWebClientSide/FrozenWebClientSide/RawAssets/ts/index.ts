@@ -41,6 +41,8 @@
         localStorage.setItem('loginData', JSON.stringify(loginData))
       }
 
+      window.location.replace('../SitePages/home.html')
+
     }
 
     //#endregion

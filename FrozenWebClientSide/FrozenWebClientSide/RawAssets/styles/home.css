@@ -2448,15 +2448,20 @@ body .container-fluid {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around; }
-    body .container-fluid #tiles-container .tile {
-      width: 160px;
-      border: solid 1px #ccc;
-      border-radius: 5px;
-      margin: 10px; }
-      body .container-fluid #tiles-container .tile .card-body {
-        display: -ms-flexbox;
-        display: flex;
-        flex-direction: column;
-        align-items: center; }
-        body .container-fluid #tiles-container .tile .card-body h5 {
-          margin-top: 10px; }
+    body .container-fluid #tiles-container a {
+      text-decoration: none; }
+      body .container-fluid #tiles-container a .tile {
+        width: 160px;
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        margin: 10px; }
+        body .container-fluid #tiles-container a .tile .card-body {
+          display: -ms-flexbox;
+          display: flex;
+          flex-direction: column;
+          align-items: center; }
+          body .container-fluid #tiles-container a .tile .card-body i {
+            color: #006fe6; }
+          body .container-fluid #tiles-container a .tile .card-body h5 {
+            margin-top: 10px;
+            text-decoration: none; }

@@ -17,10 +17,10 @@
       <div class="table-title">
         <div class="row">
           <div class="col-sm-8">
-            <h2><b>Grid - Usuários</b></h2>
+            <h2><b>Grid - Garagens</b></h2>
           </div>
           <div class="col-sm-4 mt-2">
-            <a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-user-plus" aria-hidden="true"></i><!--<span>Adicionar</span>--></a>
+            <a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-cubes" aria-hidden="true"></i><!--<span>Adicionar</span>--></a>
             <a href="#deleteModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"></i><!--<span>Excluir</span>--></a>
           </div>
         </div>
@@ -36,9 +36,8 @@
                 </span>
               </th>
               <th>Nome</th>
-              <th>E-mail</th>
+              <th>Empresa</th>
               <th>Endereço</th>
-              <th>Telefone</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -50,10 +49,9 @@
                   <label for="checkbox1"></label>
                 </span>
               </td>
-              <td>Gabriel</td>
-              <td>gabriel@email.com</td>
-              <td>Rua do cachorrin fdp</td>
-              <td>40028922</td>
+              <td>Garagem A</td>
+              <td>UNIP</td>
+              <td>Rua ABC - 123, Jardim Bebedouro, Guarulhos - SP.</td>
               <td>
                 <a href="#editModal" class="edit" data-toggle="modal"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></i></a>
                 <a href="#deleteModal" class="delete" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="Excluir"></i></a>
@@ -82,7 +80,7 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Adicionar novo usuário </h4>
+            <h4 class="modal-title">Adicionar nova garagem </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
@@ -91,20 +89,15 @@
               <input type="text" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>E-mail</label>
-              <input type="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Senha</label>
-              <input type="password" class="form-control" required>
+              <label>Empresa</label>
+              <select class="form-control" required>
+                <option>Selecione uma empresa...</option>
+                <option>UNIP</option>
+              </select>
             </div>
             <div class="form-group">
               <label>Endereço</label>
               <textarea class="form-control" rows="5" required></textarea>
-            </div>
-            <div class="form-group">
-              <label>Telefone</label>
-              <input type="text" class="form-control" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -121,7 +114,7 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Editar cliente </h4>
+            <h4 class="modal-title">Editar garagem </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
@@ -130,16 +123,15 @@
               <input type="text" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>E-mail</label>
-              <input type="email" class="form-control" required>
+              <label>Empresa</label>
+              <select class="form-control" required>
+                <option>Selecione uma empresa...</option>
+                <option>UNIP</option>
+              </select>
             </div>
             <div class="form-group">
               <label>Endereço</label>
-              <textarea class="form-control" required></textarea>
-            </div>
-            <div class="form-group">
-              <label>Telefone</label>
-              <input type="text" class="form-control" required>
+              <textarea class="form-control" rows="5" required></textarea>
             </div>
           </div>
           <div class="modal-footer">
@@ -156,7 +148,7 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Excluir cliente </h4>
+            <h4 class="modal-title">Excluir garagem </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
