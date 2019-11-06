@@ -2520,6 +2520,9 @@ table.table td a.edit {
 table.table td a.delete {
   color: #F44336; }
 
+table.table td a.finish-trip {
+  color: #17a2b8; }
+
 table.table td i {
   font-size: 19px; }
 
@@ -2647,3 +2650,13 @@ table.table .avatar {
 
 .modal form label {
   font-weight: normal; }
+
+.vehicle-info {
+  color: #17a2b8; }
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto; }
+
+.popover {
+  max-width: 600px; }

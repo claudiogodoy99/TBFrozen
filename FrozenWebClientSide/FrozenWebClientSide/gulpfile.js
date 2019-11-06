@@ -127,6 +127,19 @@ gulp.task('home', function () {
     .pipe(gulp.dest('SiteAssets/scripts'));
 });
 
+gulp.task('trip-data-table', function () {
+  return gulp.src(paths.webroot + 'ts/trip-data-table.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'trip-data-table.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
 /*****************************************************************************/
 /*****************************************************************************/
 /*****************************************************************************/

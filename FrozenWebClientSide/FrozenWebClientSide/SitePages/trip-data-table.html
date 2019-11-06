@@ -17,10 +17,10 @@
       <div class="table-title">
         <div class="row">
           <div class="col-sm-8">
-            <h2><b>Grid - Veículos</b></h2>
+            <h2><b>Grid - Viagens</b></h2>
           </div>
           <div class="col-sm-4 mt-2">
-            <a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-car" aria-hidden="true"></i><!--<span>Adicionar</span>--></a>
+            <a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-map-marker" aria-hidden="true"></i><!--<span>Adicionar</span>--></a>
             <a href="#deleteModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"></i><!--<span>Excluir</span>--></a>
           </div>
         </div>
@@ -35,14 +35,13 @@
                   <label for="selectAll"></label>
                 </span>
               </th>
-              <th>Placa</th>
-              <th>Marca</th>
-              <th>Modelo</th>
-              <th>Empresa</th>
+              <th>Status</th>
+              <th>Motorista</th>
+              <th>Veículo</th>
               <th>Garagem</th>
-              <th>Seguro</th>
-              <th>Tipo de Combustível</th>
-              <th>Em Manutenção</th>
+              <th>Destino</th>
+              <th>Ínicio</th>
+              <th>Fim</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -54,16 +53,16 @@
                   <label for="checkbox1"></label>
                 </span>
               </td>
-              <td>DTA-9645</td>
-              <td>Mitsubish</td>
-              <td>Lancer</td>
-              <td>UNIP</td>
+              <td>Encerrada</td>
+              <td>Gabriel</td>
+              <td>Mitsubish Lancer</td>
               <td>Garagem A</td>
-              <td>Não sei o que por kk</td>
-              <td>Flex</td>
-              <td>Não</td>
-              <td>
+              <td>Rua Abc123</td>
+              <td>05/11/2019 às 20:19</td>
+              <td>05/11/2019 às 21:00</td>
+              <td style="width: 130px;">
                 <a href="#editModal" class="edit" data-toggle="modal"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></i></a>
+                <a href="#finishTripModal" class="finish-trip" data-toggle="modal"><i class="fa fa-flag-checkered" aria-hidden="true" data-toggle="tooltip" title="Encerrar Viagem"></i></a>
                 <a href="#deleteModal" class="delete" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="Excluir"></i></a>
               </td>
             </tr>
@@ -90,58 +89,42 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Adicionar novo veículo </h4>
+            <h4 class="modal-title">Adicionar nova viagem </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label>Placa</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Marca</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Modelo</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Empresa</label>
+              <label>Motorista</label>
               <select class="form-control" required>
-                <option>Selecione uma empresa...</option>
-                <option>UNIP</option>
+                <option>Selecione um motorista...</option>
+                <option>Gabriel</option>
+                <option>Claudio</option>
               </select>
+            </div>
+            <div class="form-group">
+              <label>Veículo</label>
+              <div class="input-group">
+                <select class="form-control" required>
+                  <option>Selecione um veículo...</option>
+                  <option>Mitsubish Lancer </option>
+                  <option>Uno de firma</option>
+                </select>
+                <div class="input-group-append">
+                  <label class="input-group-text vehicle-info"><a tabindex="0" data-toggle="popover" data-placement="right" data-trigger="hover" title="Informações do veículo" data-html="true"><i class="fa fa-info-circle fa-lg"></i></a></label>
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label>Garagem</label>
-              <select class="form-control" required>
-                <option>Selecione uma garagem...</option>
-                <option>Garagem A</option>
-              </select>
+              <input type="text" class="form-control" required disabled>
             </div>
             <div class="form-group">
-              <label>Seguro</label>
+              <label>Destino</label>
               <input type="text" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>Tipo de Combustível</label>
-              <select class="form-control" required>
-                <option>Selecione um tipo de combustível...</option>
-                <option>Gasolina</option>
-                <option>Álcool</option>
-                <option>Flex</option>
-                <option>Diesel</option>
-                <option>Biodiesel</option>
-                <option>Gás</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Imagem</label>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label">Escolha um arquivo...</label>
-              </div>
+              <label>Início</label>
+              <input type="datetime-local" class="form-control" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -158,51 +141,54 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Editar veículo </h4>
+            <h4 class="modal-title">Editar viagem </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label>Placa</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Marca</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Modelo</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Empresa</label>
+              <label>Status</label>
               <select class="form-control" required>
-                <option>Selecione uma empresa...</option>
-                <option>UNIP</option>
+                <option>Selecione um status...</option>
+                <option>Em andamento</option>
+                <option>Encerrada</option>
               </select>
+            </div>
+            <div class="form-group">
+              <label>Motorista</label>
+              <select class="form-control" required>
+                <option>Selecione um motorista...</option>
+                <option>Gabriel</option>
+                <option>Claudio</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Veículo</label>
+              <div class="input-group">
+                <select class="form-control" required>
+                  <option>Selecione um veículo...</option>
+                  <option>Mitsubish Lancer </option>
+                  <option>Uno de firma</option>
+                </select>
+                <div class="input-group-append">
+                  <label class="input-group-text vehicle-info"><a tabindex="0" data-toggle="popover" data-placement="right" data-trigger="hover" title="Informações do veículo" data-html="true"><i class="fa fa-info-circle fa-lg"></i></a></label>
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label>Garagem</label>
-              <select class="form-control" required>
-                <option>Selecione uma garagem...</option>
-                <option>Garagem A</option>
-              </select>
+              <input type="text" class="form-control" required disabled>
             </div>
             <div class="form-group">
-              <label>Seguro</label>
+              <label>Destino</label>
               <input type="text" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>Tipo de Combustível</label>
-              <select class="form-control" required>
-                <option>Selecione um tipo de combustível...</option>
-                <option>Gasolina</option>
-                <option>Álcool</option>
-                <option>Flex</option>
-                <option>Diesel</option>
-                <option>Biodiesel</option>
-                <option>Gás</option>
-              </select>
+              <label>Início</label>
+              <input type="datetime-local" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Fim</label>
+              <input type="datetime-local" class="form-control" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -219,7 +205,7 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Excluir veículo </h4>
+            <h4 class="modal-title">Excluir viagem </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
@@ -234,11 +220,32 @@
       </div>
     </div>
   </div>
+  <!-- Finish Trip Modal HTML -->
+  <div id="finishTripModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h4 class="modal-title">Encerrar viagem </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Você tem certeza de que realmente quer realizar esta operação?</p>
+          </div>
+          <div class="modal-footer">
+            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+            <input type="submit" class="btn btn-info" value="Encerrar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!------------------------------ Scripts -------------------------------->
   <script src="../SiteAssets/plugins/jquery/jquery.min.js"></script>
   <script src="../SiteAssets/plugins/popper/popper.min.js"></script>
   <script src="../SiteAssets/plugins/bootstrap/js/bootstrap.min.js"></script>
   <script src="../SiteAssets/scripts/data-tables.min.js"></script>
+  <script src="../SiteAssets/scripts/trip-data-table.min.js"></script>
 </body>
 </html>                                		                            

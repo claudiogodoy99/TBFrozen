@@ -32,6 +32,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="RawAssets\ts\trip-data-table.ts" />
     <TypeScriptCompile Include="RawAssets\ts\home.ts" />
     <TypeScriptCompile Include="RawAssets\ts\index.ts" />
     <Content Include="package.json" />
@@ -65,6 +66,7 @@
     <Content Include="SitePages\company-data-table.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="SitePages\trip-data-table.html" />
     <Content Include="SitePages\vehicle-data-table.html" />
     <Content Include="SitePages\garage-data-table.html" />
     <Content Include="SitePages\home.html" />
@@ -85,12 +87,14 @@
     <Compile Include="RawAssets\scripts\data-tables.js" />
     <Compile Include="RawAssets\scripts\home.js" />
     <Compile Include="RawAssets\scripts\index.js" />
+    <Compile Include="RawAssets\scripts\trip-data-table.js" />
     <Compile Include="SiteAssets\plugins\bootstrap\js\bootstrap.min.js" />
     <Compile Include="SiteAssets\plugins\jquery\jquery.min.js" />
     <Compile Include="SiteAssets\plugins\popper\popper.min.js" />
     <Compile Include="SiteAssets\scripts\data-tables.min.js" />
     <Compile Include="SiteAssets\scripts\home.min.js" />
     <Compile Include="SiteAssets\scripts\index.min.js" />
+    <Compile Include="SiteAssets\scripts\trip-data-table.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="RawAssets\scripts\" />
