@@ -13,6 +13,16 @@
 </head>
 <body>
   <div class="container-fluid">
+    <nav class="navbar sticky-top">
+      <div>
+        <a href="index.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      </div>
+      <div>
+        <a href="#" id="toggle-contrast"><i class="fa fa-low-vision mr-2" aria-hidden="true"></i></a>
+        <a href="#" id="increase-size"><i class="fa fa-font" aria-hidden="true"></i></a>
+        <a href="#" id="decrease-size"><i class="fa fa-font" aria-hidden="true" style=" font-size: .750em;"></i></a>
+      </div>
+    </nav>
     <div id="tiles-container">
       <a href="../SitePages/company-data-table.html">
         <div class="card tile">
@@ -54,12 +64,21 @@
           </div>
         </div>
       </a>
+      <a href="../SitePages/trip-data-table.html">
+        <div class="card tile">
+          <div class="card-body">
+            <i class="fa fa-map-marker fa-4x" aria-hidden="true"></i>
+            <h5 class="card-title">Viagens</h5>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 
   <!------------------------------ Scripts -------------------------------->
   <script src="../SiteAssets/plugins/jquery/jquery.min.js"></script>
   <script src="../SiteAssets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../SiteAssets/scripts/global.min.js"></script>
   <script src="../SiteAssets/scripts/home.min.js"></script>
 </body>
 </html>

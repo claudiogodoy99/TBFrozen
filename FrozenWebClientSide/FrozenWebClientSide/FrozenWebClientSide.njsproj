@@ -79,12 +79,16 @@
     <TypeScriptCompile Include="RawAssets\ts\data-tables.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="RawAssets\ts\global.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gulpfile.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RawAssets\scripts\data-tables.js" />
+    <Compile Include="RawAssets\scripts\global.js" />
     <Compile Include="RawAssets\scripts\home.js" />
     <Compile Include="RawAssets\scripts\index.js" />
     <Compile Include="RawAssets\scripts\trip-data-table.js" />
@@ -92,6 +96,7 @@
     <Compile Include="SiteAssets\plugins\jquery\jquery.min.js" />
     <Compile Include="SiteAssets\plugins\popper\popper.min.js" />
     <Compile Include="SiteAssets\scripts\data-tables.min.js" />
+    <Compile Include="SiteAssets\scripts\global.min.js" />
     <Compile Include="SiteAssets\scripts\home.min.js" />
     <Compile Include="SiteAssets\scripts\index.min.js" />
     <Compile Include="SiteAssets\scripts\trip-data-table.min.js" />

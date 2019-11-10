@@ -4,3 +4,29 @@
 @import "../../node_modules/bootstrap/scss/utilities";
 
 $primary-color: darken($primary, 5%);
+
+body {
+
+  .container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    color: #666666;
+    align-items: baseline;
+    background-color: #ECECEC;
+    opacity: .7;
+    font-size: 1.5em;
+    border-bottom: 1px solid #666666;
+  }
+}
+
+.accessibility-contrast {
+  color: #FFCC00 !important;
+  background: #000000 !important;
+  background-image: none !important;
+  border-color: #FFFFFF !important;
+  opacity: 1 !important;
+}

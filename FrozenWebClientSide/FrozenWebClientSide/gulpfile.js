@@ -88,6 +88,19 @@ gulp.task('sass', function () {
     .pipe(gulp.dest(paths.compiledSass));
 });
 
+gulp.task('global', function () {
+  return gulp.src(paths.webroot + 'ts/global.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'global.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
 gulp.task('index', function () {
   return gulp.src(paths.webroot + 'ts/index.ts')
     .pipe(ts({
