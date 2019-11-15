@@ -10,9 +10,6 @@ namespace FrozenWeb.Application.AutoMapper
         {
 
             CreateMap< EmpresaViewModel, Empresa>();
-            CreateMap<RecursoViewModel ,Recurso>();
-            CreateMap<PermissoesViewModel, Pemissoes>();
-            CreateMap<Funcao, FuncaoViewModel>();
             CreateMap<Usuario, UsuarioViewModel>();
             CreateMap<Motorista, MotoristaViewModel>();
         }

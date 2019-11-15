@@ -38,20 +38,12 @@ namespace FrozenWeb.Infra.Data.EnityConfig
                 .HasMaxLength(100)
                 .IsRequired();
 
-            Property(x => x.funcaoId)
-                .HasColumnName("FUNCAOID")
-                .HasColumnType("INT")
-                .IsRequired();
-
             Property(x => x.empresaCnpj)
                 .HasColumnName("EMPRESACNPJ")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(14)
                 .IsRequired();
 
-            HasRequired(x => x.funcao)
-                .WithMany(x => x.usuarios)
-                .HasForeignKey(x => x.funcaoId);
 
             HasRequired(x => x.empresa)
                 .WithMany(x => x.usuarios)

@@ -53,11 +53,8 @@ namespace FrozenWeb.Infra.Data.Context
 
         #region DbSets
         public DbSet<Empresa> _empresaContext;
-        public DbSet<Funcao> _funcaoContext;
-        public DbSet<Recurso> _recursoContext;
         public DbSet<Usuario> _usuarioContext;
         public DbSet<Motorista> _motoristaContext;
-        public DbSet<Pemissoes> _permissoesContext;
         #endregion
     }
 }

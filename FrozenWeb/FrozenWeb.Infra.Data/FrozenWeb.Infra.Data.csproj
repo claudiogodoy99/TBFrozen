@@ -46,10 +46,7 @@
   <ItemGroup>
     <Compile Include="Context\FrozenContext.cs" />
     <Compile Include="EnityConfig\EmpresaConfiguration.cs" />
-    <Compile Include="EnityConfig\FuncaoConfiguration.cs" />
     <Compile Include="EnityConfig\MotoristaConfiguration.cs" />
-    <Compile Include="EnityConfig\PermissoesConfiguration.cs" />
-    <Compile Include="EnityConfig\RecursoConfiguration.cs" />
     <Compile Include="EnityConfig\UsuarioConfiguration.cs" />
     <Compile Include="Interfaces\IMapping.cs" />
     <Compile Include="Migrations\201909230052075_InitialFrozenContext.cs" />
@@ -59,10 +56,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EmpresaRepository.cs" />
-    <Compile Include="Repository\FuncaoRepository.cs" />
     <Compile Include="Repository\MotoristaRepository.cs" />
-    <Compile Include="Repository\PermissoresRepository.cs" />
-    <Compile Include="Repository\RecursoRepository.cs" />
     <Compile Include="Repository\RepostitoryBase.cs" />
     <Compile Include="Repository\UsuarioRepository.cs" />
     <Compile Include="UoW\UnityofWork.cs" />
