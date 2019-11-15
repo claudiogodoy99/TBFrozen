@@ -1,7 +1,5 @@
 ﻿(($: JQueryStatic) => {
-
   $(() => {
-
     //#region Configurações Globais
 
     /** Adiciona o comportamento de hover nas tiles */

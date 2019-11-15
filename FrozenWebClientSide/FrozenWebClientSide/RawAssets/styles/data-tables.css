@@ -2425,16 +2425,40 @@ a.text-dark:hover, a.text-dark:focus {
 .invisible {
   visibility: hidden !important; }
 
+body .container-fluid {
+  padding-right: 0px;
+  padding-left: 0px; }
+
+body .navbar {
+  justify-content: space-between;
+  color: #666666;
+  align-items: baseline;
+  background-color: #ECECEC;
+  opacity: .7;
+  font-size: 1.5em;
+  border-bottom: 1px solid #666666; }
+
+.accessibility-contrast {
+  color: #FFCC00 !important;
+  background: #000000 !important;
+  background-image: none !important;
+  border-color: #FFFFFF !important;
+  opacity: 1 !important; }
+
 body {
   color: #566787;
   background: #f5f5f5;
   font-family: Tahoma, sans-serif;
-  font-size: 13px; }
+  font-size: 13px;
+  min-height: 700px;
+  background-image: url("../../SiteAssets/images/data-table-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover; }
 
 .table-wrapper {
+  margin-top: 30px;
   background: #fff;
   padding: 20px 25px;
-  margin: 30px 0;
   border-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
 
@@ -2465,9 +2489,9 @@ body {
   margin-left: 10px; }
 
 .table-title .btn i {
-  float: left;
-  font-size: 21px;
-  margin-right: 5px; }
+  /*float: left;
+  margin-right: 5px;*/
+  font-size: 21px; }
 
 .table-title .btn span {
   float: left;
@@ -2515,6 +2539,9 @@ table.table td a.edit {
 
 table.table td a.delete {
   color: #F44336; }
+
+table.table td a.finish-trip {
+  color: #17a2b8; }
 
 table.table td i {
   font-size: 19px; }
@@ -2643,3 +2670,13 @@ table.table .avatar {
 
 .modal form label {
   font-weight: normal; }
+
+.vehicle-info {
+  color: #17a2b8; }
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto; }
+
+.popover {
+  max-width: 600px; }

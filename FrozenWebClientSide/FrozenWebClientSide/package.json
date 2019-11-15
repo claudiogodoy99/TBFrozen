@@ -21,6 +21,7 @@
   "dependencies": {
     "@types/jquery": "^3.3.31",
     "@types/jsdom": "^12.2.4",
+    "accessibility-buttons": "^3.1.2",
     "bootstrap": "^4.3.1",
     "gulp": "3.9.1",
     "jquery": "^3.4.1",

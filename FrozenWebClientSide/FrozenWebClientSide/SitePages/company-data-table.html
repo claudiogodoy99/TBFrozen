@@ -28,14 +28,14 @@
         <div class="row">
           <div class="col-sm-8">
             <h2>
-              <b>Grid - Usuários</b>
+              <b>Grid - Empresas</b>
               <a href="home.html" class="ml-2" style="color: white;">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
               </a>
             </h2>
           </div>
           <div class="col-sm-4 mt-2">
-            <a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-user-plus" aria-hidden="true"></i><!--<span>Adicionar</span>--></a>
+            <a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-building" aria-hidden="true"></i><!--<span>Adicionar</span>--></a>
             <a href="#deleteModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"></i><!--<span>Excluir</span>--></a>
           </div>
         </div>
@@ -50,10 +50,8 @@
                   <label for="selectAll"></label>
                 </span>
               </th>
-              <th>Nome</th>
-              <th>E-mail</th>
-              <th>Endereço</th>
-              <th>Telefone</th>
+              <th>CNPJ</th>
+              <th>Descrição</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -65,10 +63,8 @@
                   <label for="checkbox1"></label>
                 </span>
               </td>
-              <td>Gabriel</td>
-              <td>gabriel@email.com</td>
-              <td>Rua do cachorrin fdp</td>
-              <td>40028922</td>
+              <td>Unip</td>
+              <td>Empresona monstra</td>
               <td>
                 <a href="#editModal" class="edit" data-toggle="modal"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></i></a>
                 <a href="#deleteModal" class="delete" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="Excluir"></i></a>
@@ -97,29 +93,17 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Adicionar novo usuário </h4>
+            <h4 class="modal-title">Adicionar nova empresa </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label>Nome</label>
-              <input type="text" class="form-control" required>
+              <label>CNPJ</label>
+              <input type="text" pattern="\d{2}.?\d{3}.?\d{3}/?\d{4}-?\d{2}" title="Digite o CPF no formato 00.000.000/0000-00" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>E-mail</label>
-              <input type="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Senha</label>
-              <input type="password" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Endereço</label>
+              <label>Descrição</label>
               <textarea class="form-control" rows="5" required></textarea>
-            </div>
-            <div class="form-group">
-              <label>Telefone</label>
-              <input type="text" class="form-control" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -136,25 +120,17 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Editar cliente </h4>
+            <h4 class="modal-title">Editar empresa </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label>Nome</label>
-              <input type="text" class="form-control" required>
+              <label>CNPJ</label>
+              <input type="text" pattern="\d{2}.?\d{3}.?\d{3}/?\d{4}-?\d{2}" title="Digite o CPF no formato 00.000.000/0000-00" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>E-mail</label>
-              <input type="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Endereço</label>
-              <textarea class="form-control" required></textarea>
-            </div>
-            <div class="form-group">
-              <label>Telefone</label>
-              <input type="text" class="form-control" required>
+              <label>Descrição</label>
+              <textarea class="form-control" rows="5" required></textarea>
             </div>
           </div>
           <div class="modal-footer">
@@ -171,7 +147,7 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h4 class="modal-title">Excluir cliente </h4>
+            <h4 class="modal-title">Excluir empresa </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">

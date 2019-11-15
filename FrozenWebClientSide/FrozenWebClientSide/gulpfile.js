@@ -34,7 +34,7 @@ paths.plugins = [paths.pluginswebroot + '**/*.{min.js,min.css,map,eot,svg,ttf,wo
 /********************************** TASKS ************************************/
 /*****************************************************************************/
 
-gulp.task('default', ['css', 'index', 'home', 'user-data-table']);
+gulp.task('default', ['css', 'index', 'home', 'data-tables']);
 
 gulp.task('images', function () {
   var spriteData = gulp.src(paths.images).pipe(spritesmith({
@@ -88,6 +88,19 @@ gulp.task('sass', function () {
     .pipe(gulp.dest(paths.compiledSass));
 });
 
+gulp.task('global', function () {
+  return gulp.src(paths.webroot + 'ts/global.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'global.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
 gulp.task('index', function () {
   return gulp.src(paths.webroot + 'ts/index.ts')
     .pipe(ts({
@@ -101,11 +114,11 @@ gulp.task('index', function () {
     .pipe(gulp.dest('SiteAssets/scripts'));
 });
 
-gulp.task('user-data-table', function () {
-  return gulp.src(paths.webroot + 'ts/user-data-table.ts')
+gulp.task('data-tables', function () {
+  return gulp.src(paths.webroot + 'ts/data-tables.ts')
     .pipe(ts({
       target: 'es5',
-      outFile: 'user-data-table.js',
+      outFile: 'data-tables.js',
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))
@@ -119,6 +132,19 @@ gulp.task('home', function () {
     .pipe(ts({
       target: 'es5',
       outFile: 'home.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
+gulp.task('trip-data-table', function () {
+  return gulp.src(paths.webroot + 'ts/trip-data-table.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'trip-data-table.js',
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))

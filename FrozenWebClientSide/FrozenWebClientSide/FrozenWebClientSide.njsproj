@@ -32,19 +32,21 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="RawAssets\ts\trip-data-table.ts" />
     <TypeScriptCompile Include="RawAssets\ts\home.ts" />
     <TypeScriptCompile Include="RawAssets\ts\index.ts" />
     <Content Include="package.json" />
     <Content Include="RawAssets\sass\home.scss" />
-    <Content Include="RawAssets\sass\user-data-table.scss" />
+    <Content Include="RawAssets\sass\data-tables.scss" />
     <Content Include="RawAssets\sass\index.scss">
       <SubType>Code</SubType>
     </Content>
     <Content Include="RawAssets\sass\_global.scss" />
+    <Content Include="RawAssets\styles\data-tables.css" />
     <Content Include="RawAssets\styles\home.css" />
     <Content Include="RawAssets\styles\index.css" />
-    <Content Include="RawAssets\styles\user-data-table.css" />
     <Content Include="README.md" />
+    <Content Include="SiteAssets\images\data-table-bg.png" />
     <Content Include="SiteAssets\images\home-bg.png" />
     <Content Include="SiteAssets\images\index-bg.png" />
     <Content Include="SiteAssets\images\logo.png" />
@@ -58,16 +60,26 @@
     <Content Include="SiteAssets\plugins\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="SiteAssets\plugins\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="SiteAssets\plugins\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="SiteAssets\styles\data-tables.min.css" />
     <Content Include="SiteAssets\styles\home.min.css" />
     <Content Include="SiteAssets\styles\index.min.css" />
-    <Content Include="SiteAssets\styles\user-data-table.min.css" />
+    <Content Include="SitePages\company-data-table.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="SitePages\trip-data-table.html" />
+    <Content Include="SitePages\vehicle-data-table.html" />
+    <Content Include="SitePages\garage-data-table.html" />
     <Content Include="SitePages\home.html" />
     <Content Include="SitePages\index.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="SitePages\driver-data-table.html" />
     <Content Include="SitePages\user-data-table.html" />
     <Content Include="tsconfig.json" />
-    <TypeScriptCompile Include="RawAssets\ts\user-data-table.ts">
+    <TypeScriptCompile Include="RawAssets\ts\data-tables.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="RawAssets\ts\global.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>
@@ -75,15 +87,19 @@
     <Compile Include="gulpfile.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RawAssets\scripts\data-tables.js" />
+    <Compile Include="RawAssets\scripts\global.js" />
     <Compile Include="RawAssets\scripts\home.js" />
     <Compile Include="RawAssets\scripts\index.js" />
-    <Compile Include="RawAssets\scripts\user-data-table.js" />
+    <Compile Include="RawAssets\scripts\trip-data-table.js" />
     <Compile Include="SiteAssets\plugins\bootstrap\js\bootstrap.min.js" />
     <Compile Include="SiteAssets\plugins\jquery\jquery.min.js" />
     <Compile Include="SiteAssets\plugins\popper\popper.min.js" />
+    <Compile Include="SiteAssets\scripts\data-tables.min.js" />
+    <Compile Include="SiteAssets\scripts\global.min.js" />
     <Compile Include="SiteAssets\scripts\home.min.js" />
     <Compile Include="SiteAssets\scripts\index.min.js" />
-    <Compile Include="SiteAssets\scripts\user-data-table.min.js" />
+    <Compile Include="SiteAssets\scripts\trip-data-table.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="RawAssets\scripts\" />
