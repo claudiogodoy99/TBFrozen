@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frozen</title>
+
+  <!------------------------------ Styles -------------------------------->
+  <link href="../SiteAssets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../SiteAssets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="../SiteAssets/styles/vehicle-master-detail.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar sticky-top">
+      <div>
+        <a href="index.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      </div>
+      <div>
+        <a href="#" id="toggle-contrast"><i class="fa fa-low-vision mr-2" aria-hidden="true"></i></a>
+        <a href="#" id="increase-size"><i class="fa fa-font" aria-hidden="true"></i></a>
+        <a href="#" id="decrease-size"><i class="fa fa-font" aria-hidden="true" style=" font-size: .750em;"></i></a>
+      </div>
+    </nav>
+    <div id="vehicle-detail-wrapper">
+      <div id="wrapper-title">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>
+              <b>Detalhes do veículo</b>
+              <a href="home.html" class="ml-2" style="color: white;">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+              </a>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div id="vehicle-detail-container" class="container">
+        <div id="vehicle-title">
+          <h3>Lancer Evo - 2018</h3>
+        </div>
+        <div id="vehicle-image">
+          <img src="../SiteAssets/images/car.jpg" class="img-fluid" />
+        </div>
+        <div id="cards-container">
+          <div class="card-deck">
+            <div class="card">
+              <img class="card-image" src="../SiteAssets/images/condion.png" />
+              <div class="card-body">
+                <h5 class="card-title text-center">Usado</h5>
+              </div>
+              <div class="card-footer text-center">
+                <span class="text-muted">Condição</span>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-image" src="../SiteAssets/images/milage.png" alt="Imagem de capa do card">
+              <div class="card-body">
+                <h5 class="card-title text-center">1000 km</h5>
+              </div>
+              <div class="card-footer text-center">
+                <span class="text-muted">Quilometragem</span>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-image" src="../SiteAssets/images/fuel.png" alt="Imagem de capa do card">
+              <div class="card-body">
+                <h5 class="card-title text-center">Flex</h5>
+              </div>
+              <div class="card-footer text-center">
+                <span class="text-muted">Combustível</span>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-image" src="../SiteAssets/images/transmission.png" alt="Imagem de capa do card">
+              <div class="card-body">
+                <h5 class="card-title text-center">Automático</h5>
+              </div>
+              <div class="card-footer text-center">
+                <span class="text-muted">Câmbio</span>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-image" src="../SiteAssets/images/power.png" alt="Imagem de capa do card">
+              <div class="card-body">
+                <h5 class="card-title text-center">Médio</h5>
+              </div>
+              <div class="card-footer text-center">
+                <span class="text-muted">Consumo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-container">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#overwiew" role="tab" aria-controls="overwiew" aria-selected="true">Overview</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="overwiew" role="tabpanel" aria-labelledby="overwiew-tab">
+              <div class="feature m-2">
+                <div class="feature-title">
+                  <h5>Especificações</h5>
+                </div>
+                <div class="feature-content-area">
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Tipo de Veículo:</h6><h6 class="text-muted ml-1">Carro</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Marca:</h6><h6 class="text-muted ml-1">Mitsubish Motors</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Modelo:</h6><h6 class="text-muted ml-1">Lancer Evo</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Ano:</h6><h6 class="text-muted ml-1">2018</h6>
+                    </div>
+                  </div>
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Placa:</h6><h6 class="text-muted ml-1">DTA-9645</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Seguro:</h6><h6 class="text-muted ml-1">12354</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Garagem:</h6><h6 class="text-muted ml-1">A</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature m-2">
+                <div class="feature-title">
+                  <h5>Pneus</h5>
+                </div>
+                <div class="feature-content-area">
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Marca:</h6><h6 class="text-muted ml-1">Pirelli</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Modelo:</h6><h6 class="text-muted ml-1">Evo</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Aro:</h6><h6 class="text-muted ml-1">14''</h6>
+                    </div>
+                  </div>
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Categoria:</h6><h6 class="text-muted ml-1">Passeio</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Medida do pneu:</h6><h6 class="text-muted ml-1">175/65R14</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Tipo de terreno:</h6><h6 class="text-muted ml-1">On Road</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature m-2">
+                <div class="feature-title">
+                  <h5>Manutenções</h5>
+                </div>
+                <div class="feature-content-area">
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Preventiva (Status):</h6><h6 class="text-muted ml-1">Completa</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Última Preventiva:</h6><h6 class="text-muted ml-1">15/11/2019</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Último Abastecimento</h6><h6 class="text-muted ml-1">13/11/2019</h6>
+                    </div>
+                  </div>
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Corretiva (Status):</h6><h6 class="text-muted ml-1">N/A</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Última Corretiva:</h6><h6 class="text-muted ml-1">N/A</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature m-2">
+                <div class="feature-title">
+                  <h5>Estoque de peças</h5>
+                </div>
+                <div class="feature-content-area">
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Preventiva (Status):</h6><h6 class="text-muted ml-1">Completa</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Preventivas Realizadas:</h6><h6 class="text-muted ml-1">1</h6>
+                    </div>
+                  </div>
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Corretiva (Status):</h6><h6 class="text-muted ml-1">N/A</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Corretivas Realizadas:</h6><h6 class="text-muted ml-1">0</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!------------------------------ Scripts -------------------------------->
+  <script src="../SiteAssets/plugins/jquery/jquery.min.js"></script>
+  <script src="../SiteAssets/plugins/popper/popper.min.js"></script>
+  <script src="../SiteAssets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../SiteAssets/scripts/global.min.js"></script>
+  <script src="../SiteAssets/scripts/vehicle-master-detail.min.js"></script>
+</body>
+</html>                                		                            

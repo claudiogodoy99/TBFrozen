@@ -36,6 +36,8 @@
     <TypeScriptCompile Include="RawAssets\ts\home.ts" />
     <TypeScriptCompile Include="RawAssets\ts\index.ts" />
     <Content Include="package.json" />
+    <Content Include="RawAssets\sass\trip-master-detail.scss" />
+    <Content Include="RawAssets\sass\vehicle-master-detail.scss" />
     <Content Include="RawAssets\sass\home.scss" />
     <Content Include="RawAssets\sass\data-tables.scss" />
     <Content Include="RawAssets\sass\index.scss">
@@ -45,11 +47,19 @@
     <Content Include="RawAssets\styles\data-tables.css" />
     <Content Include="RawAssets\styles\home.css" />
     <Content Include="RawAssets\styles\index.css" />
+    <Content Include="RawAssets\styles\trip-master-detail.css" />
+    <Content Include="RawAssets\styles\vehicle-master-detail.css" />
     <Content Include="README.md" />
+    <Content Include="SiteAssets\images\car.jpg" />
+    <Content Include="SiteAssets\images\condion.png" />
     <Content Include="SiteAssets\images\data-table-bg.png" />
+    <Content Include="SiteAssets\images\fuel.png" />
     <Content Include="SiteAssets\images\home-bg.png" />
     <Content Include="SiteAssets\images\index-bg.png" />
     <Content Include="SiteAssets\images\logo.png" />
+    <Content Include="SiteAssets\images\milage.png" />
+    <Content Include="SiteAssets\images\power.png" />
+    <Content Include="SiteAssets\images\transmission.png" />
     <Content Include="SiteAssets\images\user.png" />
     <Content Include="SiteAssets\plugins\bootstrap\css\bootstrap.min.css" />
     <Content Include="SiteAssets\plugins\font-awesome\css\font-awesome.css" />
@@ -63,10 +73,14 @@
     <Content Include="SiteAssets\styles\data-tables.min.css" />
     <Content Include="SiteAssets\styles\home.min.css" />
     <Content Include="SiteAssets\styles\index.min.css" />
+    <Content Include="SiteAssets\styles\trip-master-detail.min.css" />
+    <Content Include="SiteAssets\styles\vehicle-master-detail.min.css" />
     <Content Include="SitePages\company-data-table.html">
       <SubType>Code</SubType>
     </Content>
     <Content Include="SitePages\trip-data-table.html" />
+    <Content Include="SitePages\trip-master-detail.html" />
+    <Content Include="SitePages\vehicle-master-detail.html" />
     <Content Include="SitePages\vehicle-data-table.html" />
     <Content Include="SitePages\garage-data-table.html" />
     <Content Include="SitePages\home.html" />
@@ -82,6 +96,10 @@
     <TypeScriptCompile Include="RawAssets\ts\global.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="RawAssets\ts\trip-master-detail.ts" />
+    <TypeScriptCompile Include="RawAssets\ts\vehicle-master-detail.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gulpfile.js">
@@ -92,6 +110,8 @@
     <Compile Include="RawAssets\scripts\home.js" />
     <Compile Include="RawAssets\scripts\index.js" />
     <Compile Include="RawAssets\scripts\trip-data-table.js" />
+    <Compile Include="RawAssets\scripts\trip-master-detail.js" />
+    <Compile Include="RawAssets\scripts\vehicle-master-detail.js" />
     <Compile Include="SiteAssets\plugins\bootstrap\js\bootstrap.min.js" />
     <Compile Include="SiteAssets\plugins\jquery\jquery.min.js" />
     <Compile Include="SiteAssets\plugins\popper\popper.min.js" />
@@ -100,6 +120,8 @@
     <Compile Include="SiteAssets\scripts\home.min.js" />
     <Compile Include="SiteAssets\scripts\index.min.js" />
     <Compile Include="SiteAssets\scripts\trip-data-table.min.js" />
+    <Compile Include="SiteAssets\scripts\trip-master-detail.min.js" />
+    <Compile Include="SiteAssets\scripts\vehicle-master-detail.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="RawAssets\scripts\" />
