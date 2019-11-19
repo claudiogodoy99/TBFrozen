@@ -1,0 +1,132 @@
+﻿@import "global";
+
+body {
+  color: #566787;
+  background: #f5f5f5;
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  min-height: 700px;
+  background-image: url('../../SiteAssets/images/data-table-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  #vehicle-detail-wrapper {
+    margin-top: 30px;
+    padding: 20px 25px;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+
+    #wrapper-title {
+      padding-bottom: 15px;
+      background: $primary-color;
+      color: #fff;
+      padding: 16px 30px;
+      margin: -20px -25px 0px;
+      border-radius: 3px 3px 0 0;
+    }
+
+    #vehicle-detail-container {
+      background-color: #fff;
+      padding: 0px 20px 20px 20px;
+
+      #vehicle-title {
+        background-color: #fff;
+        display: inline-block;
+        width: 100%;
+        color: black;
+        font-weight: bolder;
+        border-bottom: 3px solid #D4D4D4;
+        margin: 10px 0px 6px 0px;
+        padding-bottom: 10px;
+
+        & > h3 {
+          display: inline-block;
+          float: left;
+          padding: 10px;
+          margin: 0px;
+          border-left: 3px solid $primary-color;
+          color: #0a0a0a;
+        }
+      }
+
+      #vehicle-image {
+        img {
+          width: 100%;
+          max-height: 450px;
+        }
+      }
+
+      #cards-container {
+        margin-top: 30px;
+        margin-bottom: 10px;
+
+        .card {
+          padding-top: 10px;
+
+          .card-image {
+            display: inline-block;
+            border-radius: 50%;
+            height: auto;
+            margin: 0px auto;
+            border: 1px solid #d4d4d4;
+            box-shadow: 0 0 5px #ccc;
+            background: #f7f7f7;
+          }
+        }
+      }
+
+      #tab-container {
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-weight: 400;
+        line-height: 1.5;
+
+        #myTab {
+          font-size: 1rem;
+        }
+
+        #myTabContent {
+          .feature {
+            color: #0a0a0a;
+
+            .feature-title {
+              background-color: #f7f7f7;
+              display: inline-block;
+              width: 100%;
+              color: #0a0a0a;
+              border: 1px solid #D4D4D4;
+              border-left: 4px solid $primary-color;
+              margin: 10px 0px 6px 0px;
+              vertical-align: middle;
+
+              h5 {
+                padding: 10px 10px 3px 10px;
+              }
+            }
+
+            .feature-content-area {
+              display: flex;
+              justify-content: space-around;
+              flex-wrap: wrap;
+
+              .feature-content {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+
+                .feature-caracteristic {
+                  display: inherit;
+
+                  .custom-border {
+                    border-left: 3px #ccc solid;
+                    padding-left: 4px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

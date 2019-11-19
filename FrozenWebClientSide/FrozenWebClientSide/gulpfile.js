@@ -153,6 +153,32 @@ gulp.task('trip-data-table', function () {
     .pipe(gulp.dest('SiteAssets/scripts'));
 });
 
+gulp.task('vehicle-master-detail', function () {
+  return gulp.src(paths.webroot + 'ts/vehicle-master-detail.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'vehicle-master-detail.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
+gulp.task('trip-master-detail', function () {
+  return gulp.src(paths.webroot + 'ts/trip-master-detail.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'trip-master-detail.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
 /*****************************************************************************/
 /*****************************************************************************/
 /*****************************************************************************/

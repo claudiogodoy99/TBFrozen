@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frozen</title>
+
+  <!------------------------------ Styles -------------------------------->
+  <link href="../SiteAssets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../SiteAssets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="../SiteAssets/styles/trip-master-detail.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar sticky-top">
+      <div>
+        <a href="index.html"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      </div>
+      <div>
+        <a href="#" id="toggle-contrast"><i class="fa fa-low-vision mr-2" aria-hidden="true"></i></a>
+        <a href="#" id="increase-size"><i class="fa fa-font" aria-hidden="true"></i></a>
+        <a href="#" id="decrease-size"><i class="fa fa-font" aria-hidden="true" style=" font-size: .750em;"></i></a>
+      </div>
+    </nav>
+    <div id="trip-detail-wrapper">
+      <div id="wrapper-title">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>
+              <b>Detalhes da Viagem</b>
+              <a href="home.html" class="ml-2" style="color: white;">
+                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+              </a>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div id="trip-detail-container" class="container">
+        <div id="map-canvas"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!------------------------------ Scripts -------------------------------->
+  <script src="../SiteAssets/plugins/jquery/jquery.min.js"></script>
+  <script src="../SiteAssets/plugins/popper/popper.min.js"></script>
+  <script src="../SiteAssets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyCMmgvcmwZF3-ZwliwvhlIqPMEcFU170EY"></script>
+  <script src="../SiteAssets/scripts/global.min.js"></script>
+  <script src="../SiteAssets/scripts/trip-master-detail.min.js"></script>
+</body>
+</html>                                		                            

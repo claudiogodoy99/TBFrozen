@@ -1,0 +1,38 @@
+﻿@import "global";
+
+body {
+  color: #566787;
+  background: #f5f5f5;
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  min-height: 700px;
+  background-image: url('../../SiteAssets/images/data-table-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  #trip-detail-wrapper {
+    margin-top: 30px;
+    padding: 20px 25px;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+
+    #wrapper-title {
+      padding-bottom: 15px;
+      background: $primary-color;
+      color: #fff;
+      padding: 16px 30px;
+      margin: -20px -25px 0px;
+      border-radius: 3px 3px 0 0;
+    }
+
+    #trip-detail-container {
+      background-color: #fff;
+      padding: 0px 20px 20px 20px;
+      
+      #map-canvas {
+        width: 100%;
+        height: 500px;
+      }
+    }
+  }
+}
