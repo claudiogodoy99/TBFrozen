@@ -20,12 +20,6 @@ namespace FrozenWeb.Infra.Data.EnityConfig
                 .IsRequired()
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(x => x.login)
-                .HasColumnName("LOGIN")
-                .HasColumnType("VARCHAR")
-                .HasMaxLength(50)
-                .IsRequired();
-
             Property(x => x.senha)
                 .HasColumnName("SENHA")
                 .HasColumnType("VARCHAR")
@@ -43,6 +37,24 @@ namespace FrozenWeb.Infra.Data.EnityConfig
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(14)
                 .IsRequired();
+
+            Property(x => x.email)
+                .HasColumnName("EMAIL")
+                .HasColumnType("VARCHAR")
+                .HasMaxLength(200)
+                .IsRequired();
+
+            Property(x => x.telefone)
+               .HasColumnName("TELEFONE")
+               .HasColumnType("VARCHAR")
+               .HasMaxLength(14)
+               .IsRequired();
+
+            Property(x => x.endereco)
+               .HasColumnName("ENDERECO")
+               .HasColumnType("VARCHAR")
+               .HasMaxLength(200)
+               .IsRequired();
 
 
             HasRequired(x => x.empresa)

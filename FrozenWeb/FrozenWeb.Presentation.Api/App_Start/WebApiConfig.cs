@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace FrozenWeb.Presentation.Api
 {
@@ -9,9 +10,14 @@ namespace FrozenWeb.Presentation.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            // Serviços e configuração da API da Web
+            var cors = new EnableCorsAttribute(
+             origins: "*",
+             headers: "*",
+             methods: "*");
 
-            // Rotas da API da Web
+
+            config.EnableCors(cors);
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

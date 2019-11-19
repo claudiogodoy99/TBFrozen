@@ -28,6 +28,8 @@ namespace FrozenWeb.Infra.CrossCutting.IoC
             container.Register<IUnityOfWorkAppService, UnityOfWorkAppService>(lifestyle);
             container.Register(typeof(IAppServiceBase<>), typeof(AppServiceBase<ViewModelBase,EntityBase>), lifestyle);
             container.Register(typeof(IEmpresaAppService), typeof(EmpresaAppService), lifestyle);
+            container.Register(typeof(IUsuarioAppService), typeof(UsuarioAppService), lifestyle);
+
 
         }
 
