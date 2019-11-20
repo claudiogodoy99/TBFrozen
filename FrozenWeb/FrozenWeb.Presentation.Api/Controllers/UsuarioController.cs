@@ -71,7 +71,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
             {
                 return Json(_usuarioAppService.FiltrarUsuariosPorCNPJ(cnpj));
             }
-            catch
+            catch(Exception e)
             {
                 return Json(new List<UsuarioViewModel>());
             }

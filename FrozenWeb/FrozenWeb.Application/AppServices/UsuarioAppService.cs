@@ -23,7 +23,7 @@ namespace FrozenWeb.Application.AppServices
 
         public List<UsuarioViewModel> FiltrarUsuariosPorCNPJ(string cnpj)
         {
-           return List(x => x.empresaCnpj == cnpj).ToList();
+           return List().Where(x =>x.empresaCnpj == cnpj).ToList();
         }
 
        
