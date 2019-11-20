@@ -50,14 +50,14 @@ namespace FrozenWeb.Presentation.Api.Controllers
 
         [HttpDelete]
         [Route("api/Usuario/Deletar/{id}")]
-        public IHttpActionResult Deletar([FromUri]string id)
+        public IHttpActionResult Deletar([FromUri]int id)
         {
             try
             {
                 _usuarioAppService.Delete(id);
                 return Ok();
             }
-            catch
+            catch(Exception e)
             {
                 return InternalServerError();
             }
@@ -80,7 +80,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
 
         [HttpPost]
         [Route("api/Usuario/Logar")]
-        private IHttpActionResult Login(LoginViewModel login)
+        private IHttpActionResult Login([FromBody]LoginViewModel login)
         {
             try
             {
