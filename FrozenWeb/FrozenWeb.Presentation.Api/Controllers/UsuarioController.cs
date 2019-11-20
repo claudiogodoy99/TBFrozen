@@ -39,7 +39,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
         {
             try
             {
-                _usuarioAppService.Update(usuario, usuario.id.ToString());
+                _usuarioAppService.Update(usuario, usuario.id);
                 return Ok();
             }
             catch

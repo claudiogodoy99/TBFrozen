@@ -130,7 +130,7 @@ namespace FrozenWeb.Infra.Data.Repository
         public async Task<TEntity> SelectAsync(int id)
             => await _dbSet.FindAsync(id);
 
-        public void Update(TEntity entity, string key)
+        public void Update(TEntity entity, object key)
         {
             var entry = _dbSet.Find(key);
 

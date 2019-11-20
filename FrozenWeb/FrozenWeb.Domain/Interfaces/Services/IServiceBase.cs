@@ -57,7 +57,7 @@ namespace FrozenWeb.Domain.Interfaces.Services
 
         Task<TEntity> SelectAsync(int id);
 
-        void Update(TEntity entity, string keys);
+        void Update(TEntity entity, object keys);
 
         Task UpdateAsync(TEntity entity, string keys);
     }

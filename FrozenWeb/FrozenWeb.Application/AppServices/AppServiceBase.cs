@@ -166,7 +166,7 @@ namespace FrozenWeb.Application.AppServices
             return  ToViewModel(await _service.SelectAsync(id));
         }
 
-        public void Update(TViewModel viewModel, string keys)
+        public void Update(TViewModel viewModel, object keys)
         {
             _service.Update(ToEntity(viewModel), keys);
 
