@@ -1,5 +1,6 @@
 ﻿using FrozenWeb.Application.Interfaces;
 using FrozenWeb.Application.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -17,6 +18,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
 
 
         [HttpPost]
+        [Route("api/Usuario/Login")]
         private IHttpActionResult Login(LoginViewModel login)
         {
             try
@@ -41,7 +43,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
                 _usuarioAppService.Add(usuario);
                 return Ok();
             }
-            catch
+            catch(Exception e)
             {
                 return InternalServerError();
             }
@@ -62,7 +64,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Empresa/Deletar/{id}")]
+        [Route("api/Usuario/Deletar/{id}")]
         public IHttpActionResult Deletar([FromUri]string id)
         {
             try
