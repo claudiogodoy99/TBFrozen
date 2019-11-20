@@ -3,6 +3,8 @@ using FrozenWeb.Application.Interfaces;
 using FrozenWeb.Application.ViewModel;
 using FrozenWeb.Domain.Enities;
 using FrozenWeb.Domain.Interfaces.Services;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FrozenWeb.Application.AppServices
 {
@@ -17,7 +19,11 @@ namespace FrozenWeb.Application.AppServices
         public UsuarioViewModel Logar(LoginViewModel login)
         {
             return FirstOrDefault(x => x.email == login.email && x.senha == login.senha);
-           
+        }
+
+        public List<UsuarioViewModel> FiltrarUsuariosPorCNPJ(string cnpj)
+        {
+           return List(x => x.empresaCnpj == cnpj).ToList();
         }
 
        

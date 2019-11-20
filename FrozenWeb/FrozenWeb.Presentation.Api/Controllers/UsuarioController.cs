@@ -18,24 +18,6 @@ namespace FrozenWeb.Presentation.Api.Controllers
 
 
         [HttpPost]
-        [Route("api/Usuario/Login")]
-        private IHttpActionResult Login(LoginViewModel login)
-        {
-            try
-            {
-               var usuarioEcontrado = _usuarioAppService.Logar(login);
-                if (usuarioEcontrado == null)
-                    return BadRequest("Usuario Não Encontrado");
-                else
-                    return Ok(usuarioEcontrado);
-            }
-            catch
-            {
-                return InternalServerError();
-            }
-        }
-
-        [HttpPost]
         public IHttpActionResult Cadastrar(UsuarioViewModel usuario)
         {
             try
@@ -48,6 +30,9 @@ namespace FrozenWeb.Presentation.Api.Controllers
                 return InternalServerError();
             }
         }
+
+
+
 
         [HttpPut]
         public IHttpActionResult Atualizar(UsuarioViewModel usuario)
@@ -84,13 +69,33 @@ namespace FrozenWeb.Presentation.Api.Controllers
         {
             try
             {
-                return Json(_usuarioAppService.List().ToList());
+                return Json(_usuarioAppService.FiltrarUsuariosPorCNPJ(cnpj));
             }
             catch
             {
                 return Json(new List<UsuarioViewModel>());
             }
         }
+
+
+        [HttpPost]
+        [Route("api/Usuario/Logar")]
+        private IHttpActionResult Login(LoginViewModel login)
+        {
+            try
+            {
+                var usuarioEcontrado = _usuarioAppService.Logar(login);
+                if (usuarioEcontrado == null)
+                    return BadRequest("Usuario Não Encontrado");
+                else
+                    return Ok(usuarioEcontrado);
+            }
+            catch
+            {
+                return InternalServerError();
+            }
+        }
+
 
     }
 }
