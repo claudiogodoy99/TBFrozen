@@ -29,8 +29,7 @@ namespace FrozenWeb.Infra.CrossCutting.IoC
             container.Register(typeof(IAppServiceBase<>), typeof(AppServiceBase<ViewModelBase,EntityBase>), lifestyle);
             container.Register(typeof(IEmpresaAppService), typeof(EmpresaAppService), lifestyle);
             container.Register(typeof(IUsuarioAppService), typeof(UsuarioAppService), lifestyle);
-
-
+            container.Register(typeof(IMotoristaAppService), typeof(MotoristaAppService), lifestyle);
         }
 
         private static void RegisterServiceLevel(Container container, Lifestyle lifestyle)
