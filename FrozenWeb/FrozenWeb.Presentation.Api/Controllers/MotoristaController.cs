@@ -48,7 +48,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Usuario/Deletar/{cnh}")]
+        [Route("api/Motorista/Deletar/{cnh}")]
         public IHttpActionResult Deletar([FromUri]string cnh)
         {
             try
@@ -63,7 +63,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
         }
 
         [HttpGet]
-        [Route("api/Usuario/ListarTodosDaEmpresa/{cnpj}")]
+        [Route("api/Motorista/ListarTodosDaEmpresa/{cnpj}")]
         public JsonResult<List<MotoristaViewModel>> ListarTodosDaEmpresa([FromUri]string cnpj)
         {
             try
