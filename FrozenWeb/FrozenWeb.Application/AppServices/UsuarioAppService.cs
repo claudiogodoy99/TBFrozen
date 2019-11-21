@@ -18,7 +18,7 @@ namespace FrozenWeb.Application.AppServices
 
         public UsuarioViewModel Logar(LoginViewModel login)
         {
-            return FirstOrDefault(x => x.email == login.emailLogin && x.senha == login.senhaLogin);
+            return List().Where(x => x.email == login.emailLogin && x.senha == login.senhaLogin).FirstOrDefault();
         }
 
         public List<UsuarioViewModel> FiltrarUsuariosPorCNPJ(string cnpj)

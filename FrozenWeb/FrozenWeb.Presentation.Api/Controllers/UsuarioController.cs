@@ -1,4 +1,5 @@
 ﻿using FrozenWeb.Application.Interfaces;
+using FrozenWeb.Application.Responses;
 using FrozenWeb.Application.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -77,24 +78,6 @@ namespace FrozenWeb.Presentation.Api.Controllers
             }
         }
 
-
-        [HttpPost]
-        [Route("api/Usuario/Logar")]
-        private IHttpActionResult Login([FromBody]LoginViewModel login)
-        {
-            try
-            {
-                var usuarioEcontrado = _usuarioAppService.Logar(login);
-                if (usuarioEcontrado == null)
-                    return BadRequest("Usuario Não Encontrado");
-                else
-                    return Ok(usuarioEcontrado);
-            }
-            catch
-            {
-                return InternalServerError();
-            }
-        }
 
 
     }
