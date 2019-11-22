@@ -40,20 +40,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         /* Ativando as tooltips e popovers */
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="popover"]').popover();
+        /* Iniciando a modal de carregamento */
+        $('#loading-modal').modal();
+        initMap()
+            .then(function () { return $('#loading-modal').modal('hide'); }, function () {
+            $('#loading-modal').modal('hide');
+            $('#error-modal').modal();
+        });
         //#endregion
+        //#region Trip Map
         function initMap() {
             return __awaiter(this, void 0, void 0, function () {
-                var origin_1, destination, locations, pointA, pointB, myOptions, map, 
+                var def, origin_1, destination, locations, pointA, pointB, myOptions, map, 
                 // Instantiate a directions service.
-                directionsService, directionsDisplay, markerA, markerB, e_1;
+                directionsService, directionsDisplay, markerA, markerB, resp, e_1;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            _a.trys.push([0, 2, , 3]);
+                            def = $.Deferred();
+                            _a.label = 1;
+                        case 1:
+                            _a.trys.push([1, 4, , 5]);
                             origin_1 = 'Rua Coronel Querubin Franco, 111 - Jardim Bebedouro, Guarulhos - SP';
                             destination = 'Rua Benedito Passos, 184 - Vila Matilde, São Paulo - SP';
                             return [4 /*yield*/, getLatsAndLongs(encodeURI(origin_1), encodeURI(destination))];
-                        case 1:
+                        case 2:
                             locations = _a.sent();
                             pointA = new google.maps.LatLng(locations.start.lat, locations.start.lng), pointB = new google.maps.LatLng(locations.end.lat, locations.end.lng), myOptions = {
                                 zoom: 7,
@@ -69,31 +80,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                                 animation: google.maps.Animation.BOUNCE,
                                 map: map
                             });
-                            // get route from A to B
-                            calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
-                            return [3 /*break*/, 3];
-                        case 2:
+                            return [4 /*yield*/, calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, locations)];
+                        case 3:
+                            resp = _a.sent();
+                            if (resp) {
+                                buildRouteSteps(locations.steps);
+                                def.resolve();
+                            }
+                            else {
+                                def.reject();
+                            }
+                            return [3 /*break*/, 5];
+                        case 4:
                             e_1 = _a.sent();
-                            console.log(e_1);
-                            return [3 /*break*/, 3];
-                        case 3: return [2 /*return*/];
+                            def.reject(e_1);
+                            console.error(e_1);
+                            return [3 /*break*/, 5];
+                        case 5: return [2 /*return*/, def.promise()];
                     }
                 });
             });
         }
-        function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, locationsObject) {
+            var def = $.Deferred();
             directionsService.route({
                 origin: pointA,
                 destination: pointB,
                 travelMode: google.maps.TravelMode.DRIVING
             }, function (response, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
+                    setTripDetailInfo(locationsObject);
                     directionsDisplay.setDirections(response);
+                    def.resolve(true);
                 }
                 else {
-                    window.alert('Directions request failed due to ' + status);
+                    console.error('Directions request failed due to ' + status);
+                    def.reject();
                 }
             });
+            return def.promise();
         }
         function getLatsAndLongs(origin, destination) {
             var def = $.Deferred();
@@ -108,13 +133,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                 .done(function (res) {
                 var locations = {
                     start: res.routes[0].legs[0].start_location,
-                    end: res.routes[0].legs[0].end_location
+                    startAddress: res.routes[0].legs[0].start_address,
+                    end: res.routes[0].legs[0].end_location,
+                    endAddress: res.routes[0].legs[0].end_address,
+                    duration: res.routes[0].legs[0].duration.text,
+                    distance: Math.round((res.routes[0].legs[0].distance.value / 1000)) + " Km",
+                    steps: res.routes[0].legs[0].steps
                 };
                 def.resolve(locations);
             })
                 .fail(function (e) { return def.reject(e); });
             return def.promise();
         }
-        initMap();
+        function setTripDetailInfo(locationsObject) {
+            $('#route-origin').text(locationsObject.startAddress);
+            $('#route-destination').text(locationsObject.endAddress);
+            $('#route-distance').text(locationsObject.distance);
+            $('#route-duration').text(locationsObject.duration);
+        }
+        function buildRouteSteps(steps) {
+            var elements = [];
+            var iconClass;
+            steps.forEach(function (step) {
+                if (step.maneuver) {
+                    if (step.maneuver.indexOf('left') > -1)
+                        iconClass = 'fa-arrow-left';
+                    if (step.maneuver.indexOf('right') > -1)
+                        iconClass = 'fa-arrow-right';
+                }
+                else {
+                    iconClass = 'fa-arrow-up';
+                }
+                elements.push("<div class=\"feature-title\">\n                  <h5><i class=\"maneuver-icon mr-2 fa " + iconClass + "\" aria-hidden=\"true\"></i><span class=\"step-instruction\">" + step.html_instructions + "</span></h5>\n                  <div class=\"text-muted step-info\">" + step.duration.text + " (" + step.distance.text + ")</div>\n                </div>");
+            });
+            $('#trajeto .feature').append(elements.join(''));
+        }
+        //#endregion
     });
 })(jQuery);

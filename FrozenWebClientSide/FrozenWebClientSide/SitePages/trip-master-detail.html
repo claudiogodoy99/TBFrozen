@@ -4,6 +4,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#006fe6">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#006fe6">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#006fe6">
   <title>Frozen</title>
 
   <!------------------------------ Styles -------------------------------->
@@ -38,10 +44,115 @@
       </div>
       <div id="trip-detail-container" class="container">
         <div id="map-canvas"></div>
+        <div id="tab-container">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#overwiew" role="tab" aria-controls="overwiew" aria-selected="true">Overview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="trajeto-tab" data-toggle="tab" href="#trajeto" role="tab" aria-controls="trajeto" aria-selected="false">Trajeto</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="overwiew" role="tabpanel" aria-labelledby="overwiew-tab">
+              <div class="feature m-2">
+                <div class="feature-title">
+                  <h5>Rota</h5>
+                </div>
+                <div class="feature-content-area">
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Origem:</h6><h6 class="text-muted ml-1" id="route-origin"></h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Destino:</h6><h6 class="text-muted ml-1" id="route-destination"></h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Distancia:</h6><h6 class="text-muted ml-1" id="route-distance"></h6>
+                    </div>
+                  </div>
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Duração estimada:</h6><h6 class="text-muted ml-1" id="route-duration"></h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Início:</h6><h6 class="text-muted ml-1" id="route-start-datetime">13/11/2019 às 11:00</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Fim:</h6><h6 class="text-muted ml-1" id="route-end-datetime">13/11/2019 às 13:00</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature m-2">
+                <div class="feature-title">
+                  <h5>Motorista</h5>
+                </div>
+                <div class="feature-content-area">
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Nome:</h6><h6 class="text-muted ml-1">Claudio Godoy</h6>
+                    </div>
+                  </div>
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">CNH:</h6><h6 class="text-muted ml-1">12345677</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="feature m-2">
+                <div class="feature-title">
+                  <h5>Veículo</h5>
+                </div>
+                <div class="feature-content-area">
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Marca:</h6><h6 class="text-muted ml-1">Mitsubish</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Modelo:</h6><h6 class="text-muted ml-1">Lancer Evo</h6>
+                    </div>
+                  </div>
+                  <div class="feature-content">
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Placa:</h6><h6 class="text-muted ml-1">DTA-5658</h6>
+                    </div>
+                    <div class="feature-caracteristic">
+                      <h6 class="custom-border">Garagem:</h6><h6 class="text-muted ml-1">Garagem A</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="trajeto" role="tabpanel" aria-labelledby="trajeto-tab">
+              <div class="feature m-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="loading-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="loading-modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="loader">
+              <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(2 1)" stroke="#3597ff" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                  <path class="car__body" d="M47.293 2.375C52.927.792 54.017.805 54.017.805c2.613-.445 6.838-.337 9.42.237l8.381 1.863c2.59.576 6.164 2.606 7.98 4.531l6.348 6.732 6.245 1.877c3.098.508 5.609 3.431 5.609 6.507v4.206c0 .29-2.536 4.189-5.687 4.189H36.808c-2.655 0-4.34-2.1-3.688-4.67 0 0 3.71-19.944 14.173-23.902zM36.5 15.5h54.01" stroke-width="3" />
+                  <ellipse class="car__wheel--left" stroke-width="3.2" fill="#FFF" cx="83.493" cy="30.25" rx="6.922" ry="6.808" />
+                  <ellipse class="car__wheel--right" stroke-width="3.2" fill="#FFF" cx="46.511" cy="30.25" rx="6.922" ry="6.808" />
+                  <path class="car__line car__line--top" d="M22.5 16.5H2.475" stroke-width="3" />
+                  <path class="car__line car__line--middle" d="M20.5 23.5H.4755" stroke-width="3" />
+                  <path class="car__line car__line--bottom" d="M25.5 9.5h-19" stroke-width="3" />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
 
   <!------------------------------ Scripts -------------------------------->
   <script src="../SiteAssets/plugins/jquery/jquery.min.js"></script>

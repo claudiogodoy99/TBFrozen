@@ -998,7 +998,7 @@ button.bg-dark:focus {
 .my-5 {
   margin-top: 3rem !important; }
 
-.mr-5,
+.mr-5, body #vehicle-detail-wrapper #vehicle-detail-container #tab-container #myTabContent .feature .feature-content-area .feature-content,
 .mx-5 {
   margin-right: 3rem !important; }
 
@@ -1006,7 +1006,7 @@ button.bg-dark:focus {
 .my-5 {
   margin-bottom: 3rem !important; }
 
-.ml-5,
+.ml-5, body #vehicle-detail-wrapper #vehicle-detail-container #tab-container #myTabContent .feature .feature-content-area .feature-content,
 .mx-5 {
   margin-left: 3rem !important; }
 
@@ -2425,6 +2425,9 @@ a.text-dark:hover, a.text-dark:focus {
 .invisible {
   visibility: hidden !important; }
 
+* {
+  font-family: 'Segoe UI'; }
+
 body .container-fluid {
   padding-right: 0px;
   padding-left: 0px; }
@@ -2444,6 +2447,52 @@ body .navbar {
   background-image: none !important;
   border-color: #FFFFFF !important;
   opacity: 1 !important; }
+
+#loading-modal {
+  display: flex;
+  justify-content: center; }
+  #loading-modal .modal-dialog {
+    display: flex;
+    justify-content: center; }
+    #loading-modal .modal-dialog .modal-content {
+      width: 230px; }
+      #loading-modal .modal-dialog .modal-content .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        #loading-modal .modal-dialog .modal-content .loader .car__body {
+          animation: shake 0.2s ease-in-out infinite alternate; }
+        #loading-modal .modal-dialog .modal-content .loader .car__line {
+          transform-origin: center right;
+          stroke-dasharray: 22;
+          animation: line 0.8s ease-in-out infinite;
+          animation-fill-mode: both; }
+          #loading-modal .modal-dialog .modal-content .loader .car__line--top {
+            animation-delay: 0s; }
+          #loading-modal .modal-dialog .modal-content .loader .car__line--middle {
+            animation-delay: 0.2s; }
+          #loading-modal .modal-dialog .modal-content .loader .car__line--bottom {
+            animation-delay: 0.4s; }
+
+@keyframes shake {
+  0% {
+    transform: translateY(-1%); }
+  100% {
+    transform: translateY(3%); } }
+
+@keyframes line {
+  0% {
+    stroke-dashoffset: 22; }
+  25% {
+    stroke-dashoffset: 22; }
+  50% {
+    stroke-dashoffset: 0; }
+  51% {
+    stroke-dashoffset: 0; }
+  80% {
+    stroke-dashoffset: -22; }
+  100% {
+    stroke-dashoffset: -22; } }
 
 body {
   color: #566787;
@@ -2523,7 +2572,7 @@ body {
               padding: 10px 10px 3px 10px; }
           body #vehicle-detail-wrapper #vehicle-detail-container #tab-container #myTabContent .feature .feature-content-area {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             flex-wrap: wrap; }
             body #vehicle-detail-wrapper #vehicle-detail-container #tab-container #myTabContent .feature .feature-content-area .feature-content {
               display: flex;
