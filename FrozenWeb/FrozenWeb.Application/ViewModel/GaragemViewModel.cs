@@ -14,6 +14,7 @@ namespace FrozenWeb.Application.ViewModel
 
         public int? idGaragem;
         public string nome;
+        public string endereco;
         public string empresaCnpj;
 
         //public virtual ICollection<VeiculoViewModel> veiculos { get; set; }

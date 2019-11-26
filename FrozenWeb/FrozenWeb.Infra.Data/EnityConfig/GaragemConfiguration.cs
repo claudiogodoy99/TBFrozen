@@ -24,6 +24,11 @@ namespace FrozenWeb.Infra.Data.EnityConfig
                 .HasColumnType("VARCHAR")
                 .HasColumnName("NOMEGARAGEM");
 
+            Property(x => x.endereco)
+                .HasMaxLength(250)
+                .HasColumnName("ENDERECO")
+                .HasColumnType("VARCHAR");
+
             Property(x => x.empresaCnpj)
                .HasColumnName("CNPJEMPRESA")
                .HasColumnType("VARCHAR")
