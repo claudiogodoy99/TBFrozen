@@ -1,0 +1,28 @@
+﻿
+
+using System.Collections.Generic;
+using System.Linq;
+using FrozenWeb.Application.Interfaces;
+using FrozenWeb.Application.ViewModel;
+using FrozenWeb.Domain.Enities;
+using FrozenWeb.Domain.Interfaces.Services;
+
+namespace FrozenWeb.Application.AppServices
+{
+    public class GaragemAppService : AppServiceBase<GaragemViewModel, Garagem> , IGaragemAppService
+    {
+        private readonly IGaragemService _garagemService;
+        private readonly IUnityOfWorkService _uow;
+
+        public GaragemAppService(IUnityOfWorkService uow,IGaragemService service) : base(uow,service)
+        {
+            _uow = uow;
+            _garagemService = service;
+        }
+
+        public List<GaragemViewModel> ListarTodasPorCnpj(string cnpj)
+        {
+            return List(x => x.empresaCnpj == cnpj).ToList();
+        }
+    }
+}

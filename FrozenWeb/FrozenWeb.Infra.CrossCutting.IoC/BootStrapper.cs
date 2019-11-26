@@ -30,6 +30,7 @@ namespace FrozenWeb.Infra.CrossCutting.IoC
             container.Register(typeof(IEmpresaAppService), typeof(EmpresaAppService), lifestyle);
             container.Register(typeof(IUsuarioAppService), typeof(UsuarioAppService), lifestyle);
             container.Register(typeof(IMotoristaAppService), typeof(MotoristaAppService), lifestyle);
+            container.Register(typeof(IGaragemAppService), typeof(GaragemAppService), lifestyle);
         }
 
         private static void RegisterServiceLevel(Container container, Lifestyle lifestyle)
@@ -40,6 +41,8 @@ namespace FrozenWeb.Infra.CrossCutting.IoC
             container.Register(typeof(IMotoristaService), typeof(MotoristaService), lifestyle);
             container.Register(typeof(IUsuarioService), typeof(UsuarioService), lifestyle);
 
+            container.Register(typeof(IGaragemService), typeof(GaragemService), lifestyle);
+
         }
 
         private static void RegisterRepositoryLevel(Container container, Lifestyle lifestyle)
@@ -49,6 +52,8 @@ namespace FrozenWeb.Infra.CrossCutting.IoC
             container.Register(typeof(IEmpresaRepository), typeof(EmpresaRepository), lifestyle);
             container.Register(typeof(IMotoristaRepository), typeof(MotoristaRepository), lifestyle);
             container.Register(typeof(IUsuarioRepositoy), typeof(UsuarioRepository), lifestyle);
+
+            container.Register(typeof(IGaragemRepository), typeof(GaragemRepository), lifestyle);
         }
 
         private static void RegisterGeneralLevel(Container container, Lifestyle lifestyle)

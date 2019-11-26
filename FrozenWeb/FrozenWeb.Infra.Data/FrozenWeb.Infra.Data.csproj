@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Context\FrozenContext.cs" />
     <Compile Include="EnityConfig\EmpresaConfiguration.cs" />
+    <Compile Include="EnityConfig\GaragemConfiguration.cs" />
     <Compile Include="EnityConfig\MotoristaConfiguration.cs" />
     <Compile Include="EnityConfig\UsuarioConfiguration.cs" />
     <Compile Include="Interfaces\IMapping.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EmpresaRepository.cs" />
+    <Compile Include="Repository\GaragemRepository.cs" />
     <Compile Include="Repository\MotoristaRepository.cs" />
     <Compile Include="Repository\RepostitoryBase.cs" />
     <Compile Include="Repository\UsuarioRepository.cs" />

@@ -11,6 +11,7 @@ namespace FrozenWeb.Domain.Enities
         {
             motoristas = new HashSet<Motorista>();
             usuarios = new HashSet<Usuario>();
+            garagens = new HashSet<Garagem>();
         }
 
         public string cnpj { get; set; }
@@ -18,5 +19,6 @@ namespace FrozenWeb.Domain.Enities
 
         public virtual ICollection<Motorista> motoristas { get; set; }
         public virtual ICollection<Usuario> usuarios { get; set; }
+        public virtual ICollection<Garagem> garagens { get; set; }
     }
 }
