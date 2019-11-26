@@ -8,9 +8,22 @@
     $('[data-toggle="tooltip"]').tooltip();
     $('[data-toggle="popover"]').popover();
 
+    /* Iniciando a modal de carregamento */
+    $('#loading-modal').modal();
+
+    initMap()
+      .then(
+        () => $('#loading-modal').modal('hide'),
+        () => {
+          $('#loading-modal').modal('hide')
+          $('#error-modal').modal()
+        })
+
     //#endregion
 
-    async function initMap() {
+    //#region Trip Map
+    async function initMap(): Promise<any> {
+      let def: JQueryDeferred<any> = $.Deferred();
 
       try {
         let origin: string = 'Rua Coronel Querubin Franco, 111 - Jardim Bebedouro, Guarulhos - SP'
@@ -42,24 +55,42 @@
           });
 
         // get route from A to B
-        calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+        let resp: boolean = await calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, locations)
+
+        if (resp) {
+          buildRouteSteps(locations.steps);
+          def.resolve();
+        } else {
+          def.reject();
+        }
+
       } catch (e) {
-        console.log(e)
+        def.reject(e);
+        console.error(e);
       }
+
+      return def.promise();
     }
 
-    function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+    function calculateAndDisplayRoute(directionsService: google.maps.DirectionsService, directionsDisplay: google.maps.DirectionsRenderer, pointA: google.maps.LatLng, pointB: google.maps.LatLng, locationsObject: any): JQueryPromise<boolean> {
+      let def: JQueryDeferred<boolean> = $.Deferred();
+
       directionsService.route({
         origin: pointA,
         destination: pointB,
         travelMode: google.maps.TravelMode.DRIVING
       }, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
+          setTripDetailInfo(locationsObject);
           directionsDisplay.setDirections(response);
+          def.resolve(true);
         } else {
-          window.alert('Directions request failed due to ' + status);
+          console.error('Directions request failed due to ' + status)
+          def.reject();
         }
       });
+
+      return def.promise();
     }
 
     function getLatsAndLongs(origin: string, destination: string): JQueryPromise<any> {
@@ -76,7 +107,12 @@
         .done((res) => {
           let locations = {
             start: res.routes[0].legs[0].start_location,
-            end: res.routes[0].legs[0].end_location
+            startAddress: res.routes[0].legs[0].start_address,
+            end: res.routes[0].legs[0].end_location,
+            endAddress: res.routes[0].legs[0].end_address,
+            duration: res.routes[0].legs[0].duration.text,
+            distance: `${Math.round((res.routes[0].legs[0].distance.value / 1000))} Km`,
+            steps: res.routes[0].legs[0].steps
           }
 
           def.resolve(locations);
@@ -86,7 +122,33 @@
       return def.promise();
     }
 
-    initMap();
+    function setTripDetailInfo(locationsObject) {
+      $('#route-origin').text(locationsObject.startAddress)
+      $('#route-destination').text(locationsObject.endAddress)
+      $('#route-distance').text(locationsObject.distance)
+      $('#route-duration').text(locationsObject.duration)
+    }
 
+    function buildRouteSteps(steps: any[]) {
+      let elements: string[] = [];
+      let iconClass: string;
+      steps.forEach((step) => {
+        if (step.maneuver) {
+          if (step.maneuver.indexOf('left') > -1) iconClass = 'fa-arrow-left';
+          if (step.maneuver.indexOf('right') > -1) iconClass = 'fa-arrow-right';
+        } else {
+          iconClass = 'fa-arrow-up';
+        }
+
+        elements.push(`<div class="feature-title">
+                  <h5><i class="maneuver-icon mr-2 fa ${iconClass}" aria-hidden="true"></i><span class="step-instruction">${step.html_instructions}</span></h5>
+                  <div class="text-muted step-info">${step.duration.text} (${step.distance.text})</div>
+                </div>`)
+      })
+
+      $('#trajeto .feature').append(elements.join(''));
+    }
+
+    //#endregion
   })
 })(jQuery);

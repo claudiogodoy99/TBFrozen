@@ -4,6 +4,12 @@
 
     //#region Configurações Globais
 
+    const hostUrl: string = 'http://localhost:64523/';
+    const loadingModal = $('#loading-modal');
+    const userEmail = $('#inputEmail');
+    const userPassword = $('#inputPassword');
+    const lembrar = $('#inputLembrar');
+
     /** IIFE responsável por recuperar os dados do login do usuário */
     (() => {
       let email = $('#inputEmail')
@@ -20,29 +26,64 @@
 
     //#region Funções dos botões
 
-    $('#btn-entrar').bind('click', login);
+    $('.form-signin').on('submit', function (e) {
 
-    //#endregion
+      e.preventDefault();
+      loadingModal.modal();
 
-    //#region Declaração de Funções
+      let dataObj: any = {}
 
-    /** Função responsável por realizar o login do usuário */
-    function login() {
-      let email = $('#inputEmail')
-      let pw = $('#inputPassword')
-      let lembrar = $('#inputLembrar')
+      dataObj['emailLogin'] = userEmail.val();
+      dataObj['senhaLogin'] = userPassword.val();
+
+      const ajaxProps: JQueryAjaxSettings = {
+        url: `${hostUrl}api/Autorizacao/Login`,
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(dataObj)
+      }
+
+      $.ajax(ajaxProps)
+        .done((res) => {
+          if (res.Status == 'erro') {
+            loadingModal.modal('hide');
+            showHideAlert('#warn-alert');
+          } else if (res.Status == 'ok') {
+            loadingModal.modal('hide');
+            window.location.replace('../SitePages/home.html');
+          }
+
+        })
+        .fail((e) => {
+          loadingModal.modal('hide');
+          showHideAlert('#error-alert');
+          console.error(e);
+        })
 
       if (lembrar.is(":checked")) {
         let loginData: any = {
-          userEmail: email.val() as string,
-          userPassword: pw.val() as string
+          userEmail: userEmail.val() as string,
+          userPassword: userPassword.val() as string
         }
 
         localStorage.setItem('loginData', JSON.stringify(loginData))
       }
 
-      window.location.replace('../SitePages/home.html')
+    });
 
+    //#endregion
+
+    //#region Declaração de Funções
+
+    function showHideAlert(selector: string, show: boolean = true) {
+      if (show) {
+        $(selector).removeClass('d-none');
+        setTimeout(() => {
+          $(selector).addClass('d-none');
+        }, 5000)
+      } else {
+        $(selector).addClass('d-none');
+      }
     }
 
     //#endregion

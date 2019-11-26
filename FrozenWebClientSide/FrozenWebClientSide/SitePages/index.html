@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#006fe6">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#006fe6">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#006fe6">
   <title>Frozen</title>
 
   <!------------------------------ Styles -------------------------------->
@@ -12,6 +18,14 @@
 </head>
 <body>
   <div class="container-fluid">
+    <div id="alerts-area">
+      <div id="warn-alert" class="alert alert-warning d-none" role="alert">
+        E-mail e/ou senha incorreto(s)! <strong>'-'</strong>
+      </div>
+      <div id="error-alert" class="alert alert-danger d-none" role="alert">
+        Ops! Algo deu errado, por favor tente novamente mais tarde. <strong>:/</strong>
+      </div>
+    </div>
     <form class="form-signin">
       <div class="text-center mb-4">
         <div id="logo-title-area">

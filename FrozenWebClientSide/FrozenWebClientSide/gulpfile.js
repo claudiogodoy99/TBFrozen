@@ -109,7 +109,7 @@ gulp.task('index', function () {
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('SiteAssets/scripts'));
 });
@@ -175,6 +175,45 @@ gulp.task('trip-master-detail', function () {
     }))
     .pipe(gulp.dest(paths.compiledTs))
     .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
+gulp.task('company-data-table', function () {
+  return gulp.src(paths.webroot + 'ts/company-data-table.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'company-data-table.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
+gulp.task('user-data-table', function () {
+  return gulp.src(paths.webroot + 'ts/user-data-table.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'user-data-table.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
+gulp.task('driver-data-table', function () {
+  return gulp.src(paths.webroot + 'ts/driver-data-table.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'driver-data-table.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    //.pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('SiteAssets/scripts'));
 });

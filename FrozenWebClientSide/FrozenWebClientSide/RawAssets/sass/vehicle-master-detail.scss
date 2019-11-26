@@ -106,13 +106,14 @@ body {
 
             .feature-content-area {
               display: flex;
-              justify-content: space-around;
+              justify-content: space-between;
               flex-wrap: wrap;
 
               .feature-content {
                 display: flex;
                 flex-direction: column;
                 flex-wrap: wrap;
+                @extend .mr-5, .ml-5;
 
                 .feature-caracteristic {
                   display: inherit;
