@@ -8,15 +8,15 @@ namespace FrozenWeb.Application.ViewModel
     {
         public GaragemViewModel()
         {
-            veiculos = new HashSet<VeiculoViewModel>();
+        //    veiculos = new HashSet<VeiculoViewModel>();
             empresa = new EmpresaViewModel();
         }
 
-        public int? id;
+        public int? idGaragem;
         public string nome;
         public string empresaCnpj;
 
-        public virtual ICollection<VeiculoViewModel> veiculos { get; set; }
+        //public virtual ICollection<VeiculoViewModel> veiculos { get; set; }
         public virtual EmpresaViewModel empresa { get; set; }
     }
 }

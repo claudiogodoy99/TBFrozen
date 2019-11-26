@@ -10,14 +10,14 @@ namespace FrozenWeb.Infra.Data.EnityConfig
     {
         public GaragemConfiguration()
         {
-            ToTable("Garagem");
+            ToTable("GARAGEM");
 
-            HasKey(x => x.id)
-                .Property(x => x.id)
-                .HasColumnName("IDGARAGEM")
-                .HasColumnType("int")
-                .IsRequired()
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            HasKey(x => x.idGaragem)
+               .Property(x => x.idGaragem)
+               .HasColumnName("GARAGEMID")
+               .HasColumnType("INT")
+               .IsRequired()
+               .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             Property(x => x.nome)
                 .HasMaxLength(70)

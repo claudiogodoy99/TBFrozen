@@ -38,7 +38,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
         {
             try
             {
-                _garagem.Update(garagem, garagem.id);
+                _garagem.Update(garagem, garagem.idGaragem);
                 return Ok();
             }
             catch
