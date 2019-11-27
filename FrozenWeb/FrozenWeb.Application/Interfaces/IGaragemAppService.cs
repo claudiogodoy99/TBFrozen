@@ -6,5 +6,6 @@ namespace FrozenWeb.Application.Interfaces
     public interface IGaragemAppService : IAppServiceBase<GaragemViewModel>
     {
         List<GaragemViewModel> ListarTodasPorCnpj(string cnpj);
+        GaragemViewModel BuscarPorId(int id);
     }
 }

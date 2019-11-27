@@ -27,7 +27,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
                 _garagem.Add(garagem);
                 return Ok();
             }
-            catch
+            catch(Exception e)
             {
                 return InternalServerError();
             }
@@ -76,5 +76,19 @@ namespace FrozenWeb.Presentation.Api.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("api/Garagem/Buscar/{id}")]
+        public JsonResult<GaragemViewModel> BuscarPorId(int id)
+        {
+            try
+            {
+                return Json(_garagem.BuscarPorId(id));
+            }
+            catch
+            {
+                return Json(new GaragemViewModel());
+            }
+        }
     }
 }

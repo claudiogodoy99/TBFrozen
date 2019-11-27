@@ -49,6 +49,7 @@
     <Compile Include="EnityConfig\GaragemConfiguration.cs" />
     <Compile Include="EnityConfig\MotoristaConfiguration.cs" />
     <Compile Include="EnityConfig\UsuarioConfiguration.cs" />
+    <Compile Include="EnityConfig\VeiculoConfiguration.cs" />
     <Compile Include="Interfaces\IMapping.cs" />
     <Compile Include="Migrations\201909230052075_InitialFrozenContext.cs" />
     <Compile Include="Migrations\201909230052075_InitialFrozenContext.Designer.cs">
@@ -61,6 +62,7 @@
     <Compile Include="Repository\MotoristaRepository.cs" />
     <Compile Include="Repository\RepostitoryBase.cs" />
     <Compile Include="Repository\UsuarioRepository.cs" />
+    <Compile Include="Repository\VeiculoRepository.cs" />
     <Compile Include="UoW\UnityofWork.cs" />
   </ItemGroup>
   <ItemGroup>

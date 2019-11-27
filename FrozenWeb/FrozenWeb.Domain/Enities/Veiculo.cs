@@ -6,27 +6,27 @@ using System.Linq;
 
 namespace FrozenWeb.Domain.Enities
 {
-    public class Veiculo
+    public class Veiculo : EntityBase
     {
-        public int? id;
-        public string Placa;
-        public string Tipo;
-        public string imagem;
-        public string marca;
-        public string modelo;
-        public int ano;
-        public string condicao;
-        public string km;
-        public string tipoCombustivel;
-        public int lugares;
-        public bool emViagem;
-        public bool emManutencao;
+        public int? id { get; set; }
+        public string placa { get; set; }
+        public string tipo { get; set; }
+        public string imagem { get; set; }
+        public string marca { get; set; }
+        public string modelo { get; set; }
+        public int ano { get; set; }
+        public string condicao { get; set; }
+        public string km { get; set; }
+        public string tipoCombustivel { get; set; }
+        public int lugares { get; set; }
+        public bool emViagem { get; set; }
+        public bool emManutencao { get; set; }
        
-        public DateTime? ultimaPreventiva;
-        public DateTime? ultimaCorretiva;
+        public DateTime? ultimaPreventiva { get; set; }
+        public DateTime? ultimaCorretiva { get; set; }
 
-        public int garagemId;
-        public int pneuId;
+        public int garagemId { get; set; }
+        public int pneuId { get; set; }
 
         public string preventivaStatus
         {

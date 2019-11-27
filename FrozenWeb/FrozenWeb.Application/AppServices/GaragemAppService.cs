@@ -22,7 +22,12 @@ namespace FrozenWeb.Application.AppServices
 
         public List<GaragemViewModel> ListarTodasPorCnpj(string cnpj)
         {
-            return List(x => x.empresaCnpj == cnpj).ToList();
+            return List().Where(x => x.empresaCnpj == cnpj).ToList();
+        }
+
+        public GaragemViewModel BuscarPorId(int id)
+        {
+            return  List().Where( x=> x.idGaragem == id).FirstOrDefault();
         }
     }
 }
