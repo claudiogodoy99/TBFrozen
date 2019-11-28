@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <!-- Chrome, Firefox OS and Opera -->
   <meta name="theme-color" content="#006fe6">
   <!-- Windows Phone -->
@@ -42,20 +44,21 @@
           </div>
           <div class="col-sm-4 mt-2">
             <a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-car" aria-hidden="true"></i><!--<span>Adicionar</span>--></a>
-            <a href="#deleteModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"></i><!--<span>Excluir</span>--></a>
           </div>
+        </div>
+      </div>
+      <div id="alerts-area">
+        <div id="success-alert" class="alert alert-success d-none" role="alert">
+          Operação realizada com sucesso! <strong>;)</strong>
+        </div>
+        <div id="error-alert" class="alert alert-danger d-none" role="alert">
+          Ops! Algo deu errado, por favor tente novamente mais tarde. <strong>:/</strong>
         </div>
       </div>
       <div class="table-responsive">
         <table class="table table-striped table-hover">
           <thead>
             <tr>
-              <th>
-                <span class="custom-checkbox">
-                  <input type="checkbox" id="selectAll">
-                  <label for="selectAll"></label>
-                </span>
-              </th>
               <th>Placa</th>
               <th>Marca</th>
               <th>Modelo</th>
@@ -69,12 +72,6 @@
           </thead>
           <tbody>
             <tr>
-              <td>
-                <span class="custom-checkbox">
-                  <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                  <label for="checkbox1"></label>
-                </span>
-              </td>
               <td>DTA-9645</td>
               <td>Mitsubish</td>
               <td>Lancer</td>
@@ -93,16 +90,7 @@
         </table>
       </div>
       <div class="clearfix">
-        <div class="hint-text">Mostrando <b>5</b> de <b>25</b> resultados</div>
-        <ul class="pagination">
-          <li class="page-item disabled"><a href="#">Anterior</a></li>
-          <li class="page-item"><a href="#" class="page-link">1</a></li>
-          <li class="page-item"><a href="#" class="page-link">2</a></li>
-          <li class="page-item active"><a href="#" class="page-link">3</a></li>
-          <li class="page-item"><a href="#" class="page-link">4</a></li>
-          <li class="page-item"><a href="#" class="page-link">5</a></li>
-          <li class="page-item"><a href="#" class="page-link">Próximo</a></li>
-        </ul>
+        <div class="hint-text">Mostrando <b id="data-results"></b> resultados</div>
       </div>
     </div>
   </div>
@@ -110,7 +98,7 @@
   <div id="addModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form id="add-vehicle-form">
           <div class="modal-header">
             <h4 class="modal-title">Adicionar novo veículo </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -118,37 +106,65 @@
           <div class="modal-body">
             <div class="form-group">
               <label>Placa</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="vehicle-plate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Tipo de Veículo</label>
+              <select class="form-control" name="vehicle-type" required>
+                <option>Selecione um tipo...</option>
+                <option>Automóvel</option>
+                <option>Motocicleta</option>
+                <option>Caminhão</option>
+                <option>Ônibus</option>
+                <option>Trator/Reboque</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Imagem</label>
+              <div class="custom-file">
+                <input type="file" name="vehicle-image" class="custom-file-input" id="customFile">
+                <label class="custom-file-label">Escolha um arquivo...</label>
+              </div>
             </div>
             <div class="form-group">
               <label>Marca</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="vehicle-brand" class="form-control" required>
             </div>
             <div class="form-group">
               <label>Modelo</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="vehicle-model" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>Empresa</label>
-              <select class="form-control" required>
-                <option>Selecione uma empresa...</option>
-                <option>UNIP</option>
-              </select>
+              <label>Ano de fabricação</label>
+              <input type="text" name="vehicle-year" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>Garagem</label>
-              <select class="form-control" required>
-                <option>Selecione uma garagem...</option>
-                <option>Garagem A</option>
-              </select>
+              <label>CNPJ da Empresa</label>
+              <input type="text" name="vehicle-company-cnpj" pattern="\d{2}.?\d{3}.?\d{3}/?\d{4}-?\d{2}" title="Digite o CPF no formato 00.000.000/0000-00" class="form-control">
             </div>
             <div class="form-group">
               <label>Seguro</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="vehicle-insurance" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Garagem</label>
+              <input type="text" name="vehicle-garage" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Condição</label>
+              <select class="form-control" name="vehicle-condition" required>
+                <option>Selecione uma condição...</option>
+                <option>Novo</option>
+                <option>Usado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Quilometragem</label>
+              <input type="text" name="vehicle-km" class="form-control" required>
             </div>
             <div class="form-group">
               <label>Tipo de Combustível</label>
-              <select class="form-control" required>
+              <select class="form-control" name="vehicle-fuel" required>
                 <option>Selecione um tipo de combustível...</option>
                 <option>Gasolina</option>
                 <option>Álcool</option>
@@ -160,11 +176,81 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Imagem</label>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label">Escolha um arquivo...</label>
-              </div>
+              <label>Tipo de Câmbio</label>
+              <select class="form-control" name="vehicle-transmission" required>
+                <option>Selecione um tipo de câmbio...</option>
+                <option>Manual</option>
+                <option>Automático</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Consumo</label>
+              <select class="form-control" name="vehicle-consume" required>
+                <option>Selecione um consumo...</option>
+                <option>Baixo</option>
+                <option>Moderado</option>
+                <option>Alto</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Lugares</label>
+              <input type="number" name="vehicle-places" class="form-control" required>
+            </div>
+            <h5 style="border-bottom: 1px solid #ccc;padding-bottom: 3px;border-bottom-right-radius: 7px;">Pneus</h5>
+            <div class="form-group">
+              <label>Marca</label>
+              <input type="text" name="tire-brand" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Modelo</label>
+              <input type="text" name="tire-model" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Aro</label>
+              <input type="text" name="tire-hoop" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Categoria</label>
+              <input type="text" name="tire-category" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Medida</label>
+              <input type="text" name="tire-messure" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Tipo de Terreno</label>
+              <input type="text" name="tire-terrain" class="form-control" required>
+            </div>
+            <h5 style="border-bottom: 1px solid #ccc;padding-bottom: 3px;border-bottom-right-radius: 7px;">Manutenções</h5>
+            <div class="form-group">
+              <label>Preventiva (Status)</label>
+              <select class="form-control" name="maintance-prev-status" required>
+                <option>Selecione um status...</option>
+                <option>Pendente</option>
+                <option>Completo</option>
+                <option>N/A</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Última Preventiva</label>
+              <input type="datetime-local" name="maintance-prev-last-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Corretiva (Status)</label>
+              <select class="form-control" name="maintance-cor-status" required>
+                <option>Selecione um status...</option>
+                <option>Pendente</option>
+                <option>Completo</option>
+                <option>N/A</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Última Corretiva</label>
+              <input type="datetime-local" name="maintance-cor-last-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Último Abastecimento</label>
+              <input type="datetime-local" name="recharge-last-date" class="form-control" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -179,7 +265,7 @@
   <div id="editModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form id="edit-vehicle-form">
           <div class="modal-header">
             <h4 class="modal-title">Editar veículo </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -187,37 +273,65 @@
           <div class="modal-body">
             <div class="form-group">
               <label>Placa</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="vehicle-plate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Tipo de Veículo</label>
+              <select class="form-control" name="vehicle-type" required>
+                <option>Selecione um tipo...</option>
+                <option>Automóvel</option>
+                <option>Motocicleta</option>
+                <option>Caminhão</option>
+                <option>Ônibus</option>
+                <option>Trator/Reboque</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Imagem</label>
+              <div class="custom-file">
+                <input type="file" name="vehicle-image" class="custom-file-input" id="customFile">
+                <label class="custom-file-label">Escolha um arquivo...</label>
+              </div>
             </div>
             <div class="form-group">
               <label>Marca</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="vehicle-brand" class="form-control" required>
             </div>
             <div class="form-group">
               <label>Modelo</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="vehicle-model" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>Empresa</label>
-              <select class="form-control" required>
-                <option>Selecione uma empresa...</option>
-                <option>UNIP</option>
-              </select>
+              <label>Ano de fabricação</label>
+              <input type="text" name="vehicle-year" class="form-control" required>
             </div>
             <div class="form-group">
-              <label>Garagem</label>
-              <select class="form-control" required>
-                <option>Selecione uma garagem...</option>
-                <option>Garagem A</option>
-              </select>
+              <label>CNPJ da Empresa</label>
+              <input type="text" name="vehicle-company-cnpj" pattern="\d{2}.?\d{3}.?\d{3}/?\d{4}-?\d{2}" title="Digite o CPF no formato 00.000.000/0000-00" class="form-control">
             </div>
             <div class="form-group">
               <label>Seguro</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="vehicle-insurance" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Garagem</label>
+              <input type="text" name="vehicle-garage" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Condição</label>
+              <select class="form-control" name="vehicle-condition" required>
+                <option>Selecione uma condição...</option>
+                <option>Novo</option>
+                <option>Usado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Quilometragem</label>
+              <input type="text" name="vehicle-km" class="form-control" required>
             </div>
             <div class="form-group">
               <label>Tipo de Combustível</label>
-              <select class="form-control" required>
+              <select class="form-control" name="vehicle-fuel" required>
                 <option>Selecione um tipo de combustível...</option>
                 <option>Gasolina</option>
                 <option>Álcool</option>
@@ -225,7 +339,85 @@
                 <option>Diesel</option>
                 <option>Biodiesel</option>
                 <option>Gás</option>
+                <option>Energia Elétrica</option>
               </select>
+            </div>
+            <div class="form-group">
+              <label>Tipo de Câmbio</label>
+              <select class="form-control" name="vehicle-transmission" required>
+                <option>Selecione um tipo de câmbio...</option>
+                <option>Manual</option>
+                <option>Automático</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Consumo</label>
+              <select class="form-control" name="vehicle-consume" required>
+                <option>Selecione um consumo...</option>
+                <option>Baixo</option>
+                <option>Moderado</option>
+                <option>Alto</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Lugares</label>
+              <input type="number" name="vehicle-places" class="form-control" required>
+            </div>
+            <h5 style="border-bottom: 1px solid #ccc;padding-bottom: 3px;border-bottom-right-radius: 7px;">Pneus</h5>
+            <div class="form-group">
+              <label>Marca</label>
+              <input type="text" name="tire-brand" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Modelo</label>
+              <input type="text" name="tire-model" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Aro</label>
+              <input type="text" name="tire-hoop" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Categoria</label>
+              <input type="text" name="tire-category" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Medida</label>
+              <input type="text" name="tire-messure" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Tipo de Terreno</label>
+              <input type="text" name="tire-terrain" class="form-control" required>
+            </div>
+            <h5 style="border-bottom: 1px solid #ccc;padding-bottom: 3px;border-bottom-right-radius: 7px;">Manutenções</h5>
+            <div class="form-group">
+              <label>Preventiva (Status)</label>
+              <select class="form-control" name="maintance-prev-status" required>
+                <option>Selecione um status...</option>
+                <option>Pendente</option>
+                <option>Completo</option>
+                <option>N/A</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Última Preventiva</label>
+              <input type="datetime-local" name="maintance-prev-last-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Corretiva (Status)</label>
+              <select class="form-control" name="maintance-cor-status" required>
+                <option>Selecione um status...</option>
+                <option>Pendente</option>
+                <option>Completo</option>
+                <option>N/A</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Última Corretiva</label>
+              <input type="datetime-local" name="maintance-cor-last-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Último Abastecimento</label>
+              <input type="datetime-local" name="recharge-last-date" class="form-control" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -240,7 +432,7 @@
   <div id="deleteModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form id="delete-vehicle-form">
           <div class="modal-header">
             <h4 class="modal-title">Excluir veículo </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -258,11 +450,34 @@
     </div>
   </div>
 
+  <!-- Loading Modal HTML -->
+  <!--<div class="modal fade" id="loading-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="loading-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="loader">
+            <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(2 1)" stroke="#3597ff" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                <path class="car__body" d="M47.293 2.375C52.927.792 54.017.805 54.017.805c2.613-.445 6.838-.337 9.42.237l8.381 1.863c2.59.576 6.164 2.606 7.98 4.531l6.348 6.732 6.245 1.877c3.098.508 5.609 3.431 5.609 6.507v4.206c0 .29-2.536 4.189-5.687 4.189H36.808c-2.655 0-4.34-2.1-3.688-4.67 0 0 3.71-19.944 14.173-23.902zM36.5 15.5h54.01" stroke-width="3" />
+                <ellipse class="car__wheel--left" stroke-width="3.2" fill="#FFF" cx="83.493" cy="30.25" rx="6.922" ry="6.808" />
+                <ellipse class="car__wheel--right" stroke-width="3.2" fill="#FFF" cx="46.511" cy="30.25" rx="6.922" ry="6.808" />
+                <path class="car__line car__line--top" d="M22.5 16.5H2.475" stroke-width="3" />
+                <path class="car__line car__line--middle" d="M20.5 23.5H.4755" stroke-width="3" />
+                <path class="car__line car__line--bottom" d="M25.5 9.5h-19" stroke-width="3" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
   <!------------------------------ Scripts -------------------------------->
   <script src="../SiteAssets/plugins/jquery/jquery.min.js"></script>
   <script src="../SiteAssets/plugins/popper/popper.min.js"></script>
   <script src="../SiteAssets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../SiteAssets/plugins/jquery-mask/jquery.mask.min.js"></script>
   <script src="../SiteAssets/scripts/global.min.js"></script>
   <script src="../SiteAssets/scripts/data-tables.min.js"></script>
+  <!--<script src="../SiteAssets/scripts/vehicle-data-table.min.js"></script>-->
 </body>
 </html>                                		                            

@@ -8,32 +8,22 @@
     const loadingModal = $('#loading-modal');
     const addModal = $('#addModal');
     const deleteModal = $('#deleteModal');
-    const deleteForm = $('#delete-user-form');
+    const deleteForm = $('#delete-garage-form');
     const editModal = $('#editModal');
-    const editForm = $('#edit-user-form');
-    const addForm = $('#add-user-form');
-    const addUserName = $('#add-user-form [name="user-name"]');
-    const addUserPassword = $('#add-user-form [name="user-password"]');
-    const addUserEmail = $('#add-user-form [name="user-email"]');
-    const addUserCompanyCnpj = $('#add-user-form [name="user-company-cnpj"]');
-    const addUserAddress = $('#add-user-form [name="user-address"]');
-    const addUserPhone = $('#add-user-form [name="user-phone"]');
+    const editForm = $('#edit-garage-form');
+    const addGarage = $('#add-garage-form');
+    const addGarageName = $('#add-garage-form [name="garage-name"]');
+    const addGarageCnpj = $('#add-garage-form [name="garage-cnpj"]');
+    const addGarageAddress = $('#add-garage-form [name="garage-address"]');
+    const editGarageName = $('#edit-garage-form [name="garage-name"]');
+    const editGarageCnpj = $('#edit-garage-form [name="garage-cnpj"]');
+    const editGarageAddress = $('#edit-garage-form [name="garage-address"]');
 
-    const editUserName = $('#edit-user-form [name="user-name"]');
-    const editUserPassword = $('#edit-user-form [name="user-password"]');
-    const editUserEmail = $('#edit-user-form [name="user-email"]');
-    const editUserCompanyCnpj = $('#edit-user-form [name="user-company-cnpj"]');
-    const editUserAddress = $('#edit-user-form [name="user-address"]');
-    const editUserPhone = $('#edit-user-form [name="user-phone"]');
-
+    let itemToEditOrDelete: string;
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    let itemToEditOrDelete: number;
 
-    addUserCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
-    addUserPhone.mask('(00) 00000-0000');
-
-    editUserCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
-    editUserPhone.mask('(00) 00000-0000');
+    addGarageCnpj.mask('00.000.000/0000-00', { reverse: true });
+    editGarageCnpj.mask('00.000.000/0000-00', { reverse: true });
 
     //#endregion
 
@@ -56,7 +46,7 @@
     //#region Função dos botões
 
     // Botão de adicionar
-    addForm.on('submit', function (e) {
+    addGarage.on('submit', function (e) {
 
       e.preventDefault();
 
@@ -66,15 +56,13 @@
 
       let dataObj: any = {}
 
-      dataObj['nome'] = addUserName.val();
-      dataObj['email'] = addUserEmail.val();
-      dataObj['senha'] = addUserPassword.val();
-      dataObj['empresaCnpj'] = addUserCompanyCnpj.cleanVal();
-      dataObj['endereco'] = addUserAddress.val();
-      dataObj['telefone'] = addUserPhone.cleanVal();
+      dataObj['nome'] = addGarageName.val();
+      dataObj['empresaCnpj'] = addGarageCnpj.cleanVal();
+      dataObj['endereco'] = addGarageAddress.val();
+      dataObj['empresa'] = null;
 
       const ajaxProps: JQueryAjaxSettings = {
-        url: `${hostUrl}api/Usuario/Cadastrar`,
+        url: `${hostUrl}api/Garagem/Cadastrar`,
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(dataObj)
@@ -85,10 +73,7 @@
           getItems()
             .done((data) => {
               buildTableItems(data);
-              resetFields(['#addModal [name="user-name"]', '#addModal [name="user-email"]',
-                '#addModal [name="user-password"]', '#addModal [name="user-company-cnpj"]',
-                '#addModal [name="user-phone"]', '#addModal [name="user-address"]']);
-
+              resetFields(['#addModal [name="garage-cnpj"]', '#addModal [name="garage-name"]', '#addModal [name="garage-address"]']);
               loadingModal.modal('hide');
               showHideAlert('#success-alert');
             })
@@ -115,7 +100,7 @@
       loadingModal.modal();
 
       const ajaxProps: JQueryAjaxSettings = {
-        url: `${hostUrl}api/Usuario/Deletar/${itemToEditOrDelete.toString()}`,
+        url: `${hostUrl}api/Garagem/Deletar/${itemToEditOrDelete}`,
         contentType: 'application/json; charset=utf-8',
         type: 'DELETE'
       }
@@ -152,16 +137,14 @@
 
       let dataObj: any = {}
 
-      dataObj['id'] = itemToEditOrDelete
-      dataObj['nome'] = editUserName.val();
-      dataObj['email'] = editUserEmail.val();
-      dataObj['senha'] = editUserPassword.val();
-      dataObj['empresaCnpj'] = editUserCompanyCnpj.cleanVal();
-      dataObj['endereco'] = editUserAddress.val();
-      dataObj['telefone'] = editUserPhone.cleanVal();
+      dataObj['idGaragem'] = parseInt(itemToEditOrDelete);
+      dataObj['nome'] = editGarageName.val();
+      dataObj['empresaCnpj'] = editGarageCnpj.cleanVal();
+      dataObj['endereco'] = editGarageAddress.val();
+      dataObj['empresa'] = null;
 
       const ajaxProps: JQueryAjaxSettings = {
-        url: `${hostUrl}api/Usuario/Atualizar`,
+        url: `${hostUrl}api/Garagem/Atualizar`,
         contentType: 'application/json; charset=utf-8',
         type: 'PUT',
         data: JSON.stringify(dataObj)
@@ -172,9 +155,7 @@
           getItems()
             .done((data) => {
               buildTableItems(data);
-              resetFields(['#editModal [name="user-name"]', '#editModal [name="user-email"]',
-                '#editModal [name="user-password"]', '#editModal [name="user-company-cnpj"]',
-                '#editModal [name="user-phone"]', '#editModal [name="user-address"]'])
+              resetFields(['#editModal [name="garage-cnpj"]', '#editModal [name="garage-name"]', '#editModal [name="garage-address"]'])
               loadingModal.modal('hide');
               showHideAlert('#success-alert');
             })
@@ -187,7 +168,7 @@
         .fail((e) => {
           loadingModal.modal('hide');
           showHideAlert('#error-alert');
-          console.error(e);
+          console.error(e)
         })
     })
 
@@ -216,7 +197,7 @@
       let def: JQueryDeferred<any> = $.Deferred();
 
       const ajaxProps: JQueryAjaxSettings = {
-        url: `${hostUrl}api/Usuario/ListarTodosDaEmpresa/${currentUser.empresaCnpj}`,
+        url: `${hostUrl}api/Garagem/ListarTodasDaEmpresa/${currentUser.empresaCnpj}`,
         type: 'GET',
         contentType: 'application/json; charset=utf-8'
       }
@@ -233,37 +214,30 @@
     }
 
     function buildTableItems(items: any[]) {
-      $('#user-table tbody').html('');
+      $('#garage-table tbody').html('');
       $('#data-results').text(items.length);
       if (items.length > 0) {
         items.forEach((item) => {
-          $('#user-table tbody').append(`
-            <tr data-item="${item.id}">
-              <td class="d-none">${item.id}</td>
-              <td class="d-none">${item.senha}</td>
+          $('#garage-table tbody').append(`
+            <tr data-item="${item.idGaragem}">
               <td style="min-width: 150px;">${item.nome}</td>
-              <td style="min-width: 100px;">${item.email}</td>
-              <td style="min-width: 150px;">${item.endereco}</td>
-              <td style="min-width: 100px;">${addUserPhone.masked(item.telefone)}</td>
-              <td style="min-width: 100px;">${addUserCompanyCnpj.masked(item.empresaCnpj)}</td>
+              <td style="min-width: 150px;">${addGarageCnpj.masked(item.empresaCnpj)}</td>
+              <td>${item.endereco}</td>
               <td>
-                <a href="#editModal" class="edit" onclick="setItemToDeleteOrUpdateValue(${item.id})" data-toggle="modal"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></i></a>
-                <a href="#deleteModal" class="delete" onclick="setItemToDeleteOrUpdateValue(${item.id})" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="Excluir"></i></a>
+                <a href="#editModal" class="edit" onclick="setItemToDeleteOrUpdateValue(${item.idGaragem})" data-toggle="modal"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></i></a>
+                <a href="#deleteModal" class="delete" onclick="setItemToDeleteOrUpdateValue(${item.idGaragem})" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="Excluir"></i></a>
               </td>
             </tr>`);
         })
       }
     }
 
-    window['setItemToDeleteOrUpdateValue'] = function (userId: number) {
-      itemToEditOrDelete = userId;
-      let itemRowData = $(`[data-item="${userId}"]`).find('td');
-      editUserPassword.val($(itemRowData[1]).text());
-      editUserName.val($(itemRowData[2]).text());
-      editUserEmail.val($(itemRowData[3]).text());
-      editUserAddress.val($(itemRowData[4]).text());
-      editUserPhone.val(editUserPhone.masked($(itemRowData[5]).text() as string));
-      editUserCompanyCnpj.val(editUserCompanyCnpj.masked($(itemRowData[6]).text() as string));
+    window['setItemToDeleteOrUpdateValue'] = function (value: number) {
+      itemToEditOrDelete = value.toString();
+      let itemRowData = $(`[data-item="${value}"]`).find('td');
+      editGarageName.val($(itemRowData[0]).text());
+      editGarageCnpj.val(editGarageCnpj.masked($(itemRowData[1]).text() as string));
+      editGarageAddress.val($(itemRowData[2]).text());
     }
     //#endregion
   })

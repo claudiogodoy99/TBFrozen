@@ -34,7 +34,7 @@ paths.plugins = [paths.pluginswebroot + '**/*.{min.js,min.css,map,eot,svg,ttf,wo
 /********************************** TASKS ************************************/
 /*****************************************************************************/
 
-gulp.task('default', ['css', 'index', 'home', 'data-tables']);
+gulp.task('default', ['css', 'index', 'home', 'data-tables', 'company-data-table', 'user-data-table', 'driver-data-table', 'garage-data-table']);
 
 gulp.task('images', function () {
   var spriteData = gulp.src(paths.images).pipe(spritesmith({
@@ -109,7 +109,7 @@ gulp.task('index', function () {
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))
-    //.pipe(uglify())
+    .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('SiteAssets/scripts'));
 });
@@ -210,6 +210,32 @@ gulp.task('driver-data-table', function () {
     .pipe(ts({
       target: 'es5',
       outFile: 'driver-data-table.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
+gulp.task('garage-data-table', function () {
+  return gulp.src(paths.webroot + 'ts/garage-data-table.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'garage-data-table.js',
+      "typeRoots": ["./typings", "./node_modules/@types"]
+    }))
+    .pipe(gulp.dest(paths.compiledTs))
+    //.pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('SiteAssets/scripts'));
+});
+
+gulp.task('vehicle-data-table', function () {
+  return gulp.src(paths.webroot + 'ts/vehicle-data-table.ts')
+    .pipe(ts({
+      target: 'es5',
+      outFile: 'vehicle-data-table.js',
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))

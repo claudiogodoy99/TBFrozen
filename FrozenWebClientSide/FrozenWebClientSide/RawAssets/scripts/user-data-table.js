@@ -21,6 +21,7 @@
         var editUserCompanyCnpj = $('#edit-user-form [name="user-company-cnpj"]');
         var editUserAddress = $('#edit-user-form [name="user-address"]');
         var editUserPhone = $('#edit-user-form [name="user-phone"]');
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         var itemToEditOrDelete;
         addUserCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
         addUserPhone.mask('(00) 00000-0000');
@@ -176,7 +177,7 @@
         function getItems() {
             var def = $.Deferred();
             var ajaxProps = {
-                url: hostUrl + "api/Usuario/ListarTodosDaEmpresa/12123232323232",
+                url: hostUrl + "api/Usuario/ListarTodosDaEmpresa/" + currentUser.empresaCnpj,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8'
             };
@@ -194,7 +195,7 @@
             $('#data-results').text(items.length);
             if (items.length > 0) {
                 items.forEach(function (item) {
-                    $('#user-table tbody').append("\n            <tr data-item=\"" + item.id + "\">\n              <td class=\"d-none\">" + item.id + "</td>\n              <td class=\"d-none\">" + item.senha + "</td>\n              <td>" + item.nome + "</td>\n              <td>" + item.email + "</td>\n              <td style=\"min-width: 150px;\">" + item.endereco + "</td>\n              <td style=\"min-width: 150px;\">" + addUserPhone.masked(item.telefone) + "</td>\n              <td style=\"min-width: 150px;\">" + addUserCompanyCnpj.masked(item.empresaCnpj) + "</td>\n              <td>\n                <a href=\"#editModal\" class=\"edit\" onclick=\"setItemToDeleteOrUpdateValue(" + item.id + ")\" data-toggle=\"modal\"><i class=\"fa fa-pencil\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Editar\"></i></a>\n                <a href=\"#deleteModal\" class=\"delete\" onclick=\"setItemToDeleteOrUpdateValue(" + item.id + ")\" data-toggle=\"modal\"><i class=\"fa fa-trash\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Excluir\"></i></a>\n              </td>\n            </tr>");
+                    $('#user-table tbody').append("\n            <tr data-item=\"" + item.id + "\">\n              <td class=\"d-none\">" + item.id + "</td>\n              <td class=\"d-none\">" + item.senha + "</td>\n              <td style=\"min-width: 150px;\">" + item.nome + "</td>\n              <td style=\"min-width: 100px;\">" + item.email + "</td>\n              <td style=\"min-width: 150px;\">" + item.endereco + "</td>\n              <td style=\"min-width: 100px;\">" + addUserPhone.masked(item.telefone) + "</td>\n              <td style=\"min-width: 100px;\">" + addUserCompanyCnpj.masked(item.empresaCnpj) + "</td>\n              <td>\n                <a href=\"#editModal\" class=\"edit\" onclick=\"setItemToDeleteOrUpdateValue(" + item.id + ")\" data-toggle=\"modal\"><i class=\"fa fa-pencil\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Editar\"></i></a>\n                <a href=\"#deleteModal\" class=\"delete\" onclick=\"setItemToDeleteOrUpdateValue(" + item.id + ")\" data-toggle=\"modal\"><i class=\"fa fa-trash\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Excluir\"></i></a>\n              </td>\n            </tr>");
                 });
             }
         }
