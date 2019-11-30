@@ -20,6 +20,7 @@
     const editDriverCNH = $('#edit-driver-form [name="driver-cnh"]');
     const editDriverCompanyCnpj = $('#edit-driver-form [name="driver-company-cnpj"]');
 
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let itemToEditOrDelete: string;
 
     addDriverCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
@@ -195,7 +196,7 @@
       let def: JQueryDeferred<any> = $.Deferred();
 
       const ajaxProps: JQueryAjaxSettings = {
-        url: `${hostUrl}api/Motorista/ListarTodosDaEmpresa/12123232323232`,
+        url: `${hostUrl}api/Motorista/ListarTodosDaEmpresa/${currentUser.empresaCnpj}`,
         type: 'GET',
         contentType: 'application/json; charset=utf-8'
       }

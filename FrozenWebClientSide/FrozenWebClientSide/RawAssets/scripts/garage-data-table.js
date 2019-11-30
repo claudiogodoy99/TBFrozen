@@ -5,20 +5,20 @@
         var loadingModal = $('#loading-modal');
         var addModal = $('#addModal');
         var deleteModal = $('#deleteModal');
-        var deleteForm = $('#delete-driver-form');
+        var deleteForm = $('#delete-garage-form');
         var editModal = $('#editModal');
-        var editForm = $('#edit-driver-form');
-        var addForm = $('#add-driver-form');
-        var addDriverName = $('#add-driver-form [name="driver-name"]');
-        var addDriverCNH = $('#add-driver-form [name="driver-cnh"]');
-        var addDriverCompanyCnpj = $('#add-driver-form [name="driver-company-cnpj"]');
-        var editDriverName = $('#edit-driver-form [name="driver-name"]');
-        var editDriverCNH = $('#edit-driver-form [name="driver-cnh"]');
-        var editDriverCompanyCnpj = $('#edit-driver-form [name="driver-company-cnpj"]');
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        var editForm = $('#edit-garage-form');
+        var addGarage = $('#add-garage-form');
+        var addGarageName = $('#add-garage-form [name="garage-name"]');
+        var addGarageCnpj = $('#add-garage-form [name="garage-cnpj"]');
+        var addGarageAddress = $('#add-garage-form [name="garage-address"]');
+        var editGarageName = $('#edit-garage-form [name="garage-name"]');
+        var editGarageCnpj = $('#edit-garage-form [name="garage-cnpj"]');
+        var editGarageAddress = $('#edit-garage-form [name="garage-address"]');
         var itemToEditOrDelete;
-        addDriverCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
-        editDriverCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        addGarageCnpj.mask('00.000.000/0000-00', { reverse: true });
+        editGarageCnpj.mask('00.000.000/0000-00', { reverse: true });
         //#endregion
         //#region Listagem dos items
         loadingModal.modal();
@@ -35,16 +35,17 @@
         //#endregion
         //#region Função dos botões
         // Botão de adicionar
-        addForm.on('submit', function (e) {
+        addGarage.on('submit', function (e) {
             e.preventDefault();
             addModal.modal('hide');
             loadingModal.modal();
             var dataObj = {};
-            dataObj['nome'] = addDriverName.val();
-            dataObj['cnh'] = addDriverCNH.val();
-            dataObj['empresaCnpj'] = addDriverCompanyCnpj.cleanVal();
+            dataObj['nome'] = addGarageName.val();
+            dataObj['empresaCnpj'] = addGarageCnpj.cleanVal();
+            dataObj['endereco'] = addGarageAddress.val();
+            dataObj['empresa'] = null;
             var ajaxProps = {
-                url: hostUrl + "api/Motorista/Cadastrar",
+                url: hostUrl + "api/Garagem/Cadastrar",
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(dataObj)
@@ -54,7 +55,7 @@
                 getItems()
                     .done(function (data) {
                     buildTableItems(data);
-                    resetFields(['#addModal [name="driver-name"]', '#addModal [name="driver-cnh"]', '#addModal [name="driver-company-cnpj"]']);
+                    resetFields(['#addModal [name="garage-cnpj"]', '#addModal [name="garage-name"]', '#addModal [name="garage-address"]']);
                     loadingModal.modal('hide');
                     showHideAlert('#success-alert');
                 })
@@ -76,7 +77,7 @@
             deleteModal.modal('hide');
             loadingModal.modal();
             var ajaxProps = {
-                url: hostUrl + "api/Motorista/Deletar/" + itemToEditOrDelete.toString(),
+                url: hostUrl + "api/Garagem/Deletar/" + itemToEditOrDelete,
                 contentType: 'application/json; charset=utf-8',
                 type: 'DELETE'
             };
@@ -106,11 +107,13 @@
             editModal.modal('hide');
             loadingModal.modal();
             var dataObj = {};
-            dataObj['cnh'] = itemToEditOrDelete;
-            dataObj['nome'] = editDriverName.val();
-            dataObj['empresaCnpj'] = editDriverCompanyCnpj.cleanVal();
+            dataObj['idGaragem'] = parseInt(itemToEditOrDelete);
+            dataObj['nome'] = editGarageName.val();
+            dataObj['empresaCnpj'] = editGarageCnpj.cleanVal();
+            dataObj['endereco'] = editGarageAddress.val();
+            dataObj['empresa'] = null;
             var ajaxProps = {
-                url: hostUrl + "api/Motorista/Atualizar",
+                url: hostUrl + "api/Garagem/Atualizar",
                 contentType: 'application/json; charset=utf-8',
                 type: 'PUT',
                 data: JSON.stringify(dataObj)
@@ -120,7 +123,7 @@
                 getItems()
                     .done(function (data) {
                     buildTableItems(data);
-                    resetFields(['#editModal [name="driver-name"]', '#editModal [name="driver-cnh"]', '#editModal [name="driver-company-cnpj"]']);
+                    resetFields(['#editModal [name="garage-cnpj"]', '#editModal [name="garage-name"]', '#editModal [name="garage-address"]']);
                     loadingModal.modal('hide');
                     showHideAlert('#success-alert');
                 })
@@ -158,7 +161,7 @@
         function getItems() {
             var def = $.Deferred();
             var ajaxProps = {
-                url: hostUrl + "api/Motorista/ListarTodosDaEmpresa/" + currentUser.empresaCnpj,
+                url: hostUrl + "api/Garagem/ListarTodasDaEmpresa/" + currentUser.empresaCnpj,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8'
             };
@@ -172,20 +175,20 @@
             return def.promise();
         }
         function buildTableItems(items) {
-            $('#driver-table tbody').html('');
+            $('#garage-table tbody').html('');
             $('#data-results').text(items.length);
             if (items.length > 0) {
                 items.forEach(function (item) {
-                    $('#driver-table tbody').append("\n            <tr data-item=\"" + item.cnh + "\">\n              <td style=\"min-width: 150px;\">" + item.nome + "</td>\n              <td>" + item.cnh + "</td>\n              <td style=\"min-width: 150px;\">" + addDriverCompanyCnpj.masked(item.empresaCnpj) + "</td>\n              <td>\n                <a href=\"#editModal\" class=\"edit\" onclick=\"setItemToDeleteOrUpdateValue(" + item.cnh + ")\" data-toggle=\"modal\"><i class=\"fa fa-pencil\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Editar\"></i></a>\n                <a href=\"#deleteModal\" class=\"delete\" onclick=\"setItemToDeleteOrUpdateValue(" + item.cnh + ")\" data-toggle=\"modal\"><i class=\"fa fa-trash\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Excluir\"></i></a>\n              </td>\n            </tr>");
+                    $('#garage-table tbody').append("\n            <tr data-item=\"" + item.idGaragem + "\">\n              <td style=\"min-width: 150px;\">" + item.nome + "</td>\n              <td style=\"min-width: 150px;\">" + addGarageCnpj.masked(item.empresaCnpj) + "</td>\n              <td>" + item.endereco + "</td>\n              <td>\n                <a href=\"#editModal\" class=\"edit\" onclick=\"setItemToDeleteOrUpdateValue(" + item.idGaragem + ")\" data-toggle=\"modal\"><i class=\"fa fa-pencil\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Editar\"></i></a>\n                <a href=\"#deleteModal\" class=\"delete\" onclick=\"setItemToDeleteOrUpdateValue(" + item.idGaragem + ")\" data-toggle=\"modal\"><i class=\"fa fa-trash\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Excluir\"></i></a>\n              </td>\n            </tr>");
                 });
             }
         }
-        window['setItemToDeleteOrUpdateValue'] = function (driverCNH) {
-            itemToEditOrDelete = driverCNH;
-            var itemRowData = $("[data-item=\"" + driverCNH + "\"]").find('td');
-            editDriverName.val($(itemRowData[0]).text());
-            editDriverCNH.val($(itemRowData[1]).text());
-            editDriverCompanyCnpj.val(editDriverCompanyCnpj.masked($(itemRowData[2]).text()));
+        window['setItemToDeleteOrUpdateValue'] = function (value) {
+            itemToEditOrDelete = value.toString();
+            var itemRowData = $("[data-item=\"" + value + "\"]").find('td');
+            editGarageName.val($(itemRowData[0]).text());
+            editGarageCnpj.val(editGarageCnpj.masked($(itemRowData[1]).text()));
+            editGarageAddress.val($(itemRowData[2]).text());
         };
         //#endregion
     });

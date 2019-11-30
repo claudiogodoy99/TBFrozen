@@ -5,46 +5,42 @@
         var loadingModal = $('#loading-modal');
         var addModal = $('#addModal');
         var deleteModal = $('#deleteModal');
-        var deleteForm = $('#delete-driver-form');
+        var deleteForm = $('#delete-company-form');
         var editModal = $('#editModal');
-        var editForm = $('#edit-driver-form');
-        var addForm = $('#add-driver-form');
-        var addDriverName = $('#add-driver-form [name="driver-name"]');
-        var addDriverCNH = $('#add-driver-form [name="driver-cnh"]');
-        var addDriverCompanyCnpj = $('#add-driver-form [name="driver-company-cnpj"]');
-        var editDriverName = $('#edit-driver-form [name="driver-name"]');
-        var editDriverCNH = $('#edit-driver-form [name="driver-cnh"]');
-        var editDriverCompanyCnpj = $('#edit-driver-form [name="driver-company-cnpj"]');
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        var editForm = $('#edit-company-form');
+        var addCompany = $('#add-company-form');
+        var addCompanyCnpj = $('#add-company-form [name="company-cnpj"]');
+        var addCompanyDescription = $('#add-company-form [name="company-description"]');
+        var editCompanyCnpj = $('#edit-company-form [name="company-cnpj"]');
+        var editCompanyDescription = $('#edit-company-form [name="company-description"]');
         var itemToEditOrDelete;
-        addDriverCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
-        editDriverCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
+        addCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
+        editCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
         //#endregion
         //#region Listagem dos items
-        loadingModal.modal();
-        getItems()
-            .done(function (data) {
-            buildTableItems(data);
-            loadingModal.modal('hide');
-        })
-            .fail(function (e) {
-            loadingModal.modal('hide');
-            showHideAlert('#error-alert');
-            console.log(e);
-        });
+        //loadingModal.modal();
+        //getItems()
+        //  .done((data) => {
+        //    buildTableItems(data);
+        //    loadingModal.modal('hide');
+        //  })
+        //  .fail((e) => {
+        //    loadingModal.modal('hide');
+        //    showHideAlert('#error-alert');
+        //    console.log(e);
+        //  });
         //#endregion
         //#region Função dos botões
         // Botão de adicionar
-        addForm.on('submit', function (e) {
+        addCompany.on('submit', function (e) {
             e.preventDefault();
             addModal.modal('hide');
             loadingModal.modal();
             var dataObj = {};
-            dataObj['nome'] = addDriverName.val();
-            dataObj['cnh'] = addDriverCNH.val();
-            dataObj['empresaCnpj'] = addDriverCompanyCnpj.cleanVal();
+            dataObj['cnpj'] = addCompanyCnpj.cleanVal();
+            dataObj['descricao'] = addCompanyDescription.val();
             var ajaxProps = {
-                url: hostUrl + "api/Motorista/Cadastrar",
+                url: hostUrl + "api/Empresa/Cadastrar",
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(dataObj)
@@ -54,7 +50,7 @@
                 getItems()
                     .done(function (data) {
                     buildTableItems(data);
-                    resetFields(['#addModal [name="driver-name"]', '#addModal [name="driver-cnh"]', '#addModal [name="driver-company-cnpj"]']);
+                    resetFields(['#addModal [name="company-cnpj"]', '#addModal [name="company-description"]']);
                     loadingModal.modal('hide');
                     showHideAlert('#success-alert');
                 })
@@ -76,7 +72,7 @@
             deleteModal.modal('hide');
             loadingModal.modal();
             var ajaxProps = {
-                url: hostUrl + "api/Motorista/Deletar/" + itemToEditOrDelete.toString(),
+                url: hostUrl + "api/Empresa/Deletar/" + itemToEditOrDelete,
                 contentType: 'application/json; charset=utf-8',
                 type: 'DELETE'
             };
@@ -106,11 +102,10 @@
             editModal.modal('hide');
             loadingModal.modal();
             var dataObj = {};
-            dataObj['cnh'] = itemToEditOrDelete;
-            dataObj['nome'] = editDriverName.val();
-            dataObj['empresaCnpj'] = editDriverCompanyCnpj.cleanVal();
+            dataObj['cnpj'] = editCompanyCnpj.cleanVal();
+            dataObj['descricao'] = editCompanyDescription.val();
             var ajaxProps = {
-                url: hostUrl + "api/Motorista/Atualizar",
+                url: hostUrl + "api/Empresa/Atualizar",
                 contentType: 'application/json; charset=utf-8',
                 type: 'PUT',
                 data: JSON.stringify(dataObj)
@@ -120,7 +115,7 @@
                 getItems()
                     .done(function (data) {
                     buildTableItems(data);
-                    resetFields(['#editModal [name="driver-name"]', '#editModal [name="driver-cnh"]', '#editModal [name="driver-company-cnpj"]']);
+                    resetFields(['#editModal [name="company-cnpj"]', '#editModal [name="company-description"]']);
                     loadingModal.modal('hide');
                     showHideAlert('#success-alert');
                 })
@@ -158,7 +153,7 @@
         function getItems() {
             var def = $.Deferred();
             var ajaxProps = {
-                url: hostUrl + "api/Motorista/ListarTodosDaEmpresa/" + currentUser.empresaCnpj,
+                url: hostUrl + "api/Empresa/listarTodos",
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8'
             };
@@ -172,20 +167,17 @@
             return def.promise();
         }
         function buildTableItems(items) {
-            $('#driver-table tbody').html('');
+            $('#empresa-table tbody').html('');
             $('#data-results').text(items.length);
             if (items.length > 0) {
                 items.forEach(function (item) {
-                    $('#driver-table tbody').append("\n            <tr data-item=\"" + item.cnh + "\">\n              <td style=\"min-width: 150px;\">" + item.nome + "</td>\n              <td>" + item.cnh + "</td>\n              <td style=\"min-width: 150px;\">" + addDriverCompanyCnpj.masked(item.empresaCnpj) + "</td>\n              <td>\n                <a href=\"#editModal\" class=\"edit\" onclick=\"setItemToDeleteOrUpdateValue(" + item.cnh + ")\" data-toggle=\"modal\"><i class=\"fa fa-pencil\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Editar\"></i></a>\n                <a href=\"#deleteModal\" class=\"delete\" onclick=\"setItemToDeleteOrUpdateValue(" + item.cnh + ")\" data-toggle=\"modal\"><i class=\"fa fa-trash\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Excluir\"></i></a>\n              </td>\n            </tr>");
+                    $('#empresa-table tbody').append("<tr>\n              <td style=\"min-width: 150px;\">" + editCompanyCnpj.masked(item.cnpj) + "</td>\n              <td>" + item.descricao + "</td>\n              <td>\n                <a href=\"#editModal\" class=\"edit\" onclick=\"setItemToDeleteOrUpdateValue(" + item.cnpj + ")\" data-toggle=\"modal\"><i class=\"fa fa-pencil\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Editar\"></i></a>\n                <a href=\"#deleteModal\" class=\"delete\" onclick=\"setItemToDeleteOrUpdateValue(" + item.cnpj + ")\" data-toggle=\"modal\"><i class=\"fa fa-trash\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Excluir\"></i></a>\n              </td>\n            </tr>");
                 });
             }
         }
-        window['setItemToDeleteOrUpdateValue'] = function (driverCNH) {
-            itemToEditOrDelete = driverCNH;
-            var itemRowData = $("[data-item=\"" + driverCNH + "\"]").find('td');
-            editDriverName.val($(itemRowData[0]).text());
-            editDriverCNH.val($(itemRowData[1]).text());
-            editDriverCompanyCnpj.val(editDriverCompanyCnpj.masked($(itemRowData[2]).text()));
+        window['setItemToDeleteOrUpdateValue'] = function (value) {
+            itemToEditOrDelete = value.toString();
+            editCompanyCnpj.val(editCompanyCnpj.masked(itemToEditOrDelete));
         };
         //#endregion
     });

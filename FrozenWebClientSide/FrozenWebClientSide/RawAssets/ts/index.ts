@@ -50,6 +50,7 @@
             showHideAlert('#warn-alert');
           } else if (res.Status == 'ok') {
             loadingModal.modal('hide');
+            localStorage.setItem('currentUser', JSON.stringify(res.usuario));
             window.location.replace('../SitePages/home.html');
           }
 
