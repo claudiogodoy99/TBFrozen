@@ -105,21 +105,24 @@
       let dataObj: any = {}
 
       dataObj['placa'] = addVehiclePlate.val();
-      dataObj['tipoVeiculo'] = addVehicleType.val();
+      dataObj['tipo'] = addVehicleType.val();
       dataObj['imagem'] = addVehicleImage.val();
       dataObj['marca'] = addVehicleBrand.val();
       dataObj['modelo'] = addVehicleModel.val();
       dataObj['ano'] = addVehicleYear.val();
-      dataObj['empresaCnpj'] = addVehicleCompanyCnpj.cleanVal();
-      dataObj['seguro'] = addVehicleInsurance.val();
-      dataObj['garagem'] = addVehicleGarage.val();
       dataObj['condicao'] = addVehicleCondition.val();
-      dataObj['quilometragem'] = addVehicleKm.val();
+      dataObj['km'] = addVehicleKm.val();
       dataObj['tipoCombustivel'] = addVehicleFuel.val();
+      dataObj['lugares'] = addVehiclePlaces.val();
+      dataObj['empresaCnpj'] = addVehicleCompanyCnpj.cleanVal();
+      dataObj['garagem'] = addVehicleGarage.val();
+      dataObj['seguro'] = addVehicleInsurance.val();
       dataObj['tipoCambio'] = addVehicleTransmission.val();
       dataObj['consumo'] = addVehicleConsume.val();
-      dataObj['lugares'] = addVehiclePlaces.val();
+      dataObj['emViagem'] = false;
+      dataObj['emManutencao'] = false;
       dataObj['pneus'] = {
+        'id': null,
         'marca': addTireBrand.val(),
         'modelo': addTireModel.val(),
         'aro': addTireHoop.val(),
@@ -127,13 +130,9 @@
         'medida': addTireMessure.val(),
         'tipoTerreno': addTireTerrain.val()
       };
-      dataObj['manutencoes'] = {
-        'preventivaStatus': addPrevStatus.val(),
-        'ultimaPreventiva': addPrevLastDate.val(),
-        'corretivaStatus': addCorStatus.val(),
-        'ultimaCorretiva': addCorLastDate.val(),
-        'ultimoAbastecimento': addLastRecharge.val()
-      };
+      dataObj['ultimaPreventiva'] = addPrevLastDate.val();
+      dataObj['ultimaCorretiva'] = addCorLastDate.val();
+      dataObj['ultimoAbastecimento'] = addLastRecharge.val();
 
       const ajaxProps: JQueryAjaxSettings = {
         url: `${hostUrl}api/Veiculo/Cadastrar`,
