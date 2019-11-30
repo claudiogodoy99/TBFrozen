@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrozenWeb.Services", "Froze
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrozenWeb.Presentation.Api", "FrozenWeb.Presentation.Api\FrozenWeb.Presentation.Api.csproj", "{45606C2B-5129-409E-8A10-771625B4DE98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrozenDesktop", "FrozenDesktop\FrozenDesktop.csproj", "{EC4BC458-FD50-4B4F-BDD1-FAA7C7397940}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{45606C2B-5129-409E-8A10-771625B4DE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45606C2B-5129-409E-8A10-771625B4DE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45606C2B-5129-409E-8A10-771625B4DE98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC4BC458-FD50-4B4F-BDD1-FAA7C7397940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4BC458-FD50-4B4F-BDD1-FAA7C7397940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4BC458-FD50-4B4F-BDD1-FAA7C7397940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4BC458-FD50-4B4F-BDD1-FAA7C7397940}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{2438F78B-48CB-46BD-B6E6-7EFE52F4B46A} = {6CD3BC2E-0E01-40BC-9351-E54BE17C3CCA}
 		{DC407561-38D2-4D64-9DB6-32A33280F81B} = {31672F99-F399-44EB-8A10-B62C03B3F76F}
 		{45606C2B-5129-409E-8A10-771625B4DE98} = {CD157B62-061E-48EB-8D61-B4F053B7F124}
+		{EC4BC458-FD50-4B4F-BDD1-FAA7C7397940} = {CD157B62-061E-48EB-8D61-B4F053B7F124}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A1F8291-4B04-4563-A757-DF27FA78E56C}
