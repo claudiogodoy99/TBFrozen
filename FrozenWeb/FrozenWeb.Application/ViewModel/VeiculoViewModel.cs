@@ -41,14 +41,11 @@ namespace FrozenWeb.Application.ViewModel
 
         public string preventivaStatus
         {
-            get{ return preventivaStatus; }
+            get;
         }
         public string corretivaStatus
         {
-            get
-            {
-                return corretivaStatus;
-            }
+            get;
         }
 
         public virtual GaragemViewModel garagem { get; set; }

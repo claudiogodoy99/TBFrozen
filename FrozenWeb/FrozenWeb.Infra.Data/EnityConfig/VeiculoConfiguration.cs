@@ -54,12 +54,12 @@ namespace FrozenWeb.Infra.Data.EnityConfig
 
             Property(x => x.ultimoAbastecimento)
                 .HasColumnType("DATETIME")
-                .HasColumnName("ULTIMACORRETIVA")
+                .HasColumnName("ULTIMOABASTECIMENTO")
                 .IsOptional();
 
             Property(x => x.ano)
                 .HasColumnName("ANOMODELO")
-                .HasColumnType("TINYINT")
+                .HasColumnType("INT")
                 .IsOptional();
 
             Property(x => x.condicao)

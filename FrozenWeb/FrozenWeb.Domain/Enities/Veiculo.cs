@@ -24,7 +24,7 @@ namespace FrozenWeb.Domain.Enities
     public string consumo { get; set; }
     public string emViagem { get; set; }
     public string emManutencao { get; set; }
-    public double preco{ get; set; }
+    public decimal preco{ get; set; }
 
 
     public DateTime? ultimaPreventiva { get; set; }
