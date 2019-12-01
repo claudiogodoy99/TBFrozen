@@ -47,6 +47,7 @@
     <Compile Include="AppServices\MotoristaAppService.cs" />
     <Compile Include="AppServices\UnityOfWorkAppService.cs" />
     <Compile Include="AppServices\UsuarioAppService.cs" />
+    <Compile Include="AppServices\VeiculoAppService.cs" />
     <Compile Include="AutoMapper\DomainToViewModel.cs" />
     <Compile Include="AutoMapper\MapperConfig.cs" />
     <Compile Include="AutoMapper\ViewModelToDomain.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Interfaces\IMotoristaAppService.cs" />
     <Compile Include="Interfaces\IUnityOfWorkAppService.cs" />
     <Compile Include="Interfaces\IUsuarioAppService.cs" />
+    <Compile Include="Interfaces\IVeiculoAppServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\LoginResponse.cs" />
     <Compile Include="ViewModel\EmpresaViewModel.cs" />

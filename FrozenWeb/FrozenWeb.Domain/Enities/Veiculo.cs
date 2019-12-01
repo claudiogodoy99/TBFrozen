@@ -16,21 +16,23 @@ namespace FrozenWeb.Domain.Enities
     public string modelo { get; set; }
     public int ano { get; set; }
     public string condicao { get; set; }
-    public string km { get; set; }
+    public int? km { get; set; }
     public string tipoCombustivel { get; set; }
     public int lugares { get; set; }
     public string seguro { get; set; }
     public string tipoCambio { get; set; }
     public string consumo { get; set; }
-    public bool emViagem { get; set; }
-    public bool emManutencao { get; set; }
+    public string emViagem { get; set; }
+    public string emManutencao { get; set; }
+    public double preco{ get; set; }
+
 
     public DateTime? ultimaPreventiva { get; set; }
     public DateTime? ultimaCorretiva { get; set; }
     public DateTime? ultimoAbastecimento { get; set; }
 
     public int garagemId { get; set; }
-    public int pneuId { get; set; }
+    public string empresaCnpj { get; set; }
 
     public string preventivaStatus
     {
@@ -49,8 +51,6 @@ namespace FrozenWeb.Domain.Enities
 
     public virtual Garagem garagem { get; set; }
     public virtual Empresa empresa { get; set; }
-    public virtual Pneu pneu { get; set; }
-
 
     private string VerificaStatusDaManutencaoPreventica()
     {
@@ -73,22 +73,22 @@ namespace FrozenWeb.Domain.Enities
 
     public IEnumerable<Veiculo> ListarVeiculosDisponiveis(List<Veiculo> veiculos)
     {
-      return veiculos.Where(x => !x.emManutencao && !x.emViagem);
+      return veiculos.Where(x => x.emManutencao is "N" && x.emViagem is "N");
     }
 
     public IEnumerable<Veiculo> ListarVeiculosIndisponiveis(List<Veiculo> veiculos)
     {
-      return veiculos.Where(x => x.emManutencao || x.emViagem);
+      return veiculos.Where(x => x.emManutencao is "S" || x.emViagem is "S");
     }
 
     public IEnumerable<Veiculo> ListarVeiculosEmManutencao(List<Veiculo> veiculos)
     {
-      return veiculos.Where(x => x.emManutencao);
+      return veiculos.Where(x => x.emManutencao is "S");
     }
 
     public IEnumerable<Veiculo> ListarVeiculosEmViagem(List<Veiculo> veiculos)
     {
-      return veiculos.Where(x => x.emViagem);
+      return veiculos.Where(x => x.emViagem is "S");
     }
   }
 }

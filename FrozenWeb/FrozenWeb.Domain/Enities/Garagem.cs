@@ -7,7 +7,7 @@ namespace FrozenWeb.Domain.Enities
     {
         public Garagem()
         {
-            //veiculos = new HashSet<Veiculo>();
+            veiculos = new HashSet<Veiculo>();
         }
 
         public int? idGaragem { get; set; }
@@ -15,7 +15,7 @@ namespace FrozenWeb.Domain.Enities
         public string endereco { get; set; }
         public string empresaCnpj { get; set; }
 
-        //public virtual ICollection<Veiculo> veiculos { get; set; }
+        public virtual ICollection<Veiculo> veiculos { get; set; }
         public virtual Empresa empresa { get; set; }
     }
 }
