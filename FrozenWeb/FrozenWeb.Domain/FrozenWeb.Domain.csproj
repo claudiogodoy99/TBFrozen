@@ -42,6 +42,7 @@
     <Compile Include="Enities\Motorista.cs" />
     <Compile Include="Enities\Usuario.cs" />
     <Compile Include="Enities\Veiculo.cs" />
+    <Compile Include="Enities\Viagem.cs" />
     <Compile Include="Interfaces\Repository\IEmpresaRepository.cs" />
     <Compile Include="Interfaces\Repository\IGaragemRepository.cs" />
     <Compile Include="Interfaces\Repository\IMotoristaRepository.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Interfaces\Repository\IUnityOfWork.cs" />
     <Compile Include="Interfaces\Repository\IUsuarioRepositoy.cs" />
     <Compile Include="Interfaces\Repository\IVeiculoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IViagemRepository.cs" />
     <Compile Include="Interfaces\Services\IEmpresaService.cs" />
     <Compile Include="Interfaces\Services\IGaragemService.cs" />
     <Compile Include="Interfaces\Services\IMotoristaService.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="Interfaces\Services\IUnityOfWorkService.cs" />
     <Compile Include="Interfaces\Services\IUsuarioService.cs" />
     <Compile Include="Interfaces\Services\IVeiculoService.cs" />
+    <Compile Include="Interfaces\Services\IViagemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmpresaService.cs" />
     <Compile Include="Services\GaragemService.cs" />
