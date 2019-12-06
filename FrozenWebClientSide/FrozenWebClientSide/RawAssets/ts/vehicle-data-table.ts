@@ -28,17 +28,11 @@
     const addVehicleTransmission = $('#add-vehicle-form [name="vehicle-transmission"]');
     const addVehicleConsume = $('#add-vehicle-form [name="vehicle-consume"]');
     const addVehiclePlaces = $('#add-vehicle-form [name="vehicle-places"]');
-    const addTireBrand = $('#add-vehicle-form [name="tire-brand"]');
-    const addTireModel = $('#add-vehicle-form [name="tire-model"]');
-    const addTireHoop = $('#add-vehicle-form [name="tire-hoop"]');
-    const addTireCategory = $('#add-vehicle-form [name="tire-category"]');
-    const addTireMessure = $('#add-vehicle-form [name="tire-messure"]');
-    const addTireTerrain = $('#add-vehicle-form [name="tire-terrain"]');
-    const addPrevStatus = $('#add-vehicle-form [name="maintance-prev-status"]');
+    const addVehiclePrice = $('#add-vehicle-form [name="vehicle-price"]');
     const addPrevLastDate = $('#add-vehicle-form [name="maintance-prev-last-date"]');
-    const addCorStatus = $('#add-vehicle-form [name="maintance-cor-status"]');
     const addCorLastDate = $('#add-vehicle-form [name="maintance-cor-last-date"]');
     const addLastRecharge = $('#add-vehicle-form [name="recharge-last-date"]');
+    const addVehicleOnMaintance = $('#add-vehicle-form [name="vehicle-on-maintance"]');
 
     const editVehiclePlate = $('#edit-vehicle-form [name="vehicle-plate"]');
     const editVehicleType = $('#edit-vehicle-form [name="vehicle-type"]');
@@ -55,20 +49,16 @@
     const editVehicleTransmission = $('#edit-vehicle-form [name="vehicle-transmission"]');
     const editVehicleConsume = $('#edit-vehicle-form [name="vehicle-consume"]');
     const editVehiclePlaces = $('#edit-vehicle-form [name="vehicle-places"]');
-    const editTireBrand = $('#edit-vehicle-form [name="tire-brand"]');
-    const editTireModel = $('#edit-vehicle-form [name="tire-model"]');
-    const editTireHoop = $('#edit-vehicle-form [name="tire-hoop"]');
-    const editTireCategory = $('#edit-vehicle-form [name="tire-category"]');
-    const editTireMessure = $('#edit-vehicle-form [name="tire-messure"]');
-    const editTireTerrain = $('#edit-vehicle-form [name="tire-terrain"]');
-    const editPrevStatus = $('#edit-vehicle-form [name="maintance-prev-status"]');
+    const editVehiclePrice = $('#edit-vehicle-form [name="vehicle-price"]');
     const editPrevLastDate = $('#edit-vehicle-form [name="maintance-prev-last-date"]');
-    const editCorStatus = $('#edit-vehicle-form [name="maintance-cor-status"]');
     const editCorLastDate = $('#edit-vehicle-form [name="maintance-cor-last-date"]');
     const editLastRecharge = $('#edit-vehicle-form [name="recharge-last-date"]');
+    const editVehicleOnMaintance = $('#edit-vehicle-form [name="vehicle-on-maintance"]');
 
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let itemToEditOrDelete: string;
+    let emViagem: string;
+    let vehicleImagePath: string;
 
     addVehicleCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
     editVehicleCompanyCnpj.mask('00.000.000/0000-00', { reverse: true });
@@ -77,11 +67,21 @@
 
     //#region Listagem dos items
     loadingModal.modal();
+    getGarages()
+      .done((garages) => {
 
-    getItems()
-      .done((data) => {
-        buildTableItems(data);
-        loadingModal.modal('hide');
+        buildGarageItens(garages);
+
+        getItems()
+          .done((data) => {
+            buildTableItems(data);
+            loadingModal.modal('hide');
+          })
+          .fail((e) => {
+            loadingModal.modal('hide');
+            showHideAlert('#error-alert');
+            console.log(e);
+          });
       })
       .fail((e) => {
         loadingModal.modal('hide');
@@ -104,35 +104,40 @@
 
       let dataObj: any = {}
 
+      dataObj['id'] = null;
       dataObj['placa'] = addVehiclePlate.val();
       dataObj['tipo'] = addVehicleType.val();
-      dataObj['imagem'] = addVehicleImage.val();
+
+      if (document.querySelector('#customFile')['files']) {
+        if (document.querySelector('#customFile')['files'][0]) {
+          dataObj['imagem'] = `C:/Users/Gabriel/Desktop/${document.querySelector('#customFile')['files'][0].name}`;
+        } else {
+          dataObj['imagem'] = null;
+        }
+      } else {
+        dataObj['imagem'] = null;
+      }
+
       dataObj['marca'] = addVehicleBrand.val();
       dataObj['modelo'] = addVehicleModel.val();
       dataObj['ano'] = addVehicleYear.val();
       dataObj['condicao'] = addVehicleCondition.val();
       dataObj['km'] = addVehicleKm.val();
+      dataObj['tipoCambio'] = addVehicleTransmission.val();
       dataObj['tipoCombustivel'] = addVehicleFuel.val();
+      dataObj['emViagem'] = "N";
+      dataObj['emManutencao'] = addVehicleOnMaintance.val();
+      dataObj['seguro'] = addVehicleInsurance.val();
+      dataObj['preco'] = addVehiclePrice.val();
       dataObj['lugares'] = addVehiclePlaces.val();
       dataObj['empresaCnpj'] = addVehicleCompanyCnpj.cleanVal();
-      dataObj['garagem'] = addVehicleGarage.val();
-      dataObj['seguro'] = addVehicleInsurance.val();
-      dataObj['tipoCambio'] = addVehicleTransmission.val();
+      dataObj['empresa'] = null;
+      dataObj['garagemId'] = parseInt(addVehicleGarage.val() as string);
+      dataObj['garagem'] = null;
       dataObj['consumo'] = addVehicleConsume.val();
-      dataObj['emViagem'] = false;
-      dataObj['emManutencao'] = false;
-      dataObj['pneus'] = {
-        'id': null,
-        'marca': addTireBrand.val(),
-        'modelo': addTireModel.val(),
-        'aro': addTireHoop.val(),
-        'categoria': addTireCategory.val(),
-        'medida': addTireMessure.val(),
-        'tipoTerreno': addTireTerrain.val()
-      };
-      dataObj['ultimaPreventiva'] = addPrevLastDate.val();
-      dataObj['ultimaCorretiva'] = addCorLastDate.val();
-      dataObj['ultimoAbastecimento'] = addLastRecharge.val();
+      dataObj['ultimaPreventiva'] = new Date(addPrevLastDate.val() as string) || null;
+      dataObj['ultimaCorretiva'] = new Date(addCorLastDate.val() as string) || null;
+      dataObj['ultimoAbastecimento'] = new Date(addLastRecharge.val() as string);
 
       const ajaxProps: JQueryAjaxSettings = {
         url: `${hostUrl}api/Veiculo/Cadastrar`,
@@ -146,7 +151,8 @@
           getItems()
             .done((data) => {
               buildTableItems(data);
-              resetFields(['#addModal [name="vehicle-name"]', '#addModal [name="vehicle-cnh"]', '#addModal [name="vehicle-company-cnpj"]']);
+              document.getElementById('add-vehicle-form')['reset']();
+              //resetFields(['#addModal [name="vehicle-name"]', '#addModal [name="vehicle-cnh"]', '#addModal [name="vehicle-company-cnpj"]']);
 
               loadingModal.modal('hide');
               showHideAlert('#success-alert');
@@ -211,8 +217,40 @@
 
       let dataObj: any = {}
 
-      dataObj['cnh'] = itemToEditOrDelete
+      dataObj['id'] = parseInt(itemToEditOrDelete);
+      dataObj['placa'] = editVehiclePlate.val();
+      dataObj['tipo'] = editVehicleType.val();
+
+      if (document.querySelector('#editCustomFile')['files']) {
+        if (document.querySelector('#editCustomFile')['files'][0]) {
+          dataObj['imagem'] = `C:/Users/Gabriel/Desktop/${document.querySelector('#editCustomFile')['files'][0].name}`;
+        } else {
+          dataObj['imagem'] = vehicleImagePath;
+        }
+      } else {
+        dataObj['imagem'] = vehicleImagePath;
+      }
+
+      dataObj['marca'] = editVehicleBrand.val();
+      dataObj['modelo'] = editVehicleModel.val();
+      dataObj['ano'] = editVehicleYear.val();
+      dataObj['condicao'] = editVehicleCondition.val();
+      dataObj['km'] = editVehicleKm.val();
+      dataObj['tipoCambio'] = editVehicleTransmission.val();
+      dataObj['tipoCombustivel'] = editVehicleFuel.val();
+      dataObj['emViagem'] = emViagem;
+      dataObj['emManutencao'] = editVehicleOnMaintance.val();
+      dataObj['seguro'] = editVehicleInsurance.val();
+      dataObj['preco'] = editVehiclePrice.val();
+      dataObj['lugares'] = editVehiclePlaces.val();
       dataObj['empresaCnpj'] = editVehicleCompanyCnpj.cleanVal();
+      dataObj['empresa'] = null;
+      dataObj['garagemId'] = parseInt(editVehicleGarage.val() as string);
+      dataObj['garagem'] = null;
+      dataObj['consumo'] = editVehicleConsume.val();
+      dataObj['ultimaPreventiva'] = new Date(editPrevLastDate.val() as string) || null;
+      dataObj['ultimaCorretiva'] = new Date(editCorLastDate.val() as string) || null;
+      dataObj['ultimoAbastecimento'] = new Date(editLastRecharge.val() as string);
 
       const ajaxProps: JQueryAjaxSettings = {
         url: `${hostUrl}api/Veiculo/Atualizar`,
@@ -226,7 +264,8 @@
           getItems()
             .done((data) => {
               buildTableItems(data);
-              resetFields(['#editModal [name="vehicle-name"]', '#editModal [name="vehicle-cnh"]', '#editModal [name="vehicle-company-cnpj"]'])
+              document.getElementById('edit-vehicle-form')['reset']();
+              //resetFields(['#editModal [name="vehicle-name"]', '#editModal [name="vehicle-cnh"]', '#editModal [name="vehicle-company-cnpj"]'])
               loadingModal.modal('hide');
               showHideAlert('#success-alert');
             })
@@ -284,30 +323,108 @@
       return def.promise();
     }
 
+    function getGarages(): JQueryPromise<any> {
+      let def: JQueryDeferred<any> = $.Deferred();
+
+      const ajaxProps: JQueryAjaxSettings = {
+        url: `${hostUrl}api/Garagem/ListarTodasDaEmpresa/${currentUser.empresaCnpj}`,
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8'
+      }
+
+      $.ajax(ajaxProps)
+        .done((data) => {
+          def.resolve(data);
+        })
+        .fail((e) => {
+          def.reject(e);
+        })
+
+      return def.promise();
+    }
+
+    function buildGarageItens(items: any[]) {
+      items.forEach((item) => {
+        addVehicleGarage.append(`<option value="${item.idGaragem}">${item.nome}</option>`);
+        editVehicleGarage.append(`<option value="${item.idGaragem}">${item.nome}</option>`);
+      })
+    }
+
     function buildTableItems(items: any[]) {
       $('#vehicle-table tbody').html('');
       $('#data-results').text(items.length);
       if (items.length > 0) {
         items.forEach((item) => {
           $('#vehicle-table tbody').append(`
-            <tr data-item="${item.cnh}">
-              <td style="min-width: 150px;">${item.nome}</td>
-              <td>${item.cnh}</td>
-              <td style="min-width: 150px;">${addVehicleCompanyCnpj.masked(item.empresaCnpj)}</td>
-              <td>
-                <a href="#editModal" class="edit" onclick="setItemToDeleteOrUpdateValue(${item.cnh})" data-toggle="modal"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></i></a>
-                <a href="#deleteModal" class="delete" onclick="setItemToDeleteOrUpdateValue(${item.cnh})" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="Excluir"></i></a>
+            <tr data-item="${item.id}">
+              <td style="display: none";>${item.id}</td>
+              <td style="display: none";>${item.garagemId}</td>
+              <td style="display: none";>${item.tipoCombustivel}</td>
+              <td style="display: none";>${item.condicao}</td>
+              <td style="display: none";>${item.consumo}</td>
+              <td style="display: none";>${item.emViagem}</td>
+              <td style="display: none";>${item.km}</td>
+              <td style="display: none";>${item.lugares}</td>
+              <td style="display: none";>${item.preco}</td>
+              <td style="display: none";>${item.tipo}</td>
+              <td style="display: none";>${item.tipoCambio}</td>
+              <td style="display: none";>${item.tipoCombustivel}</td>
+              <td style="display: none";>${item.ultimaCorretiva}</td>
+              <td style="display: none";>${item.ultimaPreventiva}</td>
+              <td style="display: none";>${item.ultimoAbastecimento}</td>
+              <td style="display: none";>${item.imagem}</td>
+              <td style="min-width: 100px;">${item.placa}</td>
+              <td>${item.marca}</td>
+              <td>${item.modelo}</td>
+              <td>${item.ano}</td>
+              <td style="min-width: 150px;">${addVehicleCompanyCnpj.masked(item.empresaCnpj)}</td>              
+              <td>${item.seguro}</td>
+              <td>${item.emManutencao == 'S' ? 'Sim' : 'Não'}</td>
+              <td style="width: 130px;">
+                <a href="vehicle-master-detail.html?id=${item.id}" class="finish-trip"><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" title="Detalhes do Veículo"></i></a>
+                <a href="#editModal" class="edit" onclick="setItemToDeleteOrUpdateValue(${item.id})" data-toggle="modal"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></i></a>
+                <a href="#deleteModal" class="delete" onclick="setItemToDeleteOrUpdateValue(${item.id})" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" title="Excluir"></i></a>
               </td>
             </tr>`);
         })
       }
     }
 
-    window['setItemToDeleteOrUpdateValue'] = function (vehicleCNH: string) {
-      itemToEditOrDelete = vehicleCNH;
-      let itemRowData = $(`[data-item="${vehicleCNH}"]`).find('td');
-      editVehicleCompanyCnpj.val(editVehicleCompanyCnpj.masked($(itemRowData[2]).text() as string));
+    window['setItemToDeleteOrUpdateValue'] = function (vehicleId: string) {
+      itemToEditOrDelete = vehicleId;
+      let itemRowData = $(`[data-item="${vehicleId}"]`).find('td');
+      editVehicleGarage.val($(itemRowData[1]).text());
+      editVehicleFuel.val($(itemRowData[2]).text());
+      editVehicleCondition.val($(itemRowData[3]).text());
+      editVehicleConsume.val($(itemRowData[4]).text());
+      emViagem = $(itemRowData[5]).text();
+      editVehicleKm.val($(itemRowData[6]).text());
+      editVehiclePlaces.val($(itemRowData[7]).text());
+      editVehiclePrice.val($(itemRowData[8]).text());
+      editVehicleType.val($(itemRowData[9]).text());
+      editVehicleTransmission.val($(itemRowData[10]).text());
+      editVehicleFuel.val($(itemRowData[11]).text());
+      editCorLastDate.val(dateToInput($(itemRowData[12]).text()));
+      editPrevLastDate.val(dateToInput($(itemRowData[13]).text()));
+      editLastRecharge.val(dateToInput($(itemRowData[14]).text()));
+      vehicleImagePath = $(itemRowData[15]).text();
+      editVehiclePlate.val($(itemRowData[16]).text());
+      editVehicleBrand.val($(itemRowData[17]).text());
+      editVehicleModel.val($(itemRowData[18]).text());
+      editVehicleYear.val($(itemRowData[19]).text());
+      editVehicleCompanyCnpj.val(editVehicleCompanyCnpj.masked($(itemRowData[20]).text() as string));
+      editVehicleInsurance.val($(itemRowData[21]).text());
+      editVehicleOnMaintance.val(($(itemRowData[22]).text() as string) == 'Sim' ? 'S' : 'N');
     }
+
+    function dateToInput(date) {
+      let dateObj = new Date(date);
+      return `${dateObj.getFullYear()
+        }-${('0' + (dateObj.getMonth() + 1)).slice(-2)
+        }-${('0' + dateObj.getDate()).slice(-2)
+        }`
+    }
+
     //#endregion
   })
 })(jQuery);

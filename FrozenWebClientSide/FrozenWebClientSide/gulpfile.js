@@ -148,7 +148,7 @@ gulp.task('trip-data-table', function () {
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))
-    .pipe(uglify())
+ //   .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('SiteAssets/scripts'));
 });
@@ -226,7 +226,7 @@ gulp.task('garage-data-table', function () {
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))
-    //.pipe(uglify())
+    .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('SiteAssets/scripts'));
 });
@@ -239,7 +239,7 @@ gulp.task('vehicle-data-table', function () {
       "typeRoots": ["./typings", "./node_modules/@types"]
     }))
     .pipe(gulp.dest(paths.compiledTs))
-    //.pipe(uglify())
+    .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('SiteAssets/scripts'));
 });

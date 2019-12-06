@@ -42,20 +42,21 @@
           </div>
           <div class="col-sm-4 mt-2">
             <a href="#addModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-map-marker" aria-hidden="true"></i><!--<span>Adicionar</span>--></a>
-            <a href="#deleteModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"></i><!--<span>Excluir</span>--></a>
           </div>
+        </div>
+      </div>
+      <div id="alerts-area">
+        <div id="success-alert" class="alert alert-success d-none" role="alert">
+          Operação realizada com sucesso! <strong>;)</strong>
+        </div>
+        <div id="error-alert" class="alert alert-danger d-none" role="alert">
+          Ops! Algo deu errado, por favor tente novamente mais tarde. <strong>:/</strong>
         </div>
       </div>
       <div class="table-responsive">
         <table class="table table-striped table-hover">
           <thead>
             <tr>
-              <th>
-                <span class="custom-checkbox">
-                  <input type="checkbox" id="selectAll">
-                  <label for="selectAll"></label>
-                </span>
-              </th>
               <th>Status</th>
               <th>Motorista</th>
               <th>Veículo</th>
@@ -68,12 +69,6 @@
           </thead>
           <tbody>
             <tr>
-              <td>
-                <span class="custom-checkbox">
-                  <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                  <label for="checkbox1"></label>
-                </span>
-              </td>
               <td>Encerrada</td>
               <td>Gabriel</td>
               <td>Mitsubish Lancer</td>
@@ -92,16 +87,7 @@
         </table>
       </div>
       <div class="clearfix">
-        <div class="hint-text">Mostrando <b>5</b> de <b>25</b> resultados</div>
-        <ul class="pagination">
-          <li class="page-item disabled"><a href="#">Anterior</a></li>
-          <li class="page-item"><a href="#" class="page-link">1</a></li>
-          <li class="page-item"><a href="#" class="page-link">2</a></li>
-          <li class="page-item active"><a href="#" class="page-link">3</a></li>
-          <li class="page-item"><a href="#" class="page-link">4</a></li>
-          <li class="page-item"><a href="#" class="page-link">5</a></li>
-          <li class="page-item"><a href="#" class="page-link">Próximo</a></li>
-        </ul>
+        <div class="hint-text">Mostrando <b id="data-results"></b> resultados</div>
       </div>
     </div>
   </div>
@@ -109,7 +95,7 @@
   <div id="addModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form id="add-trip-form">
           <div class="modal-header">
             <h4 class="modal-title">Adicionar nova viagem </h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -126,13 +112,11 @@
             <div class="form-group">
               <label>Veículo</label>
               <div class="input-group">
-                <select class="form-control" required>
+                <select name="trip-vehicle" class="form-control" required>
                   <option>Selecione um veículo...</option>
-                  <option>Mitsubish Lancer </option>
-                  <option>Uno de firma</option>
                 </select>
                 <div class="input-group-append">
-                  <label class="input-group-text vehicle-info"><a href="vehicle-master-detail.html"><i class="fa fa-info-circle fa-lg"></i></a></label>
+                  <label class="input-group-text vehicle-info"><a id="vehicle-detail" href="#"><i class="fa fa-info-circle fa-lg"></i></a></label>
                 </div>
               </div>
             </div>
@@ -263,11 +247,35 @@
     </div>
   </div>
 
+  <!-- Loading Modal HTML -->
+  <div class="modal fade" id="loading-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="loading-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="loader">
+            <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(2 1)" stroke="#3597ff" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                <path class="car__body" d="M47.293 2.375C52.927.792 54.017.805 54.017.805c2.613-.445 6.838-.337 9.42.237l8.381 1.863c2.59.576 6.164 2.606 7.98 4.531l6.348 6.732 6.245 1.877c3.098.508 5.609 3.431 5.609 6.507v4.206c0 .29-2.536 4.189-5.687 4.189H36.808c-2.655 0-4.34-2.1-3.688-4.67 0 0 3.71-19.944 14.173-23.902zM36.5 15.5h54.01" stroke-width="3" />
+                <ellipse class="car__wheel--left" stroke-width="3.2" fill="#FFF" cx="83.493" cy="30.25" rx="6.922" ry="6.808" />
+                <ellipse class="car__wheel--right" stroke-width="3.2" fill="#FFF" cx="46.511" cy="30.25" rx="6.922" ry="6.808" />
+                <path class="car__line car__line--top" d="M22.5 16.5H2.475" stroke-width="3" />
+                <path class="car__line car__line--middle" d="M20.5 23.5H.4755" stroke-width="3" />
+                <path class="car__line car__line--bottom" d="M25.5 9.5h-19" stroke-width="3" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!------------------------------ Scripts -------------------------------->
   <script src="../SiteAssets/plugins/jquery/jquery.min.js"></script>
   <script src="../SiteAssets/plugins/popper/popper.min.js"></script>
   <script src="../SiteAssets/plugins/bootstrap/js/bootstrap.min.js"></script>
   <script src="../SiteAssets/scripts/global.min.js"></script>
+  <script src="../SiteAssets/plugins/jquery-mask/jquery.mask.min.js"></script>
   <script src="../SiteAssets/scripts/data-tables.min.js"></script>
   <script src="../SiteAssets/scripts/trip-data-table.min.js"></script>
 </body>
