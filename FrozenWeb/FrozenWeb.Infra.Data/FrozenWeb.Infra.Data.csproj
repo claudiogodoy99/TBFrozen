@@ -50,6 +50,7 @@
     <Compile Include="EnityConfig\MotoristaConfiguration.cs" />
     <Compile Include="EnityConfig\UsuarioConfiguration.cs" />
     <Compile Include="EnityConfig\VeiculoConfiguration.cs" />
+    <Compile Include="EnityConfig\ViagemConfiguration.cs" />
     <Compile Include="Interfaces\IMapping.cs" />
     <Compile Include="Migrations\201909230052075_InitialFrozenContext.cs" />
     <Compile Include="Migrations\201909230052075_InitialFrozenContext.Designer.cs">
