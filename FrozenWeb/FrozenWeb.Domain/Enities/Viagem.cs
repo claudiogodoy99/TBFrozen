@@ -11,9 +11,10 @@ namespace FrozenWeb.Domain.Enities
         public string cnpjId { get; set; }
         public int veiculoId { get; set; }
         public string cnhMotorista { get; set; }
-        public DateTime PrevisaoDeVolta { get; set; }
-        public DateTime? VoltaReal { get; set; }
-        public string RelatorioDeViagemFinalizada { get; set; }
+        public DateTime previsaoDeVolta { get; set; }
+        public DateTime? voltaReal { get; set; }
+        public string relatorioDeViagemFinalizada { get; set; }
+        public string enderecoDestino { get; set; }
 
         public virtual Empresa empresa { get; set; }
         public virtual Veiculo veiculo { get; set; }
@@ -22,20 +23,20 @@ namespace FrozenWeb.Domain.Enities
 
         public bool ViagemEstaEmAndamento
         {
-            get => !VoltaReal.HasValue;
+            get => !voltaReal.HasValue;
         }
 
         public bool ViagemAtrasada
         {
-            get => PrevisaoDeVolta.Date > DateTime.Now && ViagemEstaEmAndamento;
+            get => previsaoDeVolta.Date > DateTime.Now && ViagemEstaEmAndamento;
         }
 
         public bool ViagemQuaseConcluida {
-            get => PrevisaoDeVolta.Date >= PrevisaoDeVolta.Date.AddHours(-2) && !ViagemAtrasada && ViagemEstaEmAndamento;
+            get => previsaoDeVolta.Date >= previsaoDeVolta.Date.AddHours(-2) && !ViagemAtrasada && ViagemEstaEmAndamento;
         }
 
         public bool ViagemConcluida {
-            get => !VoltaReal.HasValue;
+            get => !voltaReal.HasValue;
         }
             
     }

@@ -41,7 +41,7 @@ namespace FrozenWeb.Application.AppServices
 
         public IEnumerable<VeiculoViewModel> ListarTodosDisponiveis(string cnpj)
         {
-            return  Mapper.Map<IEnumerable<Veiculo>,IEnumerable<VeiculoViewModel>>(_veiculoService.ListarTodosIndisponiveis(cnpj));
+            return  Mapper.Map<IEnumerable<Veiculo>,IEnumerable<VeiculoViewModel>>(_veiculoService.ListarTodosDisponiveis(cnpj));
         }
 
         public IEnumerable<VeiculoViewModel> ListarTodosEmManutencao(string cnpj)
