@@ -64,6 +64,7 @@
     <Compile Include="Repository\RepostitoryBase.cs" />
     <Compile Include="Repository\UsuarioRepository.cs" />
     <Compile Include="Repository\VeiculoRepository.cs" />
+    <Compile Include="Repository\ViagemRepository.cs" />
     <Compile Include="UoW\UnityofWork.cs" />
   </ItemGroup>
   <ItemGroup>

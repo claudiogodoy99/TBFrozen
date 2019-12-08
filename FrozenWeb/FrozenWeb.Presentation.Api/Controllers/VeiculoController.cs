@@ -166,7 +166,7 @@ namespace FrozenWeb.Presentation.Api.Controllers
         {
             try
             {
-                return Json(_veiculo.ListarTodosDaEmpresa(cnpj));
+                return Json(_veiculo.ListarTodosIndisponiveis(cnpj));
             }
             catch (Exception e)
             {

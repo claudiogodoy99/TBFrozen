@@ -25,20 +25,25 @@ namespace FrozenWeb.Infra.Data.EnityConfig
                 .HasColumnType("DATETIME")
                 .IsRequired();
 
-            Property(x => x.PrevisaoDeVolta)
+            Property(x => x.previsaoDeVolta)
                 .HasColumnName("PREVISAO_VOLTA")
                 .HasColumnType("DATETIME")
                 .IsRequired();
 
-            Property(x => x.VoltaReal)
+            Property(x => x.voltaReal)
                 .HasColumnName("VOLTA_REAL")
                 .HasColumnType("DATETIME")
                 .IsOptional();
 
-            Property(x => x.RelatorioDeViagemFinalizada)
+            Property(x => x.relatorioDeViagemFinalizada)
                 .HasColumnName("RELATORIO")
                 .HasColumnType("VARCHAR")
                 .IsOptional();
+
+            Property(x => x.enderecoDestino)
+                .HasColumnName("DESTINO")
+                .HasColumnType("VARCHAR")
+                .IsRequired();
 
             HasRequired(x => x.empresa)
                 .WithMany(x => x.viagens)

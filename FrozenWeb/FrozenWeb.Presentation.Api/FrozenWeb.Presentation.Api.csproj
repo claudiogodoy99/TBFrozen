@@ -118,6 +118,7 @@
     <Compile Include="Controllers\MotoristaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VeiculoController.cs" />
+    <Compile Include="Controllers\ViagemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
