@@ -120,16 +120,16 @@
 
       dataObj['marca'] = addVehicleBrand.val();
       dataObj['modelo'] = addVehicleModel.val();
-      dataObj['ano'] = addVehicleYear.val();
+      dataObj['ano'] = parseInt(addVehicleYear.val() as string);
       dataObj['condicao'] = addVehicleCondition.val();
-      dataObj['km'] = addVehicleKm.val();
+      dataObj['km'] = parseInt(addVehicleKm.val() as string);
       dataObj['tipoCambio'] = addVehicleTransmission.val();
       dataObj['tipoCombustivel'] = addVehicleFuel.val();
       dataObj['emViagem'] = "N";
       dataObj['emManutencao'] = addVehicleOnMaintance.val();
       dataObj['seguro'] = addVehicleInsurance.val();
-      dataObj['preco'] = addVehiclePrice.val();
-      dataObj['lugares'] = addVehiclePlaces.val();
+      dataObj['preco'] = parseFloat(addVehiclePrice.val() as string);
+      dataObj['lugares'] = parseInt(addVehiclePlaces.val() as string);
       dataObj['empresaCnpj'] = addVehicleCompanyCnpj.cleanVal();
       dataObj['empresa'] = null;
       dataObj['garagemId'] = parseInt(addVehicleGarage.val() as string);
@@ -138,6 +138,7 @@
       dataObj['ultimaPreventiva'] = new Date(addPrevLastDate.val() as string) || null;
       dataObj['ultimaCorretiva'] = new Date(addCorLastDate.val() as string) || null;
       dataObj['ultimoAbastecimento'] = new Date(addLastRecharge.val() as string);
+      dataObj['viagens'] = null;
 
       const ajaxProps: JQueryAjaxSettings = {
         url: `${hostUrl}api/Veiculo/Cadastrar`,
@@ -233,16 +234,16 @@
 
       dataObj['marca'] = editVehicleBrand.val();
       dataObj['modelo'] = editVehicleModel.val();
-      dataObj['ano'] = editVehicleYear.val();
+      dataObj['ano'] = parseInt(editVehicleYear.val() as string);
       dataObj['condicao'] = editVehicleCondition.val();
-      dataObj['km'] = editVehicleKm.val();
+      dataObj['km'] = parseInt(editVehicleKm.val() as string);
       dataObj['tipoCambio'] = editVehicleTransmission.val();
       dataObj['tipoCombustivel'] = editVehicleFuel.val();
       dataObj['emViagem'] = emViagem;
       dataObj['emManutencao'] = editVehicleOnMaintance.val();
       dataObj['seguro'] = editVehicleInsurance.val();
-      dataObj['preco'] = editVehiclePrice.val();
-      dataObj['lugares'] = editVehiclePlaces.val();
+      dataObj['preco'] = parseFloat(editVehiclePrice.val() as string);
+      dataObj['lugares'] = parseInt(editVehiclePlaces.val() as string);
       dataObj['empresaCnpj'] = editVehicleCompanyCnpj.cleanVal();
       dataObj['empresa'] = null;
       dataObj['garagemId'] = parseInt(editVehicleGarage.val() as string);
@@ -251,6 +252,7 @@
       dataObj['ultimaPreventiva'] = new Date(editPrevLastDate.val() as string) || null;
       dataObj['ultimaCorretiva'] = new Date(editCorLastDate.val() as string) || null;
       dataObj['ultimoAbastecimento'] = new Date(editLastRecharge.val() as string);
+      dataObj['viagens'] = null;
 
       const ajaxProps: JQueryAjaxSettings = {
         url: `${hostUrl}api/Veiculo/Atualizar`,
