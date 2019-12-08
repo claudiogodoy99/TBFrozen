@@ -8,6 +8,7 @@ namespace FrozenWeb.Application.ViewModel
         {
             motoristas = new HashSet<MotoristaViewModel>();
             usuarios = new HashSet<UsuarioViewModel>();
+            viagens = new HashSet<ViagemViewModel>();
         }
 
         public string cnpj { get; set; }
@@ -15,5 +16,6 @@ namespace FrozenWeb.Application.ViewModel
 
         public virtual ICollection<MotoristaViewModel> motoristas { get; set; }
         public virtual ICollection<UsuarioViewModel> usuarios { get; set; }
+        public virtual ICollection<ViagemViewModel> viagens { get; set; }
     }
 }
