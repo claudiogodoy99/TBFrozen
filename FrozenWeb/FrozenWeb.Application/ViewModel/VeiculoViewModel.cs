@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Collections.Generic;
 
 namespace FrozenWeb.Application.ViewModel
 {
@@ -11,6 +12,7 @@ namespace FrozenWeb.Application.ViewModel
         {
             empresa = new EmpresaViewModel();
             garagem = new GaragemViewModel();
+            viagens = new HashSet<ViagemViewModel>();
         }
 
         public int? id { get; set; }
@@ -50,5 +52,6 @@ namespace FrozenWeb.Application.ViewModel
 
         public virtual GaragemViewModel garagem { get; set; }
         public virtual EmpresaViewModel empresa { get; set; }
+        public virtual ICollection<ViagemViewModel> viagens { get; set; }
     }
 }
