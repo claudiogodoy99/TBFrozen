@@ -21,5 +21,20 @@ namespace FrozenDesktop
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var list = new List<EmpresaObj>();
+            list.Add(new EmpresaObj { CNPJ = "123456", DESCRICAO = "empresa teste" });
+
+            this.dataGridView1.DataSource = list;
+            
+        }
+
+        public class EmpresaObj
+        {
+            public string CNPJ { get; set; }
+            public string DESCRICAO { get; set; }
+        }
     }
 }

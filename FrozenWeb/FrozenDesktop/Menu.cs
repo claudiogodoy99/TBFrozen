@@ -19,7 +19,7 @@ namespace FrozenDesktop
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            new Empresa().Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace FrozenDesktop
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            new Usuario().Show();
         }
 
         private void button3_Click(object sender, EventArgs e)

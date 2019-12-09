@@ -21,5 +21,12 @@ namespace FrozenDesktop
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<object> list = new List<object>();
+            list.Add(new { nome = "123", empresa = "123456",email="123@hotmail.com",senha="*****", telefone = "983606866",endereco="rua teste numero teste"  });
+            this.dataGridView1.DataSource = list;
+        }
     }
 }
