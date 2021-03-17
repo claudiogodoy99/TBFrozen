@@ -29,7 +29,7 @@
     "gulp": "3.9.1",
     "jquery": "^3.5.0",
     "jquery-mask-plugin": "^1.14.16",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "popper": "^1.0.1",
     "typescript": "^3.6.3"
   }
